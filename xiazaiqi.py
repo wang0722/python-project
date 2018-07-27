@@ -93,7 +93,7 @@ class MyApp(Tk):
         button = Button(self, text='清除链接', font=('微软雅黑', 15),command=self.inputclear)
         button.place(x=220, y=365, width=100, height=45)
         test1 = THread3()
-        button = Button(self, text='暂停下载', font=('微软雅黑', 15))
+        button = Button(self, text='暂停下载', font=('微软雅黑', 15),command=button4_pause)
         button.place(x=330, y=316.5, width=100, height=45)
         button = Button(self, text='继续下载', font=('微软雅黑', 15))
         button.place(x=330, y=365, width=100, height=45)
@@ -434,6 +434,10 @@ class THread3(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
         self.url1=MyApp.entry.get()  #
+        self.__flag = threading.Event()  #  用于暂停线程的标识
+        self.__flag.set()  # 设置为True
+        self.__running = threading.Event()  # 用于停止线程的标识
+        self.__running.set()      # 将running设置为True
         self.singer_id = self.url1.split('=')[-1]
         self.start_url = 'https://music.163.com/playlist?id={}'.format(self.singer_id)
         self.html = self.get_html(self.start_url)
@@ -564,8 +568,25 @@ class THread3(threading.Thread):
            MyApp.text.see(END)
            MyApp.text.update()
            urllib.request.urlretrieve(song_url, '歌单下载\{}\歌曲'.format(singer_name3)+'\{}.mp3'.format(song_name))
+    def pause(self):
+            self.__flag .clear()
+            time.sleep(10)
+            # self.__flag=FALSE
+    def resume(self):
+        self.__flag.set()    # 设置为True, 让线程停止阻塞
+
     def stop(self):
-         self.isRunning=True
+        self.__flag.set()       # 将线程从暂停状态恢复, 如何已经暂停的话
+        self.__running.clear()        # 设置为False
+    # def stop(self):
+    #      self.isRunning=True
+class pause(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+    def run(self):
+        MyApp.text.insert(END,"123")
+        MyApp.text.see(END)
+        MyApp.text.update()
 def button1_download():
       my_ftp = THread1()
       my_ftp.start()
@@ -575,6 +596,9 @@ def button2_download():
 def button3_download():
        my_ftp = THread3()
        my_ftp.start()
+def button4_pause():
+    t3=pause()
+    t3.start()
 if __name__ == '__main__':
     app=MyApp()
     section = section()
