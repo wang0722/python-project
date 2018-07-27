@@ -3,16 +3,14 @@
 # @Time   : 2018/7/14 0014 16:43
 # @Author : wangyulin
 # @File   : 网易下载器升级版.py
-#修改
 from tkinter import *
 from Crypto.Cipher import AES
 from http import cookiejar
-import psutil,base64, binascii
 from tkinter import ttk
 from urllib.request import urlretrieve
 from tkinter import messagebox
-import urllib,os,re,urllib.request,requests,json,time,threading
 from bs4 import BeautifulSoup
+import urllib,os,re,urllib.request,requests,json,time,threading,base64,binascii
 class MyApp(Tk):
     def __init__(self):
         super().__init__()
