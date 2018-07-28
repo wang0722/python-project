@@ -10,7 +10,7 @@ from tkinter import ttk
 from urllib.request import urlretrieve
 from tkinter import messagebox
 from bs4 import BeautifulSoup
-import urllib,os,re,urllib.request,requests,json,time,threading,base64,binascii
+import urllib,os,re,urllib.request,requests,json,time,threading,base64,binascii,click
 class MyApp(Tk):
     def __init__(self):
         super().__init__()
