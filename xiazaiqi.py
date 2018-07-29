@@ -24,6 +24,7 @@ class MyApp(Tk):
         # 窗口宽高为100
         x = (sw - ww) / 2
         y = (sh - wh) / 2
+        self.iconbitmap('.\\format.ico')
         self.geometry("%dx%d+%d+%d" % (ww, wh, x, y))
         self.resizable(width=False, height=False)  # 设置不可改变窗口大小
         self.attributes("-alpha", 1)  # 背景虚化
