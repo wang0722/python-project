@@ -810,10 +810,21 @@ class find(threading.Thread):
         self.search_book(self.url1)
 
     def search_book(self, bookname):
+        header = {
+            'Accept': '*/*',
+            'Accept-Language': 'en-US,en;q=0.8',
+            'Cache-Control': 'max-age=0',
+            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
+                          'AppleWebKit/537.36 (KHTML, like Gecko) '
+                          'Chrome/48.0.2564.116 Safari/537.36',
+            'Connection': 'keep-alive',
+            'Referer': 'https://www.biquge5200.cc'}
         url = 'http://www.biquge5200.com/modules/article/search.php?searchkey=' + \
             parse.quote(bookname)
-        response = request.urlopen(url)
-        content = response.read().decode('gbk')
+        # response = request.urlopen(url)
+        # content = response.read().decode('gbk')
+        response = requests.get(url, headers=header)
+        content=response.text
         soup = BeautifulSoup(content, 'html.parser')
         self.key = 1
         path = r'{}result.txt'.format(bookname)
@@ -824,26 +835,27 @@ class find(threading.Thread):
                 if (td1 and td3):
                     name = td1[0].find('a').string
                     author = td3[0].string
-                    MYapp.text.insert(END, str(self.key) + ' 书名：' + name + ' >> 作者：' + author)
+                    MYapp.text.insert(END, str(self.key) +
+                                      ' 书名：' + name + ' >> 作者：' + author)
                     MYapp.text.see(END)
                     MYapp.text.update()
                     self.key += 1
         else:
-          for row in soup.find('table').find_all('tr'):
-            td1 = row.select('td:nth-of-type(1)')
-            td3 = row.select('td:nth-of-type(3)')
-            if (td1 and td3):
-                name = td1[0].find('a').string
-                href = td1[0].find('a').get('href')
-                author = td3[0].string
-                MYapp.text.insert(END, str(self.key) +
-                                  ' 书名：' + name + ' >> 作者：' + author)
-                MYapp.text.see(END)
-                MYapp.text.update()
-                self.key += 1
+            for row in soup.find('table').find_all('tr'):
+                td1 = row.select('td:nth-of-type(1)')
+                td3 = row.select('td:nth-of-type(3)')
+                if (td1 and td3):
+                    name = td1[0].find('a').string
+                    href = td1[0].find('a').get('href')
+                    author = td3[0].string
+                    MYapp.text.insert(END, str(self.key) +
+                                      ' 书名：' + name + ' >> 作者：' + author)
+                    MYapp.text.see(END)
+                    MYapp.text.update()
+                    self.key += 1
 
-                with open('{}result.txt'.format(bookname), 'a', encoding='utf-8') as fp:
-                    fp.write(name + ' ' + href + '\n')
+                    with open('{}result.txt'.format(bookname), 'a', encoding='utf-8') as fp:
+                        fp.write(name + ' ' + href + '\n')
 
     def stop(self):
         self.isRunning = True
