@@ -154,7 +154,7 @@ class haianxian(threading.Thread):
             for i in self.url_2[0]:
                 test = self.download(i)
                 c = str(x)
-                a = c + test[0]
+                a = c + '  ' + test[0]
                 b = test[1]
                 self.write(a, b)
                 x += 1
@@ -307,6 +307,7 @@ class haianxian(threading.Thread):
         # 获取当前文件夹中的文件名称列表
             filenames = os.listdir(filedir)
         # 打开当前目录下的result.txt文件，如果没有则创建
+            filenames.sort(key=lambda x: int(x[:3]))
             f = open(
                 '海岸线小说\{}.txt'.format(
                     self.newwname),
@@ -345,7 +346,7 @@ class biquge(threading.Thread):
             for i in self.url_2[0]:
                 test = self.download(i)
                 c = str(x)
-                a = c + test[0]
+                a = c + '  ' + test[0]
                 b = test[1]
                 self.write(a, b)
                 x += 1
@@ -469,6 +470,7 @@ class biquge(threading.Thread):
             filedir = self.line + \
                 '\笔趣阁小说\{}\\'.format(self.newwname2)  # 获取当前文件夹中的文件名称列表
             filenames = os.listdir(filedir)  # 打开当前目录下的result.txt文件，如果没有则创建
+            filenames.sort(key=lambda x: int(x[:3]))
             f = open(
                 self.line +
                 '\笔趣阁小说\{}.txt'.format(
@@ -521,7 +523,7 @@ class biquge2(threading.Thread):
             for i in self.url_2[0]:
                 test = self.download(i)
                 c = str(x)
-                a = c + test[0]
+                a = c + '  ' + test[0]
                 b = test[1]
                 self.write(a, b)
                 x += 1
@@ -675,6 +677,7 @@ class biquge2(threading.Thread):
             filedir = self.line + \
                 '\搜索的小说\{}\\'.format(self.newwname2)  # 获取当前文件夹中的文件名称列表
             filenames = os.listdir(filedir)  # 打开当前目录下的result.txt文件，如果没有则创建
+            filenames.sort(key=lambda x: int(x[:3]))
             f = open(
                 self.line +
                 '\搜索的小说\{}.txt'.format(
