@@ -172,43 +172,14 @@ class local:
 class Select(Tk):
     def __init__(self):
         super().__init__()
-        self.wm_title('下载小说')
-        sw = self.winfo_screenwidth()  # 得到屏幕宽度
-        sh = self.winfo_screenheight()  # 得到屏幕高度
-        ww = 260
-        wh = 80
-        x = (sw - ww) / 2
-        y = (sh - wh) / 2
-        # self.iconbitmap('icons\\format.ico')
-        # 图标
-        self.geometry("%dx%d+%d+%d" % (ww, wh, x, y))
-        self.resizable(width=False, height=False)
-        # 设置不可改变窗口大小
-        self.attributes("-alpha", 1)
-        # 背景虚化
-        self["bg"] = "white"
-        # 设置窗口的背景颜色
-        self.protocol('WM_DELETE_WINDOW', self.destroy)
-        # 绑定窗口退出事件
         self.setup()
 
     def setup(self):
-        lable = Label(self, text='输入小说序号', font=('微软雅黑', 15))
-        lable.grid(row=0, column=0)
         Select.url3 = StringVar()
         Select.entry = Entry(
             self, textvariable=Select.url3, font=(
                 '微软雅黑', 15))
         Select.entry.grid(row=0, column=1)
-        button = Button(
-            self, text='确定', font=(
-                '微软雅黑', 12), command=download4)
-        button.place(x=175, y=40, width=40, height=40)
-        button = Button(
-            self, text='取消', font=(
-                '微软雅黑', 12), command=self.destroy)
-        button.place(x=220, y=40, width=40, height=40)
-
 
 class haianxian(threading.Thread):
 
