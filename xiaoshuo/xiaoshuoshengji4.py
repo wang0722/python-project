@@ -354,8 +354,14 @@ class haianxian(threading.Thread):
             for filename in filenames:
                 filepath = filedir + '/' + filename
                 # 遍历单个文件，读取行数
-                for line in open(filepath, encoding='utf-8'):
-                    f.writelines(line)
+                try:
+                  for line in open(filepath, encoding='utf-8'):
+                      try:
+                        f.writelines(line)
+                      except BaseException:
+                          pass
+                except BaseException:
+                    pass
             f.close()
         else:
             filedir = r'海岸线小说\{}\\'.format(self.newwname)
@@ -372,8 +378,14 @@ class haianxian(threading.Thread):
             for filename in filenames:
                 filepath = filedir + '/' + filename
             # 遍历单个文件，读取行数
-                for line in open(filepath, encoding='utf-8'):
-                    f.writelines(line)
+                try:
+                  for line in open(filepath, encoding='utf-8'):
+                      try:
+                        f.writelines(line)
+                      except BaseException:
+                          pass
+                except BaseException:
+                    pass
             f.close()
 
     def stop(self):
@@ -540,8 +552,14 @@ class biquge(threading.Thread):
             for filename in filenames:
                 filepath = filedir + '/' + filename
                 # 遍历单个文件，读取行数
-                for line in open(filepath, encoding='utf-8'):
-                    f.writelines(line)
+                try:
+                  for line in open(filepath, encoding='utf-8'):
+                      try:
+                        f.writelines(line)
+                      except BaseException:
+                          pass
+                except BaseException:
+                    pass
             f.close()
         else:
             filedir = r'笔趣阁小说\{}\\'.format(self.newwname2)  # 获取当前文件夹中的文件名称列表
@@ -556,8 +574,14 @@ class biquge(threading.Thread):
             for filename in filenames:
                 filepath = filedir + '/' + filename
                 # 遍历单个文件，读取行数
-                for line in open(filepath, encoding='utf-8'):
-                    f.writelines(line)
+                try:
+                  for line in open(filepath, encoding='utf-8'):
+                      try:
+                        f.writelines(line)
+                      except BaseException:
+                          pass
+                except BaseException:
+                    pass
             f.close()
 
     def stop(self):
@@ -748,8 +772,14 @@ class biquge2(threading.Thread):
             for filename in filenames:
                 filepath = filedir + '/' + filename
                 # 遍历单个文件，读取行数
-                for line in open(filepath, encoding='utf-8'):
-                    f.writelines(line)
+                try:
+                  for line in open(filepath, encoding='utf-8'):
+                      try:
+                        f.writelines(line)
+                      except BaseException:
+                          pass
+                except BaseException:
+                    pass
             f.close()
         else:
             filedir = r'搜索的小说\{}\\'.format(self.newwname2)  # 获取当前文件夹中的文件名称列表
@@ -764,8 +794,14 @@ class biquge2(threading.Thread):
             for filename in filenames:
                 filepath = filedir + '/' + filename
                 # 遍历单个文件，读取行数
-                for line in open(filepath, encoding='utf-8'):
-                    f.writelines(line)
+                try:
+                  for line in open(filepath, encoding='utf-8'):
+                      try:
+                        f.writelines(line)
+                      except BaseException:
+                          pass
+                except BaseException:
+                    pass
             f.close()
 
     def stop(self):
@@ -1020,8 +1056,14 @@ class input(threading.Thread):
             for filename in filenames:
                 filepath = filedir + '/' + filename
                 # 遍历单个文件，读取行数
-                for line in open(filepath, encoding='utf-8'):
-                    f.writelines(line)
+                try:
+                  for line in open(filepath, encoding='utf-8'):
+                      try:
+                        f.writelines(line)
+                      except BaseException:
+                          pass
+                except BaseException:
+                    pass
             f.close()
         else:
             filedir = r'搜索的小说\{}\\'.format(self.newwname2)  # 获取当前文件夹中的文件名称列表
@@ -1037,8 +1079,14 @@ class input(threading.Thread):
             for filename in filenames:
                 filepath = filedir + '/' + filename
                 # 遍历单个文件，读取行数
-                for line in open(filepath, encoding='utf-8'):
-                    f.writelines(line)
+                try:
+                  for line in open(filepath, encoding='utf-8'):
+                      try:
+                        f.writelines(line)
+                      except BaseException:
+                          pass
+                except BaseException:
+                    pass
             f.close()
 
     def stop(self):
