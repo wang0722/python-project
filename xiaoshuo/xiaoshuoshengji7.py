@@ -430,8 +430,16 @@ class haianxian(threading.Thread):
             for filename in filenames:
                 filepath = filedir + '/' + filename
                 # 遍历单个文件，读取行数
-                for line in open(filepath, encoding='utf-8'):
-                    f.writelines(line)
+                try:
+                    for line in open(filepath, encoding='utf-8'):
+                        try:
+                            f.writelines(line)
+                        except BaseException:
+                            pass
+                except BaseException:
+                    MYapp.text.insert(END, "%s存在问题" % filename)
+                    MYapp.text.see(END)
+                    MYapp.text.update()
             f.close()
         else:
             filedir = r'海岸线小说\{}\\'.format(self.newwname)
@@ -450,8 +458,16 @@ class haianxian(threading.Thread):
 
                 filepath = filedir + '/' + filename
             # 遍历单个文件，读取行数
-                for line in open(filepath, encoding='utf-8'):
-                    f.writelines(line)
+                try:
+                  for line in open(filepath, encoding='utf-8'):
+                      try:
+                        f.writelines(line)
+                      except BaseException:
+                          pass
+                except BaseException:
+                    MYapp.text.insert(END, "%s存在问题" % filename)
+                    MYapp.text.see(END)
+                    MYapp.text.update()
             f.close()
 
     def stop(self):
@@ -661,8 +677,16 @@ class biquge(threading.Thread):
 
                 filepath = filedir + '/' + filename
                 # 遍历单个文件，读取行数
-                for line in open(filepath, encoding='utf-8'):
-                    f.writelines(line)
+                try:
+                  for line in open(filepath, encoding='utf-8'):
+                      try:
+                        f.writelines(line)
+                      except BaseException:
+                          pass
+                except BaseException:
+                    MYapp.text.insert(END, "%s存在问题" % filename)
+                    MYapp.text.see(END)
+                    MYapp.text.update()
             f.close()
         else:
             filedir = r'笔趣阁小说\{}\\'.format(self.newwname2)  # 获取当前文件夹中的文件名称列表
@@ -678,8 +702,16 @@ class biquge(threading.Thread):
             for filename in filenames:
                 filepath = filedir + '/' + filename
                 # 遍历单个文件，读取行数
-                for line in open(filepath, encoding='utf-8'):
-                    f.writelines(line)
+                try:
+                  for line in open(filepath, encoding='utf-8'):
+                      try:
+                        f.writelines(line)
+                      except BaseException:
+                          pass
+                except BaseException:
+                    MYapp.text.insert(END, "%s存在问题" % filename)
+                    MYapp.text.see(END)
+                    MYapp.text.update()
             f.close()
 
     def stop(self):
@@ -972,8 +1004,16 @@ class input2(threading.Thread):
             for filename in filenames:
                 filepath = filedir + '/' + filename
                 # 遍历单个文件，读取行数
-                for line in open(filepath, encoding='utf-8'):
-                    f.writelines(line)
+                try:
+                  for line in open(filepath, encoding='utf-8'):
+                      try:
+                        f.writelines(line)
+                      except BaseException:
+                          pass
+                except BaseException:
+                    MYapp.text.insert(END, "%s存在问题" % filename)
+                    MYapp.text.see(END)
+                    MYapp.text.update()
             f.close()
         else:
             filedir = r'搜索的小说\{}\\'.format(self.newwname2)  # 获取当前文件夹中的文件名称列表
@@ -989,8 +1029,16 @@ class input2(threading.Thread):
             for filename in filenames:
                 filepath = filedir + '/' + filename
                 # 遍历单个文件，读取行数
-                for line in open(filepath, encoding='utf-8'):
-                    f.writelines(line)
+                try:
+                  for line in open(filepath, encoding='utf-8'):
+                      try:
+                        f.writelines(line)
+                      except BaseException:
+                          pass
+                except BaseException:
+                    MYapp.text.insert(END, "%s存在问题" % filename)
+                    MYapp.text.see(END)
+                    MYapp.text.update()
             f.close()
 
     def stop(self):
