@@ -3,6 +3,7 @@
 # @Time   : 2018/7/29 0029 20:25
 # @Author : wangyulin
 # @File   : 爬取小说.py
+#单线程稳定版
 import requests
 import win32con, win32api
 import wx
@@ -69,37 +70,40 @@ class MYapp(Tk):
         MYapp.text.grid(row=1, columnspan=2)
         button = Button(
             self, text='笔趣阁小说', font=(
-                '微软雅黑', 15), command=download2)
-        button.place(x=5, y=316.5, width=120, height=45)
+                '微软雅黑', 14), command=download2)
+        button.place(x=5, y=316.5, width=110, height=45)
         button = Button(
             self, text='海岸线小说', font=(
-                '微软雅黑', 15), command=download)
-        button.place(x=140, y=316.5, width=120, height=45)
+                '微软雅黑', 14), command=download)
+        button.place(x=125, y=316.5, width=110, height=45)
         button = Button(
             self, text='搜索小说', font=(
-                '微软雅黑', 15), command=download3)
-        button.place(x=140, y=365, width=120, height=45)
+                '微软雅黑', 14), command=download3)
+        button.place(x=125, y=365, width=110, height=45)
+        button = Button(
+            self, text='奇书网\n(直接下载)', font=('微软雅黑', 13), command=download5)
+        button.place(x=239, y=316.5, width=110, height=45)
         fu = local()
         button = Button(
             self, text='指定路径', font=(
-                '微软雅黑', 15), command=fu.lujing)
-        button.place(x=330, y=316.5, width=100, height=45)
+                '微软雅黑', 14), command=fu.lujing)
+        button.place(x=352, y=316.5, width=90, height=45)
         button = Button(
             self, text='开始下载', font=(
-                '微软雅黑', 15), command=self.top)
-        button.place(x=330, y=365, width=100, height=45)
+                '微软雅黑', 14), command=self.top)
+        button.place(x=352, y=365, width=90, height=45)
         button = Button(
             self, text='清空地址栏', font=(
-                '微软雅黑', 15), command=self.qingkong)
-        button.place(x=5, y=365, width=120, height=45)
+                '微软雅黑', 14), command=self.qingkong)
+        button.place(x=5, y=365, width=110, height=45)
         button = Button(
             self, text='退出程序', font=(
-                '微软雅黑', 15), command=self.destroy)
-        button.place(x=445, y=365, width=100, height=45)
+                '微软雅黑', 14), command=self.destroy)
+        button.place(x=452, y=365, width=90, height=45)
         button = Button(
             self, text='打开文件', font=(
-                '微软雅黑', 15), command=self.dakai)
-        button.place(x=445, y=316.5, width=100, height=45)
+                '微软雅黑', 14), command=self.dakai)
+        button.place(x=452, y=316.5, width=90, height=45)
 
     def top(self):
         global top
@@ -279,8 +283,7 @@ class haianxian(threading.Thread):
                           'AppleWebKit/537.36 (KHTML, like Gecko) '
                           'Chrome/48.0.2564.116 Safari/537.36',
             'Connection': 'keep-alive',
-            'Referer': 'https://www.haxds.com/files/article/html/{}/index.html'.format(
-                self.id)}
+            'Referer': url}
         html1 = requests.get(url, headers=header).text
         req = '<h1>(.*?)</h1>'
         biaoti = re.findall(req, html1)
@@ -360,8 +363,16 @@ class haianxian(threading.Thread):
             for filename in filenames:
                 filepath = filedir + '/' + filename
                 # 遍历单个文件，读取行数
-                for line in open(filepath, encoding='utf-8'):
-                    f.writelines(line)
+                try:
+                    for line in open(filepath, encoding='utf-8'):
+                        try:
+                            f.writelines(line)
+                        except BaseException:
+                            pass
+                except BaseException:
+                    MYapp.text.insert(END, "%s存在问题" % filename)
+                    MYapp.text.see(END)
+                    MYapp.text.update()
             f.close()
         else:
             filedir = r'海岸线小说\{}\\'.format(self.newwname)
@@ -378,8 +389,16 @@ class haianxian(threading.Thread):
             for filename in filenames:
                 filepath = filedir + '/' + filename
             # 遍历单个文件，读取行数
-                for line in open(filepath, encoding='utf-8'):
-                    f.writelines(line)
+                try:
+                    for line in open(filepath, encoding='utf-8'):
+                        try:
+                            f.writelines(line)
+                        except BaseException:
+                            pass
+                except BaseException:
+                    MYapp.text.insert(END, "%s存在问题" % filename)
+                    MYapp.text.see(END)
+                    MYapp.text.update()
             f.close()
 
     def stop(self):
@@ -564,8 +583,16 @@ class biquge(threading.Thread):
             for filename in filenames:
                 filepath = filedir + '/' + filename
                 # 遍历单个文件，读取行数
-                for line in open(filepath, encoding='utf-8'):
-                    f.writelines(line)
+                try:
+                    for line in open(filepath, encoding='utf-8'):
+                        try:
+                            f.writelines(line)
+                        except BaseException:
+                            pass
+                except BaseException:
+                    MYapp.text.insert(END, "%s存在问题" % filename)
+                    MYapp.text.see(END)
+                    MYapp.text.update()
             f.close()
         else:
             filedir = r'笔趣阁小说\{}\\'.format(self.newwname2)  # 获取当前文件夹中的文件名称列表
@@ -580,8 +607,16 @@ class biquge(threading.Thread):
             for filename in filenames:
                 filepath = filedir + '/' + filename
                 # 遍历单个文件，读取行数
-                for line in open(filepath, encoding='utf-8'):
-                    f.writelines(line)
+                try:
+                    for line in open(filepath, encoding='utf-8'):
+                        try:
+                            f.writelines(line)
+                        except BaseException:
+                            pass
+                except BaseException:
+                    MYapp.text.insert(END, "%s存在问题" % filename)
+                    MYapp.text.see(END)
+                    MYapp.text.update()
             f.close()
 
     def stop(self):
@@ -772,8 +807,16 @@ class biquge2(threading.Thread):
             for filename in filenames:
                 filepath = filedir + '/' + filename
                 # 遍历单个文件，读取行数
-                for line in open(filepath, encoding='utf-8'):
-                    f.writelines(line)
+                try:
+                    for line in open(filepath, encoding='utf-8'):
+                        try:
+                            f.writelines(line)
+                        except BaseException:
+                            pass
+                except BaseException:
+                    MYapp.text.insert(END, "%s存在问题" % filename)
+                    MYapp.text.see(END)
+                    MYapp.text.update()
             f.close()
         else:
             filedir = r'搜索的小说\{}\\'.format(self.newwname2)  # 获取当前文件夹中的文件名称列表
@@ -788,13 +831,142 @@ class biquge2(threading.Thread):
             for filename in filenames:
                 filepath = filedir + '/' + filename
                 # 遍历单个文件，读取行数
-                for line in open(filepath, encoding='utf-8'):
-                    f.writelines(line)
+                try:
+                    for line in open(filepath, encoding='utf-8'):
+                        try:
+                            f.writelines(line)
+                        except BaseException:
+                            pass
+                except BaseException:
+                    MYapp.text.insert(END, "%s存在问题" % filename)
+                    MYapp.text.see(END)
+                    MYapp.text.update()
             f.close()
 
     def stop(self):
         self.isRunning = True
+class qishuwang(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+        self.url1 = MYapp.entry.get()
 
+    def run(self):
+        path2 = r'log.txt'
+        if os.path.exists(path2):
+            with open('log.txt', 'r', encoding='utf-8') as f:
+                self.line = f.readline()
+            self.patha = self.line + '\奇书网小说\\'
+            if os.path.isdir(self.patha):
+                pass
+            else:
+                os.makedirs(self.patha)
+        else:
+            self.patha = r'奇书网小说\\'
+            if os.path.isdir(self.patha):
+                pass
+            else:
+                os.makedirs(self.patha)
+        if self.url1 == '':
+            MYapp.text.insert(END, "请输入小说完整名字")
+            MYapp.text.see(END)
+            MYapp.text.update()
+        else:
+            self.search_book(self.url1)
+            MYapp.text.insert(END, "下载完毕")
+            MYapp.text.see(END)
+            MYapp.text.update()
+
+    def search_book(self, bookname):
+        header = {
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+            'Cache-Control': 'max-age=0',
+            'Connection': 'keep-alive',
+            'Host': 'xiazai.xqishu.com',
+            'If-Modified-Since': 'Thu, 11 Jan 2018 10:46: 24GMT',
+            'If-None-Match': "6b8be66cc98ad31:116b",
+            'Upgrade-Insecure-Requests': '1',
+            'Referer': 'http://www.qishu.cc/txt/65014.html',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:61.0) '
+            'Gecko/20100101 Firefox/61.0'}
+        url3 = 'http://dl.kusuu.net/rar/' + parse.quote(bookname) + '.rar'
+        # url4='https://dz.80txt.com/75964/' + parse.quote(bookname) + '.zip'搜索无效等待解决
+        # urllib.request.urlretrieve(url4, self.line + '\奇书网小说\{}.zip'.format(bookname))
+        url2 = 'http://xiazai.xqishu.com/txt/' + parse.quote(bookname) + '.txt'
+        # url='http://down.xqishu.com/txt/%E6%81%8B%E9%93%B6%E8%89%B2%E7%9A%84%E6%98%9F%E9%99%85.txt'
+        url1 = 'http://down.xqishu.com/txt/' + parse.quote(bookname) + '.txt'
+        path2 = r'log.txt'
+        if os.path.exists(path2):
+            with open('log.txt', 'r', encoding='utf-8') as f:
+                self.line = f.readline()
+                try:
+                    # socket.setdefaulttimeout(20)
+                    MYapp.text.insert(END, '正在下载小说：{}.rar'.format(bookname))
+                    MYapp.text.see(END)
+                    MYapp.text.update()
+                    urllib.request.urlretrieve(
+                        url3, self.line + '\奇书网小说\{}.rar'.format(bookname))
+                except BaseException as e:
+                    MYapp.text.insert(END, "未找到，正在尝试搜寻其他源")
+                    MYapp.text.see(END)
+                    MYapp.text.update()
+                    try:
+                        MYapp.text.insert(
+                            END, '正在下载小说：{}.txt--速度较慢'.format(bookname))
+                        MYapp.text.see(END)
+                        MYapp.text.update()
+                        urllib.request.u
+                    except BaseException:
+                        MYapp.text.insert(END, "对不起，找到此小说")
+                        MYapp.text.see(END)
+                        MYapp.text.update()
+        else:
+
+                # r=requests.get(url2,headers=header)
+                # a=request.urlopen(url1)
+                # response1 = urllib.request.Request(url3,data=None,headers=header)
+                # response=urllib.request.urlopen(response1)
+                # responseCode = response.getcode()
+                # a=response.read().decode("gbk")
+                # print(response)
+                # r2 = requests.get(a, headers=header)
+                #  r2.raise_for_status()
+                #  playFile = open('RomeoAndJuliet.txt', 'wb')
+                #  for chunk in r2.iter_content(100000):
+                #      playFile.write(chunk)
+                # with open('奇书网小说\{}.txt'.format(bookname), "wb") as code:
+                #     code.write(a.content)
+            try:
+                    # socket.setdefaulttimeout(20)
+                MYapp.text.insert(END, '正在下载小说：{}.rar'.format(bookname))
+                MYapp.text.see(END)
+                MYapp.text.update()
+                urllib.request.urlretrieve(
+                    url3, '奇书网小说\{}.rar'.format(bookname))
+
+            except BaseException as e:
+                MYapp.text.insert(END, "未找到，正在尝试搜寻其他源")
+                MYapp.text.see(END)
+                MYapp.text.update()
+                try:
+                    MYapp.text.insert(
+                        END, '正在下载小说：{}.txt--速度较慢'.format(bookname))
+                    MYapp.text.see(END)
+                    MYapp.text.update()
+                    urllib.request.urlretrieve(
+                        url1, '奇书网小说\{}.txt'.format(bookname))
+                    try:
+                        urllib.request.urlretrieve(url2, '奇书网小说\{}.txt'.format(bookname))
+                    except BaseException:
+                        pass
+                except BaseException:
+                    MYapp.text.insert(END, "对不起，找到此小说")
+                    MYapp.text.see(END)
+                    MYapp.text.update()
+
+    def stop(self):
+        self.isRunning = True
 
 class find(threading.Thread):
     def __init__(self):
@@ -1066,8 +1238,16 @@ class input(threading.Thread):
             for filename in filenames:
                 filepath = filedir + '/' + filename
                 # 遍历单个文件，读取行数
-                for line in open(filepath, encoding='utf-8'):
-                    f.writelines(line)
+                try:
+                    for line in open(filepath, encoding='utf-8'):
+                        try:
+                            f.writelines(line)
+                        except BaseException:
+                            pass
+                except BaseException:
+                    MYapp.text.insert(END, "%s存在问题" % filename)
+                    MYapp.text.see(END)
+                    MYapp.text.update()
             f.close()
         else:
             filedir = r'搜索的小说\{}\\'.format(self.newwname2)  # 获取当前文件夹中的文件名称列表
@@ -1083,8 +1263,16 @@ class input(threading.Thread):
             for filename in filenames:
                 filepath = filedir + '/' + filename
                 # 遍历单个文件，读取行数
-                for line in open(filepath, encoding='utf-8'):
-                    f.writelines(line)
+                try:
+                    for line in open(filepath, encoding='utf-8'):
+                        try:
+                            f.writelines(line)
+                        except BaseException:
+                            pass
+                except BaseException:
+                    MYapp.text.insert(END, "%s存在问题" % filename)
+                    MYapp.text.see(END)
+                    MYapp.text.update()
             f.close()
 
     def stop(self):
@@ -1109,7 +1297,9 @@ def download3():
 def download4():
     test = input()
     test.start()
-
+def download5():
+    test = qishuwang()
+    test.start()
 
 if __name__ == '__main__':
     app = MYapp()
