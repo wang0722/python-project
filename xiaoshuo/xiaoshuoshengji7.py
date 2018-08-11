@@ -12,6 +12,7 @@ import win32api
 import linecache
 from threading import Thread
 import time
+import multiprocessing
 from multiprocessing.dummy import Pool
 # from flashtext import KeywordProcessor
 from bs4 import BeautifulSoup
@@ -213,49 +214,34 @@ class haianxian(threading.Thread):
             self.id = self.xiaoshuo_id.replace('.htm', '')
             self.new_url = 'https://www.haxds.com/files/article/html/{}/index.html'.format(
                 self.id)
-
-    def get_content(self, html):
-        self.urls1 = []
-        self.urls1.append(html)
-        # q=queue.Queue()
-        for i in self.urls1:
-            #     self.urls_2=a
-            # for i in range(0,len(self.urls_2)):
-            #      q.put(self.urls_2[i])
-            #      print(i)
-            # threads = []
-            #      # 可以调节线程数， 进而控制抓取速度
-            # threadNum = 20
-            # self.lock = threading.Lock()
-            # for i in range(0, threadNum):
-            #          t = threading.Thread(target=self.xiaoshuo, args=(q,))
-            #          threads.append(t)
-            # for t in threads:
-            #          t.start()
-            # for t in threads:
-            #          # 多线程多join的情况下，依次执行各线程的join方法, 这样可以确保主线程最后退出， 且各个线程间没有阻塞
-            #          t.join()
-            pool = Pool(4)
-            # 使用map进行并行爬取，save_content为爬取保存函数，
-            # urls为一个list,里面存储的为网址列表和对应的保存名字
-            pool.map(self.xiaoshuo, i)
-            pool.close()
-            pool.join()
-
     def xiaoshuo(self, url):
-        # url1=url.get_nowait()
-        # self.lock.acquire()  # 取得锁
-        # test = self.download(url1)
-        test = self.download(url)
-        a = test[0]
-        b = test[1]
-        d = test[2]
-
-        self.write(a, b, d)
-        time.sleep(0.5)
-        # self.lock.release()  # 释放锁
-
+      url2 = url['name']
+      try:
+        header = {
+            'Accept': '*/*',
+            'Accept-Language': 'en-US,en;q=0.8',
+            'Cache-Control': 'max-age=0',
+            'Host': 'www.haxds.com',
+            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
+                          'AppleWebKit/537.36 (KHTML, like Gecko) '
+                          'Chrome/48.0.2564.116 Safari/537.36',
+            'Connection': 'keep-alive',
+            'Referer': url2}
+        html1 = requests.get(url2, headers=header).text
+        req = '<h1>(.*?)</h1>'
+        biaoti = re.findall(req, html1)
+        self.biaoti2 = biaoti[0]
+        rstr = r"[\/\\\:\*\?\"\<\>\|\？]"
+        self.biaoti3 = re.sub(rstr, " ", self.biaoti2)  # 替换为空格
+        req1 = '<div id="BookText">(.*?)</div>'
+        self.title = re.findall(req1, html1, re.S)
+        self.zhangjie_id = url2.split('/')[8]
+        self.zhangjie = self.zhangjie_id.replace('.html', '')
+        self.write(self.biaoti3,self.title,self.zhangjie)
+      except BaseException:
+          pass
     def run(self):
+        start=time.time()
         global x
         self.new_url3 = self.new_url.split('html')[0]
         if self.new_url3 != 'https://www.haxds.com/files/article/':
@@ -264,22 +250,18 @@ class haianxian(threading.Thread):
             MYapp.text.update()
         else:
             self.url_2 = self.get_url(self.new_url)
-            self.get_content(self.url_2[0])
-            # x = 1
-            # self.url_2 = self.get_url(self.new_url)
-            # for i in self.url_2[0]:
-            #     test = self.download(i)
-            #     c = str(x)
-            #     a = str(self.zhangjie)+ '  ' + test[0]
-            #     b = test[1]
-            #     d=test[2]
-            #     self.write(a, b,d)
-            #     x += 1
+            # print(self.url_2)
+            self.url_3 = self.url_2[0]
+            pool = Pool(processes=10)  # 创建10个进程
+            pool.map(self.xiaoshuo, [self.url_3[each] for each in self.url_3])
+            pool.close()
+            pool.join()
             self.hebing()
             MYapp.text.insert(END, '合并成功')
             MYapp.text.see(END)
             MYapp.text.update()
-
+        end=time.time()
+        print('%d'%(end-start))
     def get_url(self, url1):
 
         header = {
@@ -294,6 +276,7 @@ class haianxian(threading.Thread):
             'Referer': url1}
         try:
             self.html = requests.get(url1, headers=header, timeout=500).text
+
             req1 = '<h1>(.*?)</h1>'
             book_name = re.findall(req1, self.html)
             req2 = 'target="_blank">(.*?)</a>'
@@ -321,45 +304,22 @@ class haianxian(threading.Thread):
             req = '<dd><a href="(.*?)"'
             self.purl = re.findall(req, self.html)
             self.newpurl1 = []
+            chapter_all_dict = {}
             for i in self.purl:
                 self.newpurl = 'https://www.haxds.com' + i
                 self.newpurl1.append(self.newpurl)
-            return self.newpurl1, self.newwname
+            global x
+            x=0
+            for each in self.newpurl1:
+                chapter_each = {}
+                chapter_each['name'] = each  # 获取章节名字
+                chapter_num = int(x)  # 提取章节序号
+                chapter_all_dict[chapter_num] = chapter_each  # 记录到所有的章节的字典中保存
+                x += 1
+            return chapter_all_dict,self.newwname
         except BaseException:
             pass
-
-    def download(self, url):
-        header = {
-            'Accept': '*/*',
-            'Accept-Language': 'en-US,en;q=0.8',
-            'Cache-Control': 'max-age=0',
-            'Host': 'www.haxds.com',
-            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
-            'AppleWebKit/537.36 (KHTML, like Gecko) '
-            'Chrome/48.0.2564.116 Safari/537.36',
-            'Connection': 'keep-alive',
-            'Referer': url}
-        try:
-            html1 = requests.get(url, headers=header, timeout=500).text
-            self.zhangjie_id = url.split('/')[8]
-            self.zhangjie = self.zhangjie_id.replace('.html', '')
-            req = '<h1>(.*?)</h1>'
-            biaoti = re.findall(req, html1)
-            self.biaoti2 = biaoti[0]
-            rstr = r"[\/\\\:\*\?\"\<\>\|\？]"
-            self.biaoti3 = re.sub(rstr, " ", self.biaoti2)  # 替换为空格
-            MYapp.text.insert(END, '正在下载章节：{}'.format(self.biaoti3))
-            MYapp.text.see(END)
-            MYapp.text.update()
-            req1 = '<div id="BookText">(.*?)</div>'
-            self.title = re.findall(req1, html1, re.S)
-            return self.biaoti3, self.title, self.zhangjie
-        except BaseException:
-            pass
-
     def write(self, name, title1, zhangjie_xuhao):
-                # with open('小说下载\{}'.format(self.url_2[1]) + '\{}.txt'.format(name), 'a', encoding='utf-8') as ff:
-                #     ff.write(name)
         path2 = r'log.txt'
         if os.path.exists(path2):
             with open('log.txt', 'r', encoding='utf-8') as f:
@@ -383,10 +343,12 @@ class haianxian(threading.Thread):
                 else:
                     with open(self.line + '\海岸线小说\{}'.format(self.url_2[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + '{}.txt'.format(name), 'a',
                               encoding='utf-8') as fp:
-                        # fp.write('\n')
+                        MYapp.text.insert(END, '正在下载：{}'.format(self.biaoti3))
+                        MYapp.text.see(END)
+                        MYapp.text.update()
                         fp.write(paragraph1)
+                        fp.close()
                         time.sleep(0.08)
-
         else:
             for i in title1:
                 par = i.replace('<br /><br /> ', '')
@@ -405,11 +367,12 @@ class haianxian(threading.Thread):
                     pass
                 else:
                     with open('海岸线小说\{}'.format(self.url_2[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + '{}.txt'.format(name), 'a', encoding='utf-8') as fp:
-                        # fp.write(name)
-                        # fp.write('\n')
+                        MYapp.text.insert(END, '正在下载：{}'.format(self.biaoti3))
+                        MYapp.text.see(END)
+                        MYapp.text.update()
                         fp.write(paragraph1)
+                        fp.close()
                         time.sleep(0.08)
-
     def hebing(self):
         path2 = r'log.txt'
         if os.path.exists(path2):
@@ -469,13 +432,9 @@ class haianxian(threading.Thread):
                     MYapp.text.see(END)
                     MYapp.text.update()
             f.close()
-
     def stop(self):
         self.isRunning = True
-
-
 class biquge(threading.Thread):
-
     def __init__(self):
         threading.Thread.__init__(self)
         self.url1 = MYapp.entry.get()
@@ -511,14 +470,8 @@ class biquge(threading.Thread):
         else:
             # x = 1
             self.url_2 = self.get_url(self.url1)
-            self.get_content(self.url_2[0])
-            # for i in self.url_2[0]:
-            #     test = self.download(i)
-            #     c = str(x)
-            #     a = c + ' ' + test[0]
-            #     b = test[1]
-            #     self.write(a, b)
-            #     x += 1
+            # self.get_content(self.url_2[0])
+
             self.hebing()
             MYapp.text.insert(END, '合并成功')
             MYapp.text.see(END)
@@ -563,7 +516,16 @@ class biquge(threading.Thread):
                     os.makedirs(self.patha)
             req = '<dd><a href="(.*?)"'
             self.purl = re.findall(req, html)
-            return self.purl, self.newwname2
+            chapter_all_dict = {}
+            global x
+            x = 0
+            for each in self.purl:
+                chapter_each = {}
+                chapter_each['charter_url'] = each  # 获取章节url
+                chapter_num = int(x)  # 提取章节序号
+                chapter_all_dict[chapter_num] = chapter_each  # 记录到所有的章节的字典中保存
+                x += 1
+            return chapter_all_dict, self.newwname2
         except BaseException:
             pass
 
