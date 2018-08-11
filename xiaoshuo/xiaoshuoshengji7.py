@@ -227,7 +227,7 @@ class haianxian(threading.Thread):
                           'Chrome/48.0.2564.116 Safari/537.36',
             'Connection': 'keep-alive',
             'Referer': url2}
-        html1 = requests.get(url2, headers=header).text
+        html1 = requests.get(url2, headers=header,timeout=500).text
         req = '<h1>(.*?)</h1>'
         biaoti = re.findall(req, html1)
         self.biaoti2 = biaoti[0]
@@ -237,9 +237,14 @@ class haianxian(threading.Thread):
         self.title = re.findall(req1, html1, re.S)
         self.zhangjie_id = url2.split('/')[8]
         self.zhangjie = self.zhangjie_id.replace('.html', '')
-        self.write(self.biaoti3,self.title,self.zhangjie)
+        for i in self.title:
+            par = i.replace('<br /><br /> ', '')
+            self.paragraph1 = par.replace('<br>', '\n')
+            # paragraph2 = paragraph1.replace("　　", '\n')
+        self.write(self.biaoti3,self.paragraph1,self.zhangjie)
       except BaseException:
           pass
+
     def run(self):
         start=time.time()
         global x
@@ -250,18 +255,19 @@ class haianxian(threading.Thread):
             MYapp.text.update()
         else:
             self.url_2 = self.get_url(self.new_url)
-            # print(self.url_2)
-            self.url_3 = self.url_2[0]
-            pool = Pool(processes=10)  # 创建10个进程
+            self.url_3=self.url_2[0]
+            pool = Pool(processes=30)  # 创建10个进程
             pool.map(self.xiaoshuo, [self.url_3[each] for each in self.url_3])
             pool.close()
             pool.join()
-            self.hebing()
-            MYapp.text.insert(END, '合并成功')
-            MYapp.text.see(END)
-            MYapp.text.update()
+        self.hebing()
+        MYapp.text.insert(END, '合并成功')
+        MYapp.text.see(END)
+        MYapp.text.update()
         end=time.time()
-        print('%d'%(end-start))
+        MYapp.text.insert(END,'耗费时间：%d s'%(end-start))
+        MYapp.text.see(END)
+        MYapp.text.update()
     def get_url(self, url1):
 
         header = {
@@ -319,41 +325,33 @@ class haianxian(threading.Thread):
             return chapter_all_dict,self.newwname
         except BaseException:
             pass
+
     def write(self, name, title1, zhangjie_xuhao):
         path2 = r'log.txt'
         if os.path.exists(path2):
             with open('log.txt', 'r', encoding='utf-8') as f:
                 self.line = f.readline()
-            for i in title1:
-                par = i.replace('<br /><br /> ', '')
-                paragraph1 = par.replace('<br>', '\n')
-                # paragraph2 = paragraph1.replace("　　", '\n')
-                if os.path.exists(
+            if os.path.exists(
                     self.line +
                     '\海岸线小说\{}'.format(
                         self.url_2[1]) +
                     '\{}'.format(zhangjie_xuhao) +
                     ' ' +
                         '{}.txt'.format(name)):
-
-                    MYapp.text.insert(END, '已存在：{}'.format(self.biaoti3))
+                    MYapp.text.insert(END, '已存在：{}'.format(name))
                     MYapp.text.see(END)
                     MYapp.text.update()
                     pass
-                else:
+            else:
+                    MYapp.text.insert(END, '正在下载：{}'.format(name))
+                    MYapp.text.see(END)
+                    MYapp.text.update()
                     with open(self.line + '\海岸线小说\{}'.format(self.url_2[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + '{}.txt'.format(name), 'a',
                               encoding='utf-8') as fp:
-                        MYapp.text.insert(END, '正在下载：{}'.format(self.biaoti3))
-                        MYapp.text.see(END)
-                        MYapp.text.update()
-                        fp.write(paragraph1)
+                        fp.write(title1)
                         fp.close()
                         time.sleep(0.08)
         else:
-            for i in title1:
-                par = i.replace('<br /><br /> ', '')
-                paragraph1 = par.replace('<br>', '\n')
-            # paragraph2 = paragraph1.replace("　　", '\n')
                 if os.path.exists(
                     '海岸线小说\{}'.format(
                         self.url_2[1]) +
@@ -361,18 +359,20 @@ class haianxian(threading.Thread):
                     ' ' +
                         '{}.txt'.format(name)):
 
-                    MYapp.text.insert(END, '已存在：{}'.format(self.biaoti3))
+                    MYapp.text.insert(END, '已存在：{}'.format(name))
                     MYapp.text.see(END)
                     MYapp.text.update()
                     pass
                 else:
+                    MYapp.text.insert(END, '正在下载：{}'.format(name))
+                    MYapp.text.see(END)
+                    MYapp.text.update()
                     with open('海岸线小说\{}'.format(self.url_2[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + '{}.txt'.format(name), 'a', encoding='utf-8') as fp:
-                        MYapp.text.insert(END, '正在下载：{}'.format(self.biaoti3))
-                        MYapp.text.see(END)
-                        MYapp.text.update()
-                        fp.write(paragraph1)
+
+                        fp.write(title1)
                         fp.close()
                         time.sleep(0.08)
+
     def hebing(self):
         path2 = r'log.txt'
         if os.path.exists(path2):
@@ -432,9 +432,13 @@ class haianxian(threading.Thread):
                     MYapp.text.see(END)
                     MYapp.text.update()
             f.close()
+
     def stop(self):
         self.isRunning = True
+
+
 class biquge(threading.Thread):
+
     def __init__(self):
         threading.Thread.__init__(self)
         self.url1 = MYapp.entry.get()
@@ -470,8 +474,14 @@ class biquge(threading.Thread):
         else:
             # x = 1
             self.url_2 = self.get_url(self.url1)
-            # self.get_content(self.url_2[0])
-
+            self.get_content(self.url_2[0])
+            # for i in self.url_2[0]:
+            #     test = self.download(i)
+            #     c = str(x)
+            #     a = c + ' ' + test[0]
+            #     b = test[1]
+            #     self.write(a, b)
+            #     x += 1
             self.hebing()
             MYapp.text.insert(END, '合并成功')
             MYapp.text.see(END)
@@ -516,16 +526,7 @@ class biquge(threading.Thread):
                     os.makedirs(self.patha)
             req = '<dd><a href="(.*?)"'
             self.purl = re.findall(req, html)
-            chapter_all_dict = {}
-            global x
-            x = 0
-            for each in self.purl:
-                chapter_each = {}
-                chapter_each['charter_url'] = each  # 获取章节url
-                chapter_num = int(x)  # 提取章节序号
-                chapter_all_dict[chapter_num] = chapter_each  # 记录到所有的章节的字典中保存
-                x += 1
-            return chapter_all_dict, self.newwname2
+            return self.purl, self.newwname2
         except BaseException:
             pass
 
