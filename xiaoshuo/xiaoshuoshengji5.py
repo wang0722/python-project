@@ -205,6 +205,7 @@ class haianxian(threading.Thread):
                 self.id)
 
     def run(self):
+        start=time.time()
         global x
 
         self.new_url3 = self.new_url.split('html')[0]
@@ -226,7 +227,8 @@ class haianxian(threading.Thread):
             MYapp.text.insert(END, '合并成功')
             MYapp.text.see(END)
             MYapp.text.update()
-
+        end=time.time()
+        print('%d'%(end-start))
     def get_url(self, url1):
         header = {
             'Accept': '*/*',
