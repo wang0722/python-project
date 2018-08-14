@@ -350,7 +350,6 @@ class haianxian(threading.Thread):
                     with open(self.line + '\海岸线小说\{}'.format(self.url_2[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + '{}.txt'.format(name), 'a',
                               encoding='utf-8') as fp:
                         fp.write(title1)
-                        fp.close()
                         time.sleep(0.08)
         else:
                 if os.path.exists(
@@ -371,7 +370,6 @@ class haianxian(threading.Thread):
                     with open('海岸线小说\{}'.format(self.url_2[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + '{}.txt'.format(name), 'a', encoding='utf-8') as fp:
 
                         fp.write(title1)
-                        fp.close()
                         time.sleep(0.08)
 
     def hebing(self):
