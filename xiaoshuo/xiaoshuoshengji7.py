@@ -256,11 +256,11 @@ class haianxian(threading.Thread):
         else:
             self.url_2 = self.get_url(self.new_url)
             self.url_3=self.url_2[0]
-            pool = Pool(processes=30)  # 创建10个进程
+            pool = Pool(processes=35)  # 创建10个进程
             pool.map(self.xiaoshuo, [self.url_3[each] for each in self.url_3])
             pool.close()
             pool.join()
-        self.hebing()
+            self.hebing()
         MYapp.text.insert(END, '合并成功')
         MYapp.text.see(END)
         MYapp.text.update()
@@ -281,8 +281,9 @@ class haianxian(threading.Thread):
             'Connection': 'keep-alive',
             'Referer': url1}
         try:
+            #proxies = {"http": "36.99.17.52", },proxies=proxies
+            # requests.get("http://example.org", proxies=proxies)
             self.html = requests.get(url1, headers=header, timeout=500).text
-
             req1 = '<h1>(.*?)</h1>'
             book_name = re.findall(req1, self.html)
             req2 = 'target="_blank">(.*?)</a>'
@@ -1064,7 +1065,6 @@ class qishuwang(threading.Thread):
             with open('log.txt', 'r', encoding='utf-8') as f:
                 self.line = f.readline()
                 try:
-                    # socket.setdefaulttimeout(20)
                     MYapp.text.insert(END, '正在下载小说：{}.rar'.format(bookname))
                     MYapp.text.see(END)
                     MYapp.text.update()
@@ -1075,39 +1075,25 @@ class qishuwang(threading.Thread):
                     MYapp.text.see(END)
                     MYapp.text.update()
                     try:
-                        MYapp.text.insert(
-                            END, '正在下载小说：{}.txt--速度较慢'.format(bookname))
+                        MYapp.text.insert(END, '正在下载小说：{}.txt--速度较慢'.format(bookname))
                         MYapp.text.see(END)
                         MYapp.text.update()
-                        urllib.request.u
+                        urllib.request.urlretrieve(url1, self.line + '奇书网小说\{}.txt'.format(bookname))
+                        try:
+                            urllib.request.urlretrieve(url2, self.line + '奇书网小说\{}.txt'.format(bookname))
+                        except BaseException:
+                            pass
                     except BaseException:
                         MYapp.text.insert(END, "对不起，找到此小说")
                         MYapp.text.see(END)
                         MYapp.text.update()
         else:
-
-                # r=requests.get(url2,headers=header)
-                # a=request.urlopen(url1)
-                # response1 = urllib.request.Request(url3,data=None,headers=header)
-                # response=urllib.request.urlopen(response1)
-                # responseCode = response.getcode()
-                # a=response.read().decode("gbk")
-                # print(response)
-                # r2 = requests.get(a, headers=header)
-                #  r2.raise_for_status()
-                #  playFile = open('RomeoAndJuliet.txt', 'wb')
-                #  for chunk in r2.iter_content(100000):
-                #      playFile.write(chunk)
-                # with open('奇书网小说\{}.txt'.format(bookname), "wb") as code:
-                #     code.write(a.content)
             try:
-                    # socket.setdefaulttimeout(20)
                 MYapp.text.insert(END, '正在下载小说：{}.rar'.format(bookname))
                 MYapp.text.see(END)
                 MYapp.text.update()
                 urllib.request.urlretrieve(
                     url3, '奇书网小说\{}.rar'.format(bookname))
-
             except BaseException as e:
                 MYapp.text.insert(END, "未找到，正在尝试搜寻其他源")
                 MYapp.text.see(END)
