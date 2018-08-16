@@ -920,20 +920,20 @@ class THread_3(threading.Thread):
                         song_url,
                         '歌单下载\{}\歌曲'.format(singer_name3) +
                         '\{}.mp3'.format(song_name))
-
-    def pause(self):
-        self.__flag .clear()
-        time.sleep(10)
-        # self.__flag=FALSE
-
-    def resume(self):
-        self.__flag.set()    # 设置为True, 让线程停止阻塞
-
-    def stop(self):
-        self.__flag.set()       # 将线程从暂停状态恢复, 如何已经暂停的话
-        self.__running.clear()        # 设置为False
+    #
+    # def pause(self):
+    #     self.__flag .clear()
+    #     time.sleep(10)
+    #     # self.__flag=FALSE
+    #
+    # def resume(self):
+    #     self.__flag.set()    # 设置为True, 让线程停止阻塞
+    #
     # def stop(self):
-    #      self.isRunning=True
+    #     self.__flag.set()       # 将线程从暂停状态恢复, 如何已经暂停的话
+    #     self.__running.clear()        # 设置为False
+    def stop(self):
+         self.isRunning=True
 
 
 class Pause(threading.Thread):
