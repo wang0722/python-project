@@ -310,6 +310,9 @@ class THread2(threading.Thread):
             MyApp.text.see(END)
             MyApp.text.update()
         else:
+            MyApp.text.insert(END, '歌单中共有{}首歌曲需要下载'.format(len(self.song_IDs)))
+            MyApp.text.see(END)
+            MyApp.text.update()
             for self.singer_info in self.get_information:
                 lyric = self.get_lyric(self.singer_info[1])
                 self.write_lyric(self.singer_info[0], lyric)
@@ -511,6 +514,9 @@ class THread3(threading.Thread):
         if self.hh == 'https://music.163.com/404':
             MyApp.text.insert(END,'对不起，列表歌单出错')
         else:
+            MyApp.text.insert(END, '歌单中共有{}首歌曲需要下载'.format(len(self.song_IDs)))
+            MyApp.text.see(END)
+            MyApp.text.update()
             for self.singer_info in self.get_information:
                 lyric = self.get_lyric(self.singer_info[1])
                 self.write_lyric(self.singer_info[0], lyric)
