@@ -487,6 +487,9 @@ class THread_2(threading.Thread):
             MyApp.text.see(END)
             MyApp.text.update()
         else:
+            MyApp.text.insert(END, '歌单中共有{}首歌曲需要下载'.format(len(self.song_IDs)))
+            MyApp.text.see(END)
+            MyApp.text.update()
             for self.singer_info in self.get_information:
                 lyric = self.get_lyric(self.singer_info[1])
                 self.write_lyric(self.singer_info[0], lyric)
@@ -714,10 +717,15 @@ class THread_3(threading.Thread):
         if self.hh == 'https://music.163.com/404':
             MyApp.text.insert(END, '对不起，列表歌单出错')
         else:
+            MyApp.text.insert(END, '歌单中共有{}首歌曲需要下载'.format(len(self.song_IDs)))
+            MyApp.text.see(END)
+            MyApp.text.update()
             for self.singer_info in self.get_information:
-                lyric = self.get_lyric(self.singer_info[1])
+                lyric = self.get_lyric(self.singer_info[1].split('/')[1])
                 self.write_lyric(self.singer_info[0], lyric)
-                self.downloadsong(self.singer_info[0], self.singer_info[1])
+                self.downloadsong(self.singer_info[0],
+                                  self.singer_info[1].split('/')[1],
+                                  self.singer_info[1].split('/')[0])
             MyApp.text.insert(END, '所有任务已经下载完毕')
             MyApp.text.see(END)
             MyApp.text.update()
@@ -747,8 +755,10 @@ class THread_3(threading.Thread):
         self.soup = BeautifulSoup(html, "lxml")
         self.links = self.soup.find('ul', class_='f-hide').find_all('a')
         self.song_IDs = []
+        x=1
         for link in self.links:
-            song_ID = link.get('href').split('=')[-1]
+            song_ID = str(x)+'/'+link.get('href').split('=')[-1]
+            x+=1
             self.song_IDs.append(song_ID)
         res = r'<ul class="f-hide">(.*?)</ul>'  # <li><a href=".*?>
         result = re.findall(res, html, re.S | re.M)
@@ -760,6 +770,7 @@ class THread_3(threading.Thread):
                 rstr = r"[\/\\\:\*\?\"\<\>\|\？]"  # '/ \ : * ? " < > | ？'
                 newName = re.sub(rstr, " ", result)  # 替换为空格
                 self.newwname.append(newName)
+            print(self.song_IDs)
             return zip(self.newwname, self.song_IDs)
 
     def get_singer_info2(self, playlist):
@@ -862,7 +873,7 @@ class THread_3(threading.Thread):
                     with open('歌单下载\{}\歌词'.format(singer_name3) + '\{}.txt'.format(song_name), 'a', encoding='utf-8') as fp:
                         fp.write(lyric)
 
-    def downloadsong(self, song_name, song_id):
+    def downloadsong(self, song_name, song_id,song_num):
         # print(song_id)
         bit_rate = 320000
         # url = 'http://music.163.com/weapi/song/enhance/player/url?csrf_token='
@@ -913,6 +924,7 @@ class THread_3(threading.Thread):
                     MyApp.text.update()
                     pass
                 else:
+                    #‘第{}'.format(song_num)+'首’
                     MyApp.text.insert(END, '正在下载歌曲：{}'.format(song_name))
                     MyApp.text.see(END)
                     MyApp.text.update()
