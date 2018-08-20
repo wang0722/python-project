@@ -52,7 +52,7 @@ class MYapp(Tk):
         self.setupui()
 
     def dakai(self):
-        path2 = r'log.txt'
+        path2 = r'log.txt'  # 读取路径记录文件
         if os.path.exists(path2):
             with open('log.txt', 'r', encoding='utf-8') as f:
                 self.line = f.readline()
@@ -85,12 +85,17 @@ class MYapp(Tk):
                 '微软雅黑', 14), command=download)
         button.place(x=125, y=316.5, width=110, height=45)
         button = Button(
-            self, text='搜索小说', font=(
-                '微软雅黑', 14), command=download3)
+            self, text='笔趣阁搜索\n(速度慢)', font=(
+                '微软雅黑', 13), command=download3)
         button.place(x=125, y=365, width=110, height=45)
         button = Button(
             self, text='奇书网\n(直接下载)', font=('微软雅黑', 13), command=download5)
         button.place(x=239, y=316.5, width=110, height=45)
+        button = Button(
+            self, text='全本搜索\n'
+            '(速度快)', font=(
+                '微软雅黑', 13), command=download6)
+        button.place(x=239, y=365, width=110, height=45)
         fu = local()
         button = Button(
             self, text='指定路径', font=(
@@ -136,7 +141,7 @@ class MYapp(Tk):
         # 绑定窗口退出事件
         lable = Label(top, text='输入小说序号', font=('微软雅黑', 15))
         lable.grid(row=0, column=0)
-        Select.url3 = StringVar()
+        Select.url3 = StringVar()  # top界面下的 输入框
         Select.entry = Entry(
             top, textvariable=Select.url3, font=(
                 '微软雅黑', 15))
@@ -190,6 +195,7 @@ class local:
 
 
 class Select(Tk):
+    # top界面下的输入框
     def __init__(self):
         super().__init__()
         self.setup()
@@ -214,39 +220,42 @@ class haianxian(threading.Thread):
             self.id = self.xiaoshuo_id.replace('.htm', '')
             self.new_url = 'https://www.haxds.com/files/article/html/{}/index.html'.format(
                 self.id)
+
     def xiaoshuo(self, url):
-      url2 = url['name']
-      try:
-        header = {
-            'Accept': '*/*',
-            'Accept-Language': 'en-US,en;q=0.8',
-            'Cache-Control': 'max-age=0',
-            'Host': 'www.haxds.com',
-            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
-                          'AppleWebKit/537.36 (KHTML, like Gecko) '
-                          'Chrome/48.0.2564.116 Safari/537.36',
-            'Connection': 'keep-alive',
-            'Referer': url2}
-        html1 = requests.get(url2, headers=header,timeout=500).text
-        req = '<h1>(.*?)</h1>'
-        biaoti = re.findall(req, html1)
-        self.biaoti2 = biaoti[0]
-        rstr = r"[\/\\\:\*\?\"\<\>\|\？]"
-        self.biaoti3 = re.sub(rstr, " ", self.biaoti2)  # 替换为空格
-        req1 = '<div id="BookText">(.*?)</div>'
-        self.title = re.findall(req1, html1, re.S)
-        self.zhangjie_id = url2.split('/')[8]
-        self.zhangjie = self.zhangjie_id.replace('.html', '')
-        for i in self.title:
-            par = i.replace('<br /><br /> ', '')
-            self.paragraph1 = par.replace('<br>', '\n')
-            # paragraph2 = paragraph1.replace("　　", '\n')
-        self.write(self.biaoti3,self.paragraph1,self.zhangjie)
-      except BaseException:
-          pass
+        url2 = url['name']
+        try:
+            header = {
+                'Accept': '*/*',
+                'Accept-Language': 'en-US,en;q=0.8',
+                'Cache-Control': 'max-age=0',
+                'Host': 'www.haxds.com',
+                'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
+                              'AppleWebKit/537.36 (KHTML, like Gecko) '
+                              'Chrome/48.0.2564.116 Safari/537.36',
+                'Connection': 'keep-alive',
+                'Referer': url2}
+            html1 = requests.get(url2, headers=header, timeout=500).text
+            req = '<h1>(.*?)</h1>'
+            biaoti = re.findall(req, html1)
+            self.biaoti2 = biaoti[0]
+            rstr = r"[\/\\\:\*\?\"\<\>\|\？]"
+            self.biaoti3 = re.sub(rstr, " ", self.biaoti2)  # 替换为空格
+            req1 = '<div id="BookText">(.*?)</div>'
+            self.title = re.findall(req1, html1, re.S)
+            self.zhangjie_id = url2.split('/')[8]
+            self.zhangjie = self.zhangjie_id.replace('.html', '')
+            for i in self.title:
+                par = i.replace('<br /><br /> ', '')
+                self.paragraph1 = par.replace(
+                    '<br>', '\n').replace(
+                    '    全文字小说-www.', '')
+                # paragraph2 = paragraph1.replace("　　", '\n')
+            self.write(self.biaoti3, self.paragraph1, self.zhangjie)
+        except BaseException:
+            pass
 
     def run(self):
-        start=time.time()
+        start = time.time()
         global x
         self.new_url3 = self.new_url.split('html')[0]
         if self.new_url3 != 'https://www.haxds.com/files/article/':
@@ -255,7 +264,7 @@ class haianxian(threading.Thread):
             MYapp.text.update()
         else:
             self.url_2 = self.get_url(self.new_url)
-            self.url_3=self.url_2[0]
+            self.url_3 = self.url_2[0]
             pool = Pool(processes=35)  # 创建10个进程
             pool.map(self.xiaoshuo, [self.url_3[each] for each in self.url_3])
             pool.close()
@@ -264,10 +273,11 @@ class haianxian(threading.Thread):
         MYapp.text.insert(END, '合并成功')
         MYapp.text.see(END)
         MYapp.text.update()
-        end=time.time()
-        MYapp.text.insert(END,'耗费时间：%d s'%(end-start))
+        end = time.time()
+        MYapp.text.insert(END, '耗费时间：%d s' % (end - start))
         MYapp.text.see(END)
         MYapp.text.update()
+
     def get_url(self, url1):
 
         header = {
@@ -281,7 +291,7 @@ class haianxian(threading.Thread):
             'Connection': 'keep-alive',
             'Referer': url1}
         try:
-            #proxies = {"http": "36.99.17.52", },proxies=proxies
+            # proxies = {"http": "36.99.17.52", },proxies=proxies
             # requests.get("http://example.org", proxies=proxies)
             self.html = requests.get(url1, headers=header, timeout=500).text
             req1 = '<h1>(.*?)</h1>'
@@ -316,14 +326,14 @@ class haianxian(threading.Thread):
                 self.newpurl = 'https://www.haxds.com' + i
                 self.newpurl1.append(self.newpurl)
             global x
-            x=0
+            x = 0
             for each in self.newpurl1:
                 chapter_each = {}
                 chapter_each['name'] = each  # 获取章节名字
                 chapter_num = int(x)  # 提取章节序号
                 chapter_all_dict[chapter_num] = chapter_each  # 记录到所有的章节的字典中保存
                 x += 1
-            return chapter_all_dict,self.newwname
+            return chapter_all_dict, self.newwname
         except BaseException:
             pass
 
@@ -333,44 +343,44 @@ class haianxian(threading.Thread):
             with open('log.txt', 'r', encoding='utf-8') as f:
                 self.line = f.readline()
             if os.path.exists(
-                    self.line +
-                    '\海岸线小说\{}'.format(
-                        self.url_2[1]) +
-                    '\{}'.format(zhangjie_xuhao) +
-                    ' ' +
-                        '{}.txt'.format(name)):
-                    MYapp.text.insert(END, '已存在：{}'.format(name))
-                    MYapp.text.see(END)
-                    MYapp.text.update()
-                    pass
+                self.line +
+                '\海岸线小说\{}'.format(
+                    self.url_2[1]) +
+                '\{}'.format(zhangjie_xuhao) +
+                ' ' +
+                    '{}.txt'.format(name)):
+                MYapp.text.insert(END, '已存在：{}'.format(name))
+                MYapp.text.see(END)
+                MYapp.text.update()
+                pass
             else:
-                    MYapp.text.insert(END, '正在下载：{}'.format(name))
-                    MYapp.text.see(END)
-                    MYapp.text.update()
-                    with open(self.line + '\海岸线小说\{}'.format(self.url_2[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + '{}.txt'.format(name), 'a',
-                              encoding='utf-8') as fp:
-                        fp.write(title1)
-                        time.sleep(0.08)
+                MYapp.text.insert(END, '正在下载：{}'.format(name))
+                MYapp.text.see(END)
+                MYapp.text.update()
+                with open(self.line + '\海岸线小说\{}'.format(self.url_2[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + '{}.txt'.format(name), 'a',
+                          encoding='utf-8') as fp:
+                    fp.write(title1)
+                    time.sleep(0.08)
         else:
-                if os.path.exists(
-                    '海岸线小说\{}'.format(
-                        self.url_2[1]) +
-                    '\{}'.format(zhangjie_xuhao) +
-                    ' ' +
-                        '{}.txt'.format(name)):
+            if os.path.exists(
+                '海岸线小说\{}'.format(
+                    self.url_2[1]) +
+                '\{}'.format(zhangjie_xuhao) +
+                ' ' +
+                    '{}.txt'.format(name)):
 
-                    MYapp.text.insert(END, '已存在：{}'.format(name))
-                    MYapp.text.see(END)
-                    MYapp.text.update()
-                    pass
-                else:
-                    MYapp.text.insert(END, '正在下载：{}'.format(name))
-                    MYapp.text.see(END)
-                    MYapp.text.update()
-                    with open('海岸线小说\{}'.format(self.url_2[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + '{}.txt'.format(name), 'a', encoding='utf-8') as fp:
+                MYapp.text.insert(END, '已存在：{}'.format(name))
+                MYapp.text.see(END)
+                MYapp.text.update()
+                pass
+            else:
+                MYapp.text.insert(END, '正在下载：{}'.format(name))
+                MYapp.text.see(END)
+                MYapp.text.update()
+                with open('海岸线小说\{}'.format(self.url_2[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + '{}.txt'.format(name), 'a', encoding='utf-8') as fp:
 
-                        fp.write(title1)
-                        time.sleep(0.08)
+                    fp.write(title1)
+                    time.sleep(0.08)
 
     def hebing(self):
         path2 = r'log.txt'
@@ -421,11 +431,11 @@ class haianxian(threading.Thread):
                 filepath = filedir + '/' + filename
             # 遍历单个文件，读取行数
                 try:
-                  for line in open(filepath, encoding='utf-8'):
-                      try:
-                        f.writelines(line)
-                      except BaseException:
-                          pass
+                    for line in open(filepath, encoding='utf-8'):
+                        try:
+                            f.writelines(line)
+                        except BaseException:
+                            pass
                 except BaseException:
                     MYapp.text.insert(END, "%s存在问题" % filename)
                     MYapp.text.see(END)
@@ -640,11 +650,11 @@ class biquge(threading.Thread):
                 filepath = filedir + '/' + filename
                 # 遍历单个文件，读取行数
                 try:
-                  for line in open(filepath, encoding='utf-8'):
-                      try:
-                        f.writelines(line)
-                      except BaseException:
-                          pass
+                    for line in open(filepath, encoding='utf-8'):
+                        try:
+                            f.writelines(line)
+                        except BaseException:
+                            pass
                 except BaseException:
                     MYapp.text.insert(END, "%s存在问题" % filename)
                     MYapp.text.see(END)
@@ -665,11 +675,11 @@ class biquge(threading.Thread):
                 filepath = filedir + '/' + filename
                 # 遍历单个文件，读取行数
                 try:
-                  for line in open(filepath, encoding='utf-8'):
-                      try:
-                        f.writelines(line)
-                      except BaseException:
-                          pass
+                    for line in open(filepath, encoding='utf-8'):
+                        try:
+                            f.writelines(line)
+                        except BaseException:
+                            pass
                 except BaseException:
                     MYapp.text.insert(END, "%s存在问题" % filename)
                     MYapp.text.see(END)
@@ -685,12 +695,9 @@ class find(threading.Thread):
         threading.Thread.__init__(self)
         self.url1 = MYapp.entry.get()
         if self.url1 == '':
-            MYapp.text.insert(END, '请输入小说名称')
-            MYapp.text.see(END)
-            MYapp.text.update()
+            pass
         else:
             self.pathg = r'search_log\\'
-
             if os.path.isdir(self.pathg):
                 pass
             else:
@@ -699,9 +706,14 @@ class find(threading.Thread):
                     'search_log', win32con.FILE_ATTRIBUTE_HIDDEN)
                 # win32api.SetFileAttributes('search_log', win32con.FILE_ATTRIBUTE_READONLY)
             with open('search_log\\resultlog.txt', 'w', encoding='utf-8') as f:
-                f.write(self.url1)
+                f.write('biquge ' + self.url1)  # 用于开始下载 判断采用哪个
 
     def run(self):
+        if self.url1 == '':
+            MYapp.text.insert(END, '请输入小说名称')
+            MYapp.text.see(END)
+            MYapp.text.update()
+            return
         self.search_book(self.url1)
 
     def search_book(self, bookname):
@@ -756,7 +768,6 @@ class find(threading.Thread):
                     MYapp.text.see(END)
                     MYapp.text.update()
                     self.key += 1
-
                     with open('book_log\{}result.txt'.format(bookname), 'a', encoding='utf-8') as fp:
                         fp.write(name + ' ' + href + '\n')
 
@@ -770,71 +781,101 @@ class input2(threading.Thread):
         self.line = Select.entry.get()
         top.destroy()
 
+    def xiaoshuo(self, url):
+        url2 = url['url']
+        header = {'Accept': '*/*',
+                  'Accept-Language': 'en-US,en;q=0.8',
+                  'Cache-Control': 'max-age=0',
+                  'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
+                                'AppleWebKit/537.36 (KHTML, like Gecko) '
+                                'Chrome/48.0.2564.116 Safari/537.36',
+                  'Connection': 'keep-alive',
+                  'Referer': url2}
+        try:
+            html1 = requests.get(url2, headers=header, timeout=500).text
+            req = '<h1>(.*?)</h1>'
+            biaoti = re.findall(req, html1)
+            self.biaoti2 = biaoti[0]
+            rstr = r"[\/\\\:\*\?\"\<\>\|\？]"  # '/ \ : * ? " < > | ？'
+            self.biaoti3 = re.sub(rstr, " ", self.biaoti2)  # 替换为空格
+            req1 = '<div class="articlebody" id="content">(.*?)</div>'
+            self.title = re.findall(req1, html1, re.S)
+            for i in self.title:
+                a = i.replace('\n', '')
+                par = a.replace('<p>', '')
+                self.paragraph1 = par.replace('</p>', '\n')  # 替换
+                self.newName = self.paragraph1.replace('<!--PAGE 1-->', ' ')\
+                    .replace('<!--PAGE 2-->', ' ')\
+                    .replace('<!--PAGE 3-->', ' ')\
+                    .replace('<!--PAGE 4-->', ' ')\
+                    .replace('<!--PAGE 5-->', ' ')
+            self.zhangjie = url2.split('/')[-1]
+            self.zhangjie_xuhao = self.zhangjie.replace('.html', '')
+            self.write2(self.biaoti3, self.newName, self.zhangjie_xuhao)
+        except BaseException:
+            pass
+
     def run(self):
         self.line2 = int(self.line)
         path3 = r'search_log\resultlog.txt'
         count2 = linecache.getline(path3, 1)
         count3 = count2.replace('\n', '')
-        filename = 'book_log\{}result.txt'.format(count3)
-        count = linecache.getline(filename, self.line2)
-        req = 'www.biquge5200.cc(.*/)'
-        a5 = re.findall(req, count, re.S)
-        self.real_url = 'https://www.biquge5200.cc' + a5[0]
-        global x
-        if self.real_url == 'https://www.biquge5200.cc/':
-            MYapp.text.insert(END, '请输入正确链接')
-            MYapp.text.see(END)
-            MYapp.text.update()
+        count0 = count3.split(' ')[0]
+        if count0 == 'quanbenyuedu':
+            count5 = count3.split(' ')[1]
+            filename = 'book_log2\{}result.txt'.format(count5)
+            try:
+                count6 = linecache.getline(filename, self.line2)
+                quanbenurl = count6.split(' ')[1]
+                quanben_url = quanbenurl.replace('\n', '')
+                quanben_url2 = quanben_url + 'xiaoshuo.html'
+                self.url_12 = self.geturl_2(quanben_url, quanben_url2)
+                self.url_3 = self.url_12[0]
+                pool = Pool(processes=20)  # 创建35个进程
+                pool.map(self.xiaoshuo, [self.url_3[each]
+                                         for each in self.url_3])  # 调用xiaoshuo 方法
+                pool.close()
+                pool.join()
+                self.hebing2()
+                MYapp.text.insert(END, '合并成功')
+                MYapp.text.see(END)
+                MYapp.text.update()
+            except IndexError:
+                MYapp.text.insert(END, "请输入正确页数")
+                MYapp.text.see(END)
+                MYapp.text.update()
+                return
         else:
-            x = 0
-            self.url_2 = self.get_url(self.real_url)
-            for i in self.url_2[0]:
-                test = self.download(i)
-                c = str(x)
-                a = c + ' ' + test[0]
-                b = test[1]
-                self.write(a, b)
-                x += 1
-            self.hebing()
-            MYapp.text.insert(END, '合并成功')
-            MYapp.text.see(END)
-            MYapp.text.update()
+            count4 = count3.split(' ')[1]
+            filename = 'book_log\{}result.txt'.format(count4)
+            count = linecache.getline(filename, self.line2)
+            req = 'www.biquge5200.cc(.*/)'
+            a5 = re.findall(req, count, re.S)
+            if a5 == []:
+                MYapp.text.insert(END, "请输入正确页数")
+                MYapp.text.see(END)
+                MYapp.text.update()
+            self.real_url = 'https://www.biquge5200.cc' + a5[0]
+            global x
+            if self.real_url == 'https://www.biquge5200.cc/':
+                MYapp.text.insert(END, '请输入正确链接')
+                MYapp.text.see(END)
+                MYapp.text.update()
 
-    @staticmethod
-    def newurl(url1):
-        content = url1 + ' biquge5200.cc'
-        content_code = urllib.request.quote(content)
-        url2 = 'https://www.baidu.com/s?wd=' + content_code
-        headers = {'Referer': url1,
-                   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) '
-                   'AppleWebKit/537.36 (KHTML, like Gecko) '
-                   'Chrome/50.0.2661.102 UBrowser/6.1.2107.204 Safari/537.36'
-                   }
-        try:
-            response = requests.get(url2, headers=headers, timeout=500)
-            response.encoding = 'utf-8'
-            html2 = response.text
-            link_list = re.findall(
-                r'<div class.*?c-container[\s\S]*?href[\s\S]*?http://([\s\S]*?)"', html2)
-            for url in link_list:
-                url3 = 'http://' + url
-                headers = {
-                    'Referer': url3,
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) '
-                    'AppleWebKit/537.36 (KHTML, like Gecko) '
-                    'Chrome/50.0.2661.102 UBrowser/6.1.2107.204 Safari/537.36'}
-                response = requests.get(url3, headers=headers, timeout=500)
-                a = response.text
-                req1 = 'read_url" content="(.*?)"'
-                urls = re.findall(req1, a)
-                req = 'www.biquge5200.cc(.*/)'
-                a5 = re.findall(req, urls[0], re.S)
-                if len(a5) == 0:
-                    pass
-                else:
-                    return a5
-        except BaseException:
-            pass
+            else:
+                x = 0
+                self.url_2 = self.get_url(self.real_url)
+                for i in self.url_2[0]:
+                    test = self.download(i)
+                    c = str(x)
+                    a = c + ' ' + test[0]
+                    b = test[1]
+                    self.write(a, b)
+                    x += 1
+                self.hebing()
+                MYapp.text.insert(END, '合并成功')
+                MYapp.text.see(END)
+                MYapp.text.update()
 
     def get_url(self, url1):
         header = {'Accept': '*/*',
@@ -886,7 +927,7 @@ class input2(threading.Thread):
                   'AppleWebKit/537.36 (KHTML, like Gecko) '
                   'Chrome/48.0.2564.116 Safari/537.36',
                   'Connection': 'keep-alive',
-                  'Referer': 'https://www.readnovel.com/'}
+                  'Referer': url}
         try:
             html1 = requests.get(url, headers=header, timeout=500).text
             req = '<h1>(.*?)</h1>'
@@ -967,11 +1008,11 @@ class input2(threading.Thread):
                 filepath = filedir + '/' + filename
                 # 遍历单个文件，读取行数
                 try:
-                  for line in open(filepath, encoding='utf-8'):
-                      try:
-                        f.writelines(line)
-                      except BaseException:
-                          pass
+                    for line in open(filepath, encoding='utf-8'):
+                        try:
+                            f.writelines(line)
+                        except BaseException:
+                            pass
                 except BaseException:
                     MYapp.text.insert(END, "%s存在问题" % filename)
                     MYapp.text.see(END)
@@ -992,16 +1033,172 @@ class input2(threading.Thread):
                 filepath = filedir + '/' + filename
                 # 遍历单个文件，读取行数
                 try:
-                  for line in open(filepath, encoding='utf-8'):
-                      try:
-                        f.writelines(line)
-                      except BaseException:
-                          pass
+                    for line in open(filepath, encoding='utf-8'):
+                        try:
+                            f.writelines(line)
+                        except BaseException:
+                            pass
                 except BaseException:
                     MYapp.text.insert(END, "%s存在问题" % filename)
                     MYapp.text.see(END)
                     MYapp.text.update()
             f.close()
+
+    def hebing2(self):
+        path2 = r'log.txt'
+        if os.path.exists(path2):
+            with open('log.txt', 'r', encoding='utf-8') as f:
+                self.line = f.readline()
+            filedir = self.line + \
+                '\全本小说网\{}\\'.format(self.newwname2)  # 获取当前文件夹中的文件名称列表
+            filenames = os.listdir(filedir)  # 打开当前目录下的result.txt文件，如果没有则创建
+            filenames.sort(key=lambda powx: int(powx[:-1].split()[0]))
+            f = open(
+                self.line +
+                '\全本小说网\{}.txt'.format(
+                    self.newwname2),
+                'w',
+                encoding='utf-8')
+            # 先遍历文件名
+            for filename in filenames:
+                filepath = filedir + '/' + filename
+                # 遍历单个文件，读取行数
+                try:
+                    for line in open(filepath, encoding='utf-8'):
+                        try:
+                            f.writelines(line)
+                        except BaseException:
+                            pass
+                except BaseException:
+                    MYapp.text.insert(END, "%s存在问题" % filename)
+                    MYapp.text.see(END)
+                    MYapp.text.update()
+            f.close()
+        else:
+            filedir = r'全本小说网\{}\\'.format(self.newwname2)  # 获取当前文件夹中的文件名称列表
+
+            filenames = os.listdir(filedir)  # 打开当前目录下的result.txt文件，如果没有则创建
+            filenames.sort(key=lambda powx: int(powx[:-1].split()[0]))
+            f = open(
+                '全本小说网\{}.txt'.format(
+                    self.newwname2),
+                'w',
+                encoding='utf-8')
+            # 先遍历文件名
+            for filename in filenames:
+                filepath = filedir + '/' + filename
+                # 遍历单个文件，读取行数
+                try:
+                    for line in open(filepath, encoding='utf-8'):
+                        try:
+                            f.writelines(line)
+                        except BaseException:
+                            pass
+                except BaseException:
+                    MYapp.text.insert(END, "%s存在问题" % filename)
+                    MYapp.text.see(END)
+                    MYapp.text.update()
+            f.close()
+
+    def geturl_2(self, formatname, url):
+        header = {'Accept': '*/*',
+                  'Accept-Language': 'en-US,en;q=0.8',
+                  'Cache-Control': 'max-age=0',
+                  'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
+                                'AppleWebKit/537.36 (KHTML, like Gecko) '
+                                'Chrome/48.0.2564.116 Safari/537.36',
+                  'Connection': 'keep-alive',
+                  'Referer': url}
+        try:
+            html = requests.get(url, headers=header, timeout=500).text
+
+            req1 = '<p class="title"><span>(.*?)</span></p>'
+            book_name = re.findall(req1, html)
+            req2 = '<p>作者: <span>(.*?)</span></p>'
+            author_name = re.findall(req2, html)
+            for a in author_name:
+                self.authorname = a
+            for i in book_name:
+                self.newname = i
+            self.newwname2 = self.newname + '---' + self.authorname
+            path2 = r'log.txt'
+            if os.path.exists(path2):
+                with open('log.txt', 'r', encoding='utf-8') as f:
+                    self.line = f.readline()
+                self.patha = self.line + '\全本小说网\{}\\'.format(self.newwname2)
+                if os.path.isdir(self.patha):
+                    pass
+                else:
+                    os.makedirs(self.patha)
+            else:
+                self.patha = '全本小说网\{}\\'.format(self.newwname2)
+                if os.path.isdir(self.patha):
+                    pass
+                else:
+                    os.makedirs(self.patha)
+            req = '<li><a href="(.*?)"'
+            self.purl = re.findall(req, html)
+            chapter_all_dict = {}
+            global x
+            x = 0
+            for each in self.purl:
+                chapter_each = {}
+                chapter_each['url'] = formatname + each  # 获取章节url
+                chapter_num = int(x)  # 提取章节序号
+                chapter_all_dict[chapter_num] = chapter_each  # 记录到所有的章节的字典中保存
+                x += 1
+
+            return chapter_all_dict, self.newwname2
+        except BaseException:
+            pass
+
+    def write2(self, name, title1, zhangjie_xuhao):
+        path2 = r'log.txt'
+        if os.path.exists(path2):
+            with open('log.txt', 'r', encoding='utf-8') as f:
+                self.line = f.readline()
+            if os.path.exists(
+                self.line +
+                '\全本小说网\{}'.format(
+                    self.url_12[1]) +
+                '\{}'.format(zhangjie_xuhao) +
+                ' ' +
+                    '{}.txt'.format(name)):
+                MYapp.text.insert(END, '已存在：{}'.format(name))
+                MYapp.text.see(END)
+                MYapp.text.update()
+                pass
+            else:
+                MYapp.text.insert(END, '正在下载：{}'.format(name))
+                MYapp.text.see(END)
+                MYapp.text.update()
+                with open(self.line + '\全本小说网\{}'.format(self.url_12[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + '.txt', 'a',
+                          encoding='utf-8') as fp:
+                    fp.write('\n')
+                    fp.write(name + '\n')
+                    fp.write(title1)
+                    time.sleep(0.08)
+        else:
+            if os.path.exists(
+                '全本小说网\{}'.format(
+                    self.url_12[1]) +
+                '\{}'.format(zhangjie_xuhao) +
+                ' ' +
+                    '{}.txt'.format(name)):
+
+                MYapp.text.insert(END, '已存在：{}'.format(name))
+                MYapp.text.see(END)
+                MYapp.text.update()
+                pass
+            else:
+                MYapp.text.insert(END, '正在下载：{}'.format(name))
+                MYapp.text.see(END)
+                MYapp.text.update()
+                with open('全本小说网\{}'.format(self.url_12[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + '.txt', 'a', encoding='utf-8') as fp:
+                    fp.write('\n')
+                    fp.write(name + '\n')
+                    fp.write(title1)
+                    time.sleep(0.08)
 
     def stop(self):
         self.isRunning = True
@@ -1073,12 +1270,15 @@ class qishuwang(threading.Thread):
                     MYapp.text.see(END)
                     MYapp.text.update()
                     try:
-                        MYapp.text.insert(END, '正在下载小说：{}.txt--速度较慢'.format(bookname))
+                        MYapp.text.insert(
+                            END, '正在下载小说：{}.txt--速度较慢'.format(bookname))
                         MYapp.text.see(END)
                         MYapp.text.update()
-                        urllib.request.urlretrieve(url1, self.line + '奇书网小说\{}.txt'.format(bookname))
+                        urllib.request.urlretrieve(
+                            url1, self.line + '奇书网小说\{}.txt'.format(bookname))
                         try:
-                            urllib.request.urlretrieve(url2, self.line + '奇书网小说\{}.txt'.format(bookname))
+                            urllib.request.urlretrieve(
+                                url2, self.line + '奇书网小说\{}.txt'.format(bookname))
                         except BaseException:
                             pass
                     except BaseException:
@@ -1104,13 +1304,193 @@ class qishuwang(threading.Thread):
                     urllib.request.urlretrieve(
                         url1, '奇书网小说\{}.txt'.format(bookname))
                     try:
-                        urllib.request.urlretrieve(url2, '奇书网小说\{}.txt'.format(bookname))
+                        urllib.request.urlretrieve(
+                            url2, '奇书网小说\{}.txt'.format(bookname))
                     except BaseException:
                         pass
                 except BaseException:
                     MYapp.text.insert(END, "对不起，找到此小说")
                     MYapp.text.see(END)
                     MYapp.text.update()
+
+    def stop(self):
+        self.isRunning = True
+
+
+class find2(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+        self.url1 = MYapp.entry.get()
+        if self.url1 == '':
+            pass
+        else:
+            self.pathg = r'search_log\\'
+
+            if os.path.isdir(self.pathg):
+                pass
+            else:
+                os.makedirs(self.pathg)
+                win32api.SetFileAttributes(
+                    'search_log', win32con.FILE_ATTRIBUTE_HIDDEN)
+                # win32api.SetFileAttributes('search_log', win32con.FILE_ATTRIBUTE_READONLY)
+            with open('search_log\\resultlog.txt', 'w', encoding='utf-8') as f:
+                f.write('quanbenyuedu ' + self.url1)
+
+    def run(self):
+        if self.url1 == '':
+            MYapp.text.insert(END, '请输入小说名称')
+            MYapp.text.see(END)
+            MYapp.text.update()
+            return
+        self.search_book(self.url1)
+
+    def search_book(self, bookname):
+        header = {
+            'Accept': '*/*',
+            'Accept-Language': 'en-US,en;q=0.8',
+            'Cache-Control': 'max-age=0',
+            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
+                          'AppleWebKit/537.36 (KHTML, like Gecko) '
+                          'Chrome/48.0.2564.116 Safari/537.36',
+            'Connection': 'keep-alive',
+            'Referer': 'http://www.quanwenyuedu.io'}
+        url = 'http://www.quanwenyuedu.io/index.php?c=xs&a=search&keywords=' + \
+            parse.quote(bookname)
+        response = requests.get(url, headers=header, timeout=500)
+        content = response.text
+        req5 = '</span><span>(.*?)</span><span>'
+        page = re.findall(req5, content)[0]
+        aa = page.split('/ ')[1]
+        page_num = int(aa)
+        if page_num == 1:
+            req = '<h3><a href="(.*?)">.*?</a></h3>'
+            xiaoshuo_id = re.findall(req, content)
+            req1 = '<h3><a href=".*?">(.*?)</a></h3>'
+            book_name = re.findall(req1, content)
+            req2 = '<p>.*?<span>(.*?)</span></p>'
+            author_name = re.findall(req2, content)
+            self.new_url = []
+            chapter_all_dict = {}
+            for i in xiaoshuo_id:
+                self.newurl = 'http://www.quanwenyuedu.io' + i
+                self.new_url.append(self.newurl)
+            global x
+            x = 0
+            for each in self.new_url:
+                chapter_each = {}
+                chapter_each['book_url'] = each  # 获取书本url
+                chapter_each['book_author'] = book_name[x] + \
+                    '--' + author_name[x]
+                chapter_num = int(x)  # 书本序号
+                chapter_all_dict[chapter_num] = chapter_each  # 记录到所有的章节的字典中保存
+                x += 1
+            self.pathh = r'book_log2\\'
+            if os.path.isdir(self.pathh):
+                pass
+            else:
+                os.makedirs(self.pathh)
+                win32api.SetFileAttributes(
+                    'book_log2', win32con.FILE_ATTRIBUTE_HIDDEN)
+            path = r'book_log2\{}result.txt'.format(bookname)
+            if os.path.exists(path):
+                global b
+                b = 1
+                for each in chapter_all_dict:
+                    each_one = chapter_all_dict[each]
+                    MYapp.text.insert(
+                        END, str(b) + '  ' + each_one['book_author'])
+                    MYapp.text.see(END)
+                    MYapp.text.update()
+                    b += 1
+            else:
+                global a
+                a = 1
+                for each in chapter_all_dict:
+                    each_one = chapter_all_dict[each]
+                    MYapp.text.insert(
+                        END, str(a) + '  ' + each_one['book_author'])
+                    MYapp.text.see(END)
+                    MYapp.text.update()
+                    a += 1
+                    with open('book_log2\{}result.txt'.format(bookname), 'a', encoding='utf-8') as fp:
+                        fp.write(
+                            each_one['book_author'] +
+                            ' ' +
+                            each_one['book_url'] +
+                            '\n')
+        elif page_num == 0:
+            MYapp.text.insert(END, "对不起，未找到此小说")
+            MYapp.text.see(END)
+            MYapp.text.update()
+            return
+        else:
+            xiaoshuo_hebing = []
+            book_hebing = []
+            author_hebing = []
+            for i in range(1, page_num + 1):
+                url2 = 'http://www.quanwenyuedu.io/index.php?c=xs&a=search&keywords=' + \
+                    parse.quote(bookname) + '&page={}'.format(i)
+                response2 = requests.get(url2, headers=header, timeout=500)
+                content2 = response2.text
+                req = '<h3><a href="(.*?)">.*?</a></h3>'
+                xiaoshuo_id2 = re.findall(req, content2)
+                xiaoshuo_hebing.extend(xiaoshuo_id2)
+                req1 = '<h3><a href=".*?">(.*?)</a></h3>'
+                book_name2 = re.findall(req1, content2)
+                book_hebing.extend(book_name2)
+                req2 = '<p>.*?<span>(.*?)</span></p>'
+                author_name2 = re.findall(req2, content2)
+                author_hebing.extend(author_name2)
+            self.new_url2 = []
+            chapter_all_dict2 = {}
+            for i in xiaoshuo_hebing:
+                self.new_url123 = 'http://www.quanwenyuedu.io' + i
+                self.new_url2.append(self.new_url123)
+            global pox
+            pox = 0
+            for each in self.new_url2:
+                chapter_each2 = {}
+                chapter_each2['book_url'] = each  # 获取书本url
+                chapter_each2['book_author'] = book_hebing[pox] + \
+                    '--' + author_hebing[pox]
+                chapter_num2 = int(pox)  # 书本序号
+                # 记录到所有的章节的字典中保存
+                chapter_all_dict2[chapter_num2] = chapter_each2
+                pox += 1
+            self.pathh = r'book_log2\\'
+            if os.path.isdir(self.pathh):
+                pass
+            else:
+                os.makedirs(self.pathh)
+                win32api.SetFileAttributes(
+                    'book_log2', win32con.FILE_ATTRIBUTE_HIDDEN)
+            path = r'book_log2\{}result.txt'.format(bookname)
+            if os.path.exists(path):
+                global pob
+                pob = 1
+                for each in chapter_all_dict2:
+                    each_one = chapter_all_dict2[each]
+                    MYapp.text.insert(
+                        END, str(pob) + '  ' + each_one['book_author'])
+                    MYapp.text.see(END)
+                    MYapp.text.update()
+                    pob += 1
+            else:
+                global poa
+                poa = 1
+                for each in chapter_all_dict2:
+                    each_one = chapter_all_dict2[each]
+                    MYapp.text.insert(
+                        END, str(poa) + '  ' + each_one['book_author'])
+                    MYapp.text.see(END)
+                    MYapp.text.update()
+                    poa += 1
+                    with open('book_log2\{}result.txt'.format(bookname), 'a', encoding='utf-8') as fp:
+                        fp.write(
+                            each_one['book_author'] +
+                            ' ' +
+                            each_one['book_url'] +
+                            '\n')
 
     def stop(self):
         self.isRunning = True
@@ -1138,6 +1518,11 @@ def download4():
 
 def download5():
     test = qishuwang()
+    test.start()
+
+
+def download6():
+    test = find2()
     test.start()
 
 
