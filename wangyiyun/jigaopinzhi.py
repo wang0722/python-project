@@ -755,10 +755,10 @@ class THread_3(threading.Thread):
         self.soup = BeautifulSoup(html, "lxml")
         self.links = self.soup.find('ul', class_='f-hide').find_all('a')
         self.song_IDs = []
-        x=1
+        x = 1
         for link in self.links:
-            song_ID = str(x)+'/'+link.get('href').split('=')[-1]
-            x+=1
+            song_ID = str(x) + '/' + link.get('href').split('=')[-1]
+            x += 1
             self.song_IDs.append(song_ID)
         res = r'<ul class="f-hide">(.*?)</ul>'  # <li><a href=".*?>
         result = re.findall(res, html, re.S | re.M)
@@ -873,7 +873,7 @@ class THread_3(threading.Thread):
                     with open('歌单下载\{}\歌词'.format(singer_name3) + '\{}.txt'.format(song_name), 'a', encoding='utf-8') as fp:
                         fp.write(lyric)
 
-    def downloadsong(self, song_name, song_id,song_num):
+    def downloadsong(self, song_name, song_id, song_num):
         # print(song_id)
         bit_rate = 320000
         # url = 'http://music.163.com/weapi/song/enhance/player/url?csrf_token='
@@ -924,7 +924,7 @@ class THread_3(threading.Thread):
                     MyApp.text.update()
                     pass
                 else:
-                    #‘第{}'.format(song_num)+'首’
+                    # ‘第{}'.format(song_num)+'首’
                     MyApp.text.insert(END, '正在下载歌曲：{}'.format(song_name))
                     MyApp.text.see(END)
                     MyApp.text.update()
@@ -944,8 +944,9 @@ class THread_3(threading.Thread):
     # def stop(self):
     #     self.__flag.set()       # 将线程从暂停状态恢复, 如何已经暂停的话
     #     self.__running.clear()        # 设置为False
+
     def stop(self):
-         self.isRunning=True
+        self.isRunning = True
 
 
 class Pause(threading.Thread):
