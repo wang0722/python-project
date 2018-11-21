@@ -218,7 +218,9 @@ class haianxian(threading.Thread):
             self.new_url = self.xiaoshuo_id
         else:
             self.id = self.xiaoshuo_id.replace('.htm', '')
-            self.new_url = 'https://www.haxds.com/files/article/html/{}/index.html'.format(
+            #https://www.haxwx11.com/files/article/info/0/67.htm
+            #https://www.haxwx11.com/files/article/html/0/67/index.html
+            self.new_url = 'https://www.haxwx11.com/files/article/html/{}/index.html'.format(
                 self.id)
 
     def xiaoshuo(self, url):
@@ -228,7 +230,7 @@ class haianxian(threading.Thread):
                 'Accept': '*/*',
                 'Accept-Language': 'en-US,en;q=0.8',
                 'Cache-Control': 'max-age=0',
-                'Host': 'www.haxds.com',
+                'Host': 'www.haxwx11.com',
                 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
                               'AppleWebKit/537.36 (KHTML, like Gecko) '
                               'Chrome/48.0.2564.116 Safari/537.36',
@@ -258,7 +260,7 @@ class haianxian(threading.Thread):
         start = time.time()
         global x
         self.new_url3 = self.new_url.split('html')[0]
-        if self.new_url3 != 'https://www.haxds.com/files/article/':
+        if self.new_url3 != 'https://www.haxwx11.com/files/article/':
             MYapp.text.insert(END, '请输入正确地址')
             MYapp.text.see(END)
             MYapp.text.update()
@@ -279,17 +281,17 @@ class haianxian(threading.Thread):
         MYapp.text.update()
 
     def get_url(self, url1):
-
         header = {
             'Accept': '*/*',
             'Accept-Language': 'en-US,en;q=0.8',
             'Cache-Control': 'max-age=0',
-            'Host': 'www.haxds.com',
+            # 'Host': 'www.haxds11.com',
             'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
             'AppleWebKit/537.36 (KHTML, like Gecko) '
             'Chrome/48.0.2564.116 Safari/537.36',
             'Connection': 'keep-alive',
-            'Referer': url1}
+            # 'Referer': url1
+        }
         try:
             # proxies = {"http": "36.99.17.52", },proxies=proxies
             # requests.get("http://example.org", proxies=proxies)
@@ -323,7 +325,7 @@ class haianxian(threading.Thread):
             self.newpurl1 = []
             chapter_all_dict = {}
             for i in self.purl:
-                self.newpurl = 'https://www.haxds.com' + i
+                self.newpurl = 'https://www.haxwx11.com' + i
                 self.newpurl1.append(self.newpurl)
             global x
             x = 0
@@ -390,7 +392,7 @@ class haianxian(threading.Thread):
             filedir = self.line + '\海岸线小说\{}\\'.format(self.newwname)
             # 获取当前文件夹中的文件名称列表
             filenames = os.listdir(filedir)
-            # filenames.sort(key=lambda powx: int(powx[:-1].split()[0]))
+            filenames.sort(key=lambda powx: int(powx[:-1].split()[0]))
             # 打开当前目录下的result.txt文件，如果没有则创建
             f = open(
                 self.line +
@@ -417,7 +419,7 @@ class haianxian(threading.Thread):
             filedir = r'海岸线小说\{}\\'.format(self.newwname)
         # 获取当前文件夹中的文件名称列表
             filenames = os.listdir(filedir)
-            # filenames.sort(key=lambda powx: int(powx[:-1].split()[0]))
+            filenames.sort(key=lambda powx: int(powx[:-1].split()[0]))
         # 打开当前目录下的result.txt文件，如果没有则创建
             f = open(
                 '海岸线小说\{}.txt'.format(
@@ -732,10 +734,16 @@ class find(threading.Thread):
         # content = response.read().decode('gbk')
         response = requests.get(url, headers=header, timeout=500)
         content = response.text
+        req6='</tr>.*?<tr>(.*?)</tr>.*?</table>'
+        aaa=re.findall(req6,content,re.S)
+        if aaa==[]:
+            MYapp.text.insert(END,'对不起，未找到此小说')
+            MYapp.text.see(END)
+            MYapp.text.update()
+            return
         soup = BeautifulSoup(content, 'html.parser')
         self.key = 1
         self.pathh = r'book_log\\'
-
         if os.path.isdir(self.pathh):
             pass
         else:
@@ -912,9 +920,9 @@ class input2(threading.Thread):
                     pass
                 else:
                     os.makedirs(self.patha)
-
             req = '<dd><a href="(.*?)"'
             self.purl = re.findall(req, html)
+            print(self.purl)
             return self.purl, self.newwname2
         except BaseException:
             pass
@@ -996,7 +1004,7 @@ class input2(threading.Thread):
             filedir = self.line + \
                 '\搜索的小说\{}\\'.format(self.newwname2)  # 获取当前文件夹中的文件名称列表
             filenames = os.listdir(filedir)  # 打开当前目录下的result.txt文件，如果没有则创建
-            # filenames.sort(key=lambda powx: int(powx[:-1].split()[0]))
+            filenames.sort(key=lambda powx: int(powx[:-1].split()[0]))
             f = open(
                 self.line +
                 '\搜索的小说\{}.txt'.format(
@@ -1022,7 +1030,7 @@ class input2(threading.Thread):
             filedir = r'搜索的小说\{}\\'.format(self.newwname2)  # 获取当前文件夹中的文件名称列表
 
             filenames = os.listdir(filedir)  # 打开当前目录下的result.txt文件，如果没有则创建
-            # filenames.sort(key=lambda powx: int(powx[:-1].split()[0]))
+            filenames.sort(key=lambda powx: int(powx[:-1].split()[0]))
             f = open(
                 '搜索的小说\{}.txt'.format(
                     self.newwname2),
