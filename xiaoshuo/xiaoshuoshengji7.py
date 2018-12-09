@@ -407,7 +407,7 @@ class haianxian(threading.Thread):
             # 获取当前文件夹中的文件名称列表
             filenames = os.listdir(filedir)
             filenames.sort(key=lambda powx: int(powx[:-1].split()[0]))
-            # 打开当前目录下的result.txt文件，如果没有则创建
+            # 打开当前目录下的result.txt文件，如果没有则创建 1
             with open(
                 self.line +
                 '\海岸线小说\{}.txt'.format(
