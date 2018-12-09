@@ -5,6 +5,8 @@
 # @File   : 网易下载器升级版.py
 from tkinter import *
 from Crypto.Cipher import AES
+from multiprocessing import Pool
+from multiprocessing.dummy import Pool
 from tkinter.filedialog import askdirectory
 from http import cookiejar
 from tkinter import ttk
@@ -108,8 +110,8 @@ class MyApp(Tk):
         # url.set('')  # 通过var.get()/var.set() 来 获取/设置var的值
         lable = Label(self, text='输入网易云链接或ID', font=('楷体', 20))
         lable.grid(row=0, column=0)
-        lable = Label(self, text='输入网易云链接或ID', font=('楷体', 20))
-        lable.grid(row=0, column=0)
+        # lable = Label(self, text='输入网易云链接或ID', font=('楷体', 20))
+        # lable.grid(row=0, column=0)
         MyApp.url = StringVar()
         MyApp.entry = Entry(
             self, textvariable=MyApp.url, font=(
@@ -292,11 +294,6 @@ class THread_1(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
         self.url1 = MyApp.entry.get()
-        self.singer_id = self.url1.split('=')[-1]
-        self.start_url = 'https://music.163.com/song?id={}'.format(
-            self.singer_id)
-        self.html = self.get_html(self.start_url)
-        self.song_name = self.get_song_name(self.html)
 
     def run(self):
         path2 = r'log.txt'
@@ -320,24 +317,39 @@ class THread_1(threading.Thread):
                 pass
             else:
                 os.makedirs(self.patha)
-            # path = r'单曲下载\歌曲\\'
+
             if os.path.isdir(self.pathb):
                 pass
             else:
                 os.makedirs(self.pathb)
-        self.r = requests.get(self.start_url)
-        hh = self.r.url
-        if hh == 'https://music.163.com/404':
-            MyApp.text.insert(END, '对不起，歌曲出错')
+        if self.url1 == '':
+            MyApp.text.insert(END, '对不起，请输入ID或链接')
             MyApp.text.see(END)
             MyApp.text.update()
+            return
         else:
-            lyric = self.get_lyric(self.singer_id)
-            self.write_lyric(self.song_name, lyric)
-            self.download_song(self.song_name, self.singer_id)
-            MyApp.text.insert(END, '任务已经完成(*￣▽￣)y ')
-            MyApp.text.see(END)
-            MyApp.text.update()
+            self.singer_id = self.url1.split('=')[-1]
+            self.start_url = 'https://music.163.com/song?id={}'.format(
+                self.singer_id)
+
+            self.r = requests.get(self.start_url)
+            hh = self.r.url
+            if hh == 'https://music.163.com/404':
+                MyApp.text.insert(END, '对不起，歌曲出错')
+                MyApp.text.see(END)
+                MyApp.text.update()
+                return
+            else:
+                self.html = self.get_html(self.start_url)
+
+                self.song_name = self.get_song_name(self.html)
+                lyric = self.get_lyric(self.singer_id)
+                self.write_lyric(self.song_name, lyric)
+
+                self.download_song(self.song_name, self.singer_id)
+                MyApp.text.insert(END, '任务已经完成(*￣▽￣)y ')
+                MyApp.text.see(END)
+                MyApp.text.update()
 
     def get_html(self, url):
         self.header = {
@@ -468,267 +480,44 @@ class THread_1(threading.Thread):
     def stop(self):
         self.isRunning = True
 
-
 class THread_2(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
         self.url1 = MyApp.entry.get()  #
-        self.singer_id = self.url1.split('=')[-1]
-        self.start_url = 'https://music.163.com/artist?id={}'.format(
-            self.singer_id)
-        self.html = self.get_html(self.start_url)
-        self.get_information = self.get_singer_info(self.html)
 
     def run(self):
-        self.r = requests.get(self.start_url)
-        hh = self.r.url
-        if hh == 'https://music.163.com/404':
-            MyApp.text.insert(END, '对不起，歌手歌单出错')
-            MyApp.text.see(END)
-            MyApp.text.update()
-        else:
-            MyApp.text.insert(END, '歌单中共有{}首歌曲需要下载'.format(len(self.song_IDs)))
-            MyApp.text.see(END)
-            MyApp.text.update()
-            for self.singer_info in self.get_information:
-                lyric = self.get_lyric(self.singer_info[1])
-                self.write_lyric(self.singer_info[0], lyric)
-                self.downloadsong(self.singer_info[0], self.singer_info[1])
-            MyApp.text.insert(END, '所有任务已经下载完毕')
-            MyApp.text.see(END)
-            MyApp.text.update()
-
-    def get_html(self, url):
-        self.header = {
-            'Accept': '*/*',
-            'Accept-Encoding': 'gzip,deflate,sdch',
-            'Accept-Language': 'zh-CN,zh;q=0.8,gl;q=0.6,zh-TW;q=0.4',
-            'Connection': 'keep-alive',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Host': 'music.163.com',
-            'Referer': 'http://music.163.com/search/',
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) '
-            'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'}
-        try:
-            self.response = requests.get(url, headers=self.header)
-            self.html = self.response.text
-            return self.html
-        except BaseException:
-            MyApp.text.insert(END, "解析错误")
-            MyApp.text.see(END)
-            MyApp.text.update()
-            pass
-
-    def get_singer_info(self, html):
-        self.soup = BeautifulSoup(html, "lxml")
-        self.links = self.soup.find('ul', class_='f-hide').find_all('a')
-        self.song_IDs = []
-        for link in self.links:
-            song_ID = link.get('href').split('=')[-1]
-            self.song_IDs.append(song_ID)
-        res = r'<ul class="f-hide">(.*?)</ul>'
-        result = re.findall(res, html, re.S | re.M)
-        for i in result:
-            req = r'<li><a href=".*?">(.*?)</a>'
-            result2 = re.findall(req, i)
-            self.newwname = []
-            for result in result2:
-                rstr = r"[\/\\\:\*\?\"\<\>\|\？]"  # '/ \ : * ? " < > | ？'
-                newName = re.sub(rstr, " ", result)  # 替换为空格
-                self.newwname.append(newName)
-            return zip(self.newwname, self.song_IDs)
-
-    def get_singer_info2(self, playlist):
-        global purl
-        global purl2
-        soup = BeautifulSoup(playlist, "lxml")
-        links = soup.find('script')
-        for i in links:
-            req = '"title": "(.*?)"'
-            purl = re.findall(req, i)
-        for i in purl:
-            rstr = r"[\/\\\:\*\?\"\<\>\|\？]"  # '/ \ : * ? " < > | ？'
-            purl2 = re.sub(rstr, "", i)  # 替换为空格
-        path2 = r'log.txt'
-        if os.path.exists(path2):
-            with open('log.txt', 'r', encoding='utf-8') as f:
-                self.line = f.readline()
-            self.pathe = self.line + '\歌手下载\{}\歌词\\'.format(purl2)
-            self.pathf = self.line + '\歌手下载\{}\歌曲\\'.format(purl2)
-            if os.path.isdir(self.pathe):
-                pass
-            else:
-                os.makedirs(self.pathe)
-            if os.path.isdir(self.pathf):
-                pass
-            else:
-                os.makedirs(self.pathf)
-            return purl2
-        else:
-            self.pathe = r'歌手下载\{}\歌词\\'.format(purl2)
-            if os.path.isdir(self.pathe):
-                pass
-            else:
-                os.makedirs(self.pathe)
-            self.pathf = r'歌手下载\{}\歌曲\\'.format(purl2)
-            if os.path.isdir(self.pathf):
-                pass
-            else:
-                os.makedirs(self.pathf)
-            return purl2
-
-    def get_lyric(self, song_id):
-        self.lrc_url = 'http://music.163.com/api/song/lyric?id=' + \
-            str(song_id) + '&lv=1&kv=1&tv=-1'
-        self.html = self.get_html(self.lrc_url)
-        j = json.loads(self.html)
-        try:  # 部分歌曲没有歌词，这里引入一个异常
-            lrc = j['lrc']['lyric']
-            pat = re.compile(r'\[.*\]')
-            lrc = re.sub(pat, "", lrc)
-            lrc.strip()
-            return lrc
-        except KeyError:
-            lrc = 0
-            pass
-            return lrc
-
-    def write_lyric(self, song_name, lyric):
-        html = self.get_html(self.start_url)
-        singer_name3 = self.get_singer_info2(html)
-        if lyric == 0:
-            MyApp.text.insert(END, '这首没有歌词：{}'.format(song_name))
+        if self.url1 == '':
+            MyApp.text.insert(END, '对不起，请输入正确ID或链接')
             MyApp.text.see(END)
             MyApp.text.update()
             pass
         else:
-            path2 = r'log.txt'
-            if os.path.exists(path2):
-                with open('log.txt', 'r', encoding='utf-8') as f:
-                    self.line = f.readline()
-                if os.path.exists(
-                    self.line +
-                    '\歌手下载\{}\歌词'.format(singer_name3) +
-                        '\{}.txt'.format(song_name)):
-                    MyApp.text.insert(END, '歌词已存在：{}'.format(song_name))
-                    MyApp.text.see(END)
-                    MyApp.text.update()
-                    pass
-                else:
-                    MyApp.text.insert(END, '正在下载歌词：{}'.format(song_name))
-                    MyApp.text.see(END)
-                    MyApp.text.update()
-                    with open(self.line + '\歌手下载\{}\歌词'.format(singer_name3) + '\{}.txt'.format(song_name), 'a',
-                              encoding='utf-8') as fp:
-                        fp.write(lyric)
+            self.singer_id = self.url1.split('=')[-1]
+            self.start_url = 'https://music.163.com/artist?id={}'.format(
+                self.singer_id)
+            self.r = requests.get(self.start_url)
+            self.hh = self.r.url
+            if self.hh == 'https://music.163.com/404':
+                MyApp.text.insert(END, '对不起，列表歌单出错')
+                MyApp.text.see(END)
+                MyApp.text.update()
             else:
-                if os.path.exists(
-                    '歌手下载\{}\歌词'.format(singer_name3) +
-                        '\{}.txt'.format(song_name)):
-                    MyApp.text.insert(END, '歌词已存在：{}'.format(song_name))
-                    MyApp.text.see(END)
-                    MyApp.text.update()
-                    pass
-                else:
-                    MyApp.text.insert(END, '正在下载歌词：{}'.format(song_name))
-                    MyApp.text.see(END)
-                    MyApp.text.update()
-                    with open('歌手下载\{}\歌词'.format(singer_name3) + '\{}.txt'.format(song_name), 'a',
-                              encoding='utf-8') as fp:
-                        fp.write(lyric)
-
-    def downloadsong(self, song_name, song_id):
-        bit_rate = 320000
-        # url = 'http://music.163.com/weapi/song/enhance/player/url?csrf_token='
-        # csrf = ''
-        # params = {'ids': [song_id], 'br': bit_rate, 'csrf_token': csrf}
-        ts = Crawler()
-        params = {'c': str([{'id': song_id}]), 'ids': [
-            song_id], 'br': bit_rate, 'csrf_token': ''}
-        result = ts.post_request(apis['song_detail'], params)
-        result2 = ts.get_durls(result['songs'])
-        song_url = result2[1]
-        html = self.get_html(self.start_url)
-        singer_name3 = self.get_singer_info2(html)
-        if song_url is None:
-            MyApp.text.insert(END, '版权问题，无法下载：{}'.format(song_name))
-            MyApp.text.see(END)
-            MyApp.text.update()
-        else:
-            path2 = r'log.txt'
-            if os.path.exists(path2):
-                with open('log.txt', 'r', encoding='utf-8') as f:
-                    self.line = f.readline()
-                if os.path.exists(
-                    self.line +
-                    '\歌手下载\{}\歌曲'.format(singer_name3) +
-                        '\{}.mp3'.format(song_name)):
-                    MyApp.text.insert(END, '歌曲已存在：{}'.format(song_name))
-                    MyApp.text.see(END)
-                    MyApp.text.update()
-                    pass
-                else:
-                    MyApp.text.insert(END, '正在下载歌曲：{}'.format(song_name))
-                    MyApp.text.see(END)
-                    MyApp.text.update()
-                    urllib.request.urlretrieve(
-                        song_url,
-                        self.line +
-                        '\歌手下载\{}\歌曲'.format(singer_name3) +
-                        '\{}.mp3'.format(song_name))
-            else:
-                if os.path.exists(
-                    '歌手下载\{}\歌曲'.format(singer_name3) +
-                        '\{}.mp3'.format(song_name)):
-                    MyApp.text.insert(END, '歌曲已存在：{}'.format(song_name))
-                    MyApp.text.see(END)
-                    MyApp.text.update()
-                    pass
-                else:
-                    MyApp.text.insert(END, '正在下载歌曲：{}'.format(song_name))
-                    MyApp.text.see(END)
-                    MyApp.text.update()
-                    urllib.request.urlretrieve(
-                        song_url,
-                        '歌手下载\{}\歌曲'.format(singer_name3) +
-                        '\{}.mp3'.format(song_name))
-
-    def stop(self):
-        self.isRunning = True
-
-
-class THread_3(threading.Thread):
-    def __init__(self):
-        threading.Thread.__init__(self)
-        self.url1 = MyApp.entry.get()  #
-        self.__flag = threading.Event()  # 用于暂停线程的标识
-        self.__flag.set()  # 设置为True
-        self.__running = threading.Event()  # 用于停止线程的标识
-        self.__running.set()      # 将running设置为True
-        self.singer_id = self.url1.split('=')[-1]
-        self.start_url = 'https://music.163.com/playlist?id={}'.format(
-            self.singer_id)
-        self.html = self.get_html(self.start_url)
-        self.get_information = self.get_singer_info(self.html)
-
-    def run(self):
-        self.r = requests.get(self.start_url)
-        self.hh = self.r.url
-        if self.hh == 'https://music.163.com/404':
-            MyApp.text.insert(END, '对不起，列表歌单出错')
-        else:
-            MyApp.text.insert(END, '歌单中共有{}首歌曲需要下载'.format(len(self.song_IDs)))
-            MyApp.text.see(END)
-            MyApp.text.update()
-            for self.singer_info in self.get_information:
-                lyric = self.get_lyric(self.singer_info[1].split('/')[1])
-                self.write_lyric(self.singer_info[0], lyric)
-                self.downloadsong(self.singer_info[0],
-                                  self.singer_info[1].split('/')[1],
-                                  self.singer_info[1].split('/')[0])
-            MyApp.text.insert(END, '所有任务已经下载完毕')
-            MyApp.text.see(END)
-            MyApp.text.update()
+                self.html = self.get_html(self.start_url)
+                self.get_information = self.get_singer_info(self.html)
+                MyApp.text.insert(END,
+                                  '歌单中共有{}首歌曲需要下载'.format(len(self.get_information)))
+                MyApp.text.see(END)
+                MyApp.text.update()
+                self.singe_IDI = []
+                for i in self.get_information:
+                    self.bb = i.split('/')[0]
+                    self.aa = i.split('/')[1]
+                    self.singe_IDI.append(self.aa)
+                pool = Pool(35)
+                pool.map(self.downloadsong, self.singe_IDI)
+                MyApp.text.insert(END, '所有任务已经下载完毕')
+                MyApp.text.see(END)
+                MyApp.text.update()
 
     def get_html(self, url):
         self.header = {
@@ -760,18 +549,8 @@ class THread_3(threading.Thread):
             song_ID = str(x) + '/' + link.get('href').split('=')[-1]
             x += 1
             self.song_IDs.append(song_ID)
-        res = r'<ul class="f-hide">(.*?)</ul>'  # <li><a href=".*?>
-        result = re.findall(res, html, re.S | re.M)
-        for i in result:
-            req = r'<li><a href=".*?">(.*?)</a>'
-            result2 = re.findall(req, i)
-            self.newwname = []
-            for result in result2:
-                rstr = r"[\/\\\:\*\?\"\<\>\|\？]"  # '/ \ : * ? " < > | ？'
-                newName = re.sub(rstr, " ", result)  # 替换为空格
-                self.newwname.append(newName)
-            print(self.song_IDs)
-            return zip(self.newwname, self.song_IDs)
+
+        return self.song_IDs
 
     def get_singer_info2(self, playlist):
         global purl
@@ -788,33 +567,21 @@ class THread_3(threading.Thread):
         if os.path.exists(path2):
             with open('log.txt', 'r', encoding='utf-8') as f:
                 self.line = f.readline()
-            self.pathc = self.line + '\歌单下载\{}\歌词\\'.format(purl2)
-            self.pathd = self.line + '\歌单下载\{}\歌曲\\'.format(purl2)
-            # path = r'歌单下载\{}\歌词\\'.format(purl2)
+            self.pathc = self.line + '\歌手下载\{}\\'.format(purl2)
             if os.path.isdir(self.pathc):
                 pass
             else:
                 os.makedirs(self.pathc)
-            # path = r'歌单下载\{}\歌曲\\'.format(purl2)
-            if os.path.isdir(self.pathd):
-                pass
-            else:
-                os.makedirs(self.pathd)
             return purl2
         else:
-            self.pathc = r'歌单下载\{}\歌词\\'.format(purl2)
+            self.pathc = r'歌手下载\{}\\'.format(purl2)
             if os.path.isdir(self.pathc):
                 pass
             else:
                 os.makedirs(self.pathc)
-            self.pathd = r'歌单下载\{}\歌曲\\'.format(purl2)
-            if os.path.isdir(self.pathd):
-                pass
-            else:
-                os.makedirs(self.pathd)
             return purl2
 
-    def get_lyric(self, song_id):
+    def get_lyric(self, song_id,song_name):
         self.lrc_url = 'http://music.163.com/api/song/lyric?id=' + \
             str(song_id) + '&lv=1&kv=1&tv=-1'
         self.html = self.get_html(self.lrc_url)
@@ -824,20 +591,16 @@ class THread_3(threading.Thread):
             pat = re.compile(r'\[.*\]')
             lrc = re.sub(pat, "", lrc)
             lrc.strip()
-            return lrc
-
+            self.write_lyric(song_name,lrc)
         except KeyError:
             lrc = 0
             pass
-            return lrc
+            self.write_lyric(song_name, lrc)
 
     def write_lyric(self, song_name, lyric):
         html = self.get_html(self.start_url)
         singer_name3 = self.get_singer_info2(html)
         if lyric == 0:
-            MyApp.text.insert(END, '这首没有歌词：{}'.format(song_name))
-            MyApp.text.see(END)
-            MyApp.text.update()
             pass
         else:
             path2 = r'log.txt'
@@ -846,35 +609,31 @@ class THread_3(threading.Thread):
                     self.line = f.readline()
                 if os.path.exists(
                     self.line +
-                    '\歌单下载\{}\歌词'.format(singer_name3) +
+                    '\歌手下载\{}'.format(singer_name3) +
                         '\{}.txt'.format(song_name)):
-                    MyApp.text.insert(END, '歌词已存在：{}'.format(song_name))
-                    MyApp.text.see(END)
-                    MyApp.text.update()
                     pass
                 else:
-                    MyApp.text.insert(END, '正在下载歌词：{}'.format(song_name))
-                    MyApp.text.see(END)
-                    MyApp.text.update()
-                    with open(self.line + '\歌单下载\{}\歌词'.format(singer_name3) + '\{}.txt'.format(song_name), 'a', encoding='utf-8') as fp:
+                    with open(self.line + '\歌手下载\{}'.format(singer_name3) + '\{}.txt'.format(song_name), 'a', encoding='utf-8') as fp:
                         fp.write(lyric)
             else:
                 if os.path.exists(
-                    '歌单下载\{}\歌词'.format(singer_name3) +
+                    '歌手下载\{}'.format(singer_name3) +
                         '\{}.txt'.format(song_name)):
-                    MyApp.text.insert(END, '歌词已存在：{}'.format(song_name))
-                    MyApp.text.see(END)
-                    MyApp.text.update()
                     pass
                 else:
-                    MyApp.text.insert(END, '正在下载歌词：{}'.format(song_name))
-                    MyApp.text.see(END)
-                    MyApp.text.update()
-                    with open('歌单下载\{}\歌词'.format(singer_name3) + '\{}.txt'.format(song_name), 'a', encoding='utf-8') as fp:
+                    with open('歌手下载\{}'.format(singer_name3) + '\{}.txt'.format(song_name), 'a', encoding='utf-8') as fp:
                         fp.write(lyric)
 
-    def downloadsong(self, song_name, song_id, song_num):
-        # print(song_id)
+    def downloadsong(self,song_id):
+        url1='https://music.163.com/song?id='+song_id
+        html = requests.get(url1, headers=headers, timeout=10).text
+        req='"title": "(.*?)"'
+        name=re.findall(req,html)
+        newwname1 = []
+        for result in name:
+            rstr = r"[\/\\\:\*\?\"\<\>\|\？]"  # '/ \ : * ? " < > | ？'
+            newName = re.sub(rstr, " ", result)  # 替换为空格
+            newwname1.append(newName)
         bit_rate = 320000
         # url = 'http://music.163.com/weapi/song/enhance/player/url?csrf_token='
         # csrf = ''
@@ -890,9 +649,176 @@ class THread_3(threading.Thread):
         html = self.get_html(self.start_url)
         singer_name3 = self.get_singer_info2(html)
         if song_url is None:
-            MyApp.text.insert(END, '版权问题，无法下载：{}'.format(song_name))
+           return
+        else:
+            self.write(song_url,singer_name3,newwname1[0])
+            self.get_lyric(song_id,newwname1[0])
+    def write(self,song_url,singer_name3,newwname1):
+        path2 = r'log.txt'
+        if os.path.exists(path2):
+            with open('log.txt', 'r', encoding='utf-8') as f:
+                self.line = f.readline()
+            if os.path.exists(
+                self.line +
+                '\歌手下载\{}'.format(singer_name3) +
+                    '\{}.mp3'.format(newwname1)):
+                MyApp.text.insert(END, '歌手已存在：{}'.format(newwname1))
+                MyApp.text.see(END)
+                MyApp.text.update()
+                pass
+            else:
+                MyApp.text.insert(END, '正在下载歌曲：{}'.format(newwname1))
+                MyApp.text.see(END)
+                MyApp.text.update()
+                urllib.request.urlretrieve(
+                    song_url,
+                    self.line +
+                    '\歌手下载\{}'.format(singer_name3) +
+                    '\{}.mp3'.format(newwname1))
+        else:
+
+            if os.path.exists(
+                    '歌手下载\{}'.format(singer_name3) +
+                    '\{}.mp3'.format(newwname1)):
+                MyApp.text.insert(END, '歌曲已存在：{}'.format(newwname1))
+                MyApp.text.see(END)
+                MyApp.text.update()
+                pass
+            else:
+                # ‘第{}'.format(song_num)+'首’
+                MyApp.text.insert(END, '正在下载歌曲：{}'.format(newwname1))
+                MyApp.text.see(END)
+                MyApp.text.update()
+                urllib.request.urlretrieve(
+                    song_url,
+                    '歌手下载\{}'.format(singer_name3) +
+                    '\{}.mp3'.format(newwname1))
+
+    def stop(self):
+        self.isRunning = True
+
+class THread_3(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+        self.url1 = MyApp.entry.get()  #
+
+    def run(self):
+        if self.url1 == '':
+            MyApp.text.insert(END, '对不起，请输入正确ID或链接')
             MyApp.text.see(END)
             MyApp.text.update()
+            pass
+        else:
+            self.singer_id = self.url1.split('=')[-1]
+            self.start_url = 'https://music.163.com/playlist?id={}'.format(
+                self.singer_id)
+            self.r = requests.get(self.start_url)
+            self.hh = self.r.url
+            if self.hh == 'https://music.163.com/404':
+                MyApp.text.insert(END, '对不起，列表歌单出错')
+                MyApp.text.see(END)
+                MyApp.text.update()
+            else:
+                self.html = self.get_html(self.start_url)
+                self.get_information = self.get_singer_info(self.html)
+                MyApp.text.insert(END,
+                                  '歌单中共有{}首歌曲需要下载'.format(len(self.get_information)))
+                MyApp.text.see(END)
+                MyApp.text.update()
+                self.singe_IDI = []
+                for i in self.get_information:
+                    self.bb = i.split('/')[0]
+                    self.aa = i.split('/')[1]
+                    self.singe_IDI.append(self.aa)
+                pool = Pool(35)
+                pool.map(self.downloadsong, self.singe_IDI)
+                MyApp.text.insert(END, '所有任务已经下载完毕')
+                MyApp.text.see(END)
+                MyApp.text.update()
+
+    def get_html(self, url):
+        self.header = {
+            'Accept': '*/*',
+            'Accept-Encoding': 'gzip,deflate,sdch',
+            'Accept-Language': 'zh-CN,zh;q=0.8,gl;q=0.6,zh-TW;q=0.4',
+            'Connection': 'keep-alive',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Host': 'music.163.com',
+            'Referer': 'http://music.163.com/search/',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) '
+            'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'}
+        try:
+            self.response = requests.get(url, headers=self.header)
+            self.html = self.response.text
+            return self.html
+        except BaseException:
+            MyApp.text.insert(END, "解析错误")
+            MyApp.text.see(END)
+            MyApp.text.update()
+            pass
+
+    def get_singer_info(self, html):
+        self.soup = BeautifulSoup(html, "lxml")
+        self.links = self.soup.find('ul', class_='f-hide').find_all('a')
+        self.song_IDs = []
+        x = 1
+        for link in self.links:
+            song_ID = str(x) + '/' + link.get('href').split('=')[-1]
+            x += 1
+            self.song_IDs.append(song_ID)
+
+        return self.song_IDs
+
+    def get_singer_info2(self, playlist):
+        global purl
+        global purl2
+        soup = BeautifulSoup(playlist, "lxml")
+        links = soup.find('script')
+        for i in links:
+            req = '"title": "(.*?)"'
+            purl = re.findall(req, i)
+        for i in purl:
+            rstr = r"[\/\\\:\*\?\"\<\>\|\？]"  # '/ \ : * ? " < > | ？'
+            purl2 = re.sub(rstr, "", i)  # 替换为空格
+        path2 = r'log.txt'
+        if os.path.exists(path2):
+            with open('log.txt', 'r', encoding='utf-8') as f:
+                self.line = f.readline()
+            self.pathc = self.line + '\歌单下载\{}\\'.format(purl2)
+            if os.path.isdir(self.pathc):
+                pass
+            else:
+                os.makedirs(self.pathc)
+            return purl2
+        else:
+            self.pathc = r'歌单下载\{}\\'.format(purl2)
+            if os.path.isdir(self.pathc):
+                pass
+            else:
+                os.makedirs(self.pathc)
+            return purl2
+
+    def get_lyric(self, song_id,song_name):
+        self.lrc_url = 'http://music.163.com/api/song/lyric?id=' + \
+            str(song_id) + '&lv=1&kv=1&tv=-1'
+        self.html = self.get_html(self.lrc_url)
+        j = json.loads(self.html)
+        try:  # 部分歌曲没有歌词，这里引入一个异常
+            lrc = j['lrc']['lyric']
+            pat = re.compile(r'\[.*\]')
+            lrc = re.sub(pat, "", lrc)
+            lrc.strip()
+            self.write_lyric(song_name,lrc)
+        except KeyError:
+            lrc = 0
+            pass
+            self.write_lyric(song_name, lrc)
+
+    def write_lyric(self, song_name, lyric):
+        html = self.get_html(self.start_url)
+        singer_name3 = self.get_singer_info2(html)
+        if lyric == 0:
+            pass
         else:
             path2 = r'log.txt'
             if os.path.exists(path2):
@@ -900,50 +826,90 @@ class THread_3(threading.Thread):
                     self.line = f.readline()
                 if os.path.exists(
                     self.line +
-                    '\歌单下载\{}\歌曲'.format(singer_name3) +
-                        '\{}.mp3'.format(song_name)):
-                    MyApp.text.insert(END, '歌曲已存在：{}'.format(song_name))
-                    MyApp.text.see(END)
-                    MyApp.text.update()
+                    '\歌单下载\{}'.format(singer_name3) +
+                        '\{}.txt'.format(song_name)):
                     pass
                 else:
-                    MyApp.text.insert(END, '正在下载歌曲：{}'.format(song_name))
-                    MyApp.text.see(END)
-                    MyApp.text.update()
-                    urllib.request.urlretrieve(
-                        song_url,
-                        self.line +
-                        '\歌单下载\{}\歌曲'.format(singer_name3) +
-                        '\{}.mp3'.format(song_name))
+                    with open(self.line + '\歌单下载\{}'.format(singer_name3) + '\{}.txt'.format(song_name), 'a', encoding='utf-8') as fp:
+                        fp.write(lyric)
             else:
                 if os.path.exists(
-                    '歌单下载\{}\歌曲'.format(singer_name3) +
-                        '\{}.mp3'.format(song_name)):
-                    MyApp.text.insert(END, '歌曲已存在：{}'.format(song_name))
-                    MyApp.text.see(END)
-                    MyApp.text.update()
+                    '歌单下载\{}'.format(singer_name3) +
+                        '\{}.txt'.format(song_name)):
                     pass
                 else:
-                    # ‘第{}'.format(song_num)+'首’
-                    MyApp.text.insert(END, '正在下载歌曲：{}'.format(song_name))
-                    MyApp.text.see(END)
-                    MyApp.text.update()
-                    urllib.request.urlretrieve(
-                        song_url,
-                        '歌单下载\{}\歌曲'.format(singer_name3) +
-                        '\{}.mp3'.format(song_name))
-    #
-    # def pause(self):
-    #     self.__flag .clear()
-    #     time.sleep(10)
-    #     # self.__flag=FALSE
-    #
-    # def resume(self):
-    #     self.__flag.set()    # 设置为True, 让线程停止阻塞
-    #
-    # def stop(self):
-    #     self.__flag.set()       # 将线程从暂停状态恢复, 如何已经暂停的话
-    #     self.__running.clear()        # 设置为False
+                    with open('歌单下载\{}'.format(singer_name3) + '\{}.txt'.format(song_name), 'a', encoding='utf-8') as fp:
+                        fp.write(lyric)
+
+    def downloadsong(self,song_id):
+        url1='https://music.163.com/song?id='+song_id
+        html = requests.get(url1, headers=headers, timeout=10).text
+        req='"title": "(.*?)"'
+        name=re.findall(req,html)
+        newwname1 = []
+        for result in name:
+            rstr = r"[\/\\\:\*\?\"\<\>\|\？]"  # '/ \ : * ? " < > | ？'
+            newName = re.sub(rstr, " ", result)  # 替换为空格
+            newwname1.append(newName)
+        bit_rate = 320000
+        # url = 'http://music.163.com/weapi/song/enhance/player/url?csrf_token='
+        # csrf = ''
+        # # params = {'ids': [song_id], 'br': bit_rate, 'csrf_token': csrf}
+        ts = Crawler()
+        params = {'c': str([{'id': song_id}]), 'ids': [
+            song_id], 'br': bit_rate, 'csrf_token': ''}
+        result = ts.post_request(apis['song_detail'], params)
+        result2 = ts.get_durls(result['songs'])
+        # # 歌曲下载地址
+        # song_url = result['data'][0]['url']
+        song_url = result2[1]
+        html = self.get_html(self.start_url)
+        singer_name3 = self.get_singer_info2(html)
+        if song_url is None:
+           return
+        else:
+            self.write(song_url,singer_name3,newwname1[0])
+            self.get_lyric(song_id,newwname1[0])
+    def write(self,song_url,singer_name3,newwname1):
+        path2 = r'log.txt'
+        if os.path.exists(path2):
+            with open('log.txt', 'r', encoding='utf-8') as f:
+                self.line = f.readline()
+            if os.path.exists(
+                self.line +
+                '\歌单下载\{}'.format(singer_name3) +
+                    '\{}.mp3'.format(newwname1)):
+                MyApp.text.insert(END, '歌曲已存在：{}'.format(newwname1))
+                MyApp.text.see(END)
+                MyApp.text.update()
+                pass
+            else:
+                MyApp.text.insert(END, '正在下载歌曲：{}'.format(newwname1))
+                MyApp.text.see(END)
+                MyApp.text.update()
+                urllib.request.urlretrieve(
+                    song_url,
+                    self.line +
+                    '\歌单下载\{}'.format(singer_name3) +
+                    '\{}.mp3'.format(newwname1))
+        else:
+
+            if os.path.exists(
+                    '歌单下载\{}'.format(singer_name3) +
+                    '\{}.mp3'.format(newwname1)):
+                MyApp.text.insert(END, '歌曲已存在：{}'.format(newwname1))
+                MyApp.text.see(END)
+                MyApp.text.update()
+                pass
+            else:
+                # ‘第{}'.format(song_num)+'首’
+                MyApp.text.insert(END, '正在下载歌曲：{}'.format(newwname1))
+                MyApp.text.see(END)
+                MyApp.text.update()
+                urllib.request.urlretrieve(
+                    song_url,
+                    '歌单下载\{}'.format(singer_name3) +
+                    '\{}.mp3'.format(newwname1))
 
     def stop(self):
         self.isRunning = True
@@ -961,16 +927,19 @@ class Pause(threading.Thread):
 
 def button1_download():
     my_ftp = THread_1()
+    my_ftp.setDaemon(True)
     my_ftp.start()
 
 
 def button2_download():
     my_ftp2 = THread_2()
+    my_ftp2.setDaemon(True)
     my_ftp2.start()
 
 
 def button3_download():
     my_ftp = THread_3()
+    my_ftp.setDaemon(True)
     my_ftp.start()
 
 
