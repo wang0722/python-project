@@ -103,7 +103,7 @@ class MyApp(Tk):
     def inputclear():
         MyApp.entry.delete('0', 'end')
         # 清除文本框内容
-
+#
     def setupui(self):
         # 设置窗口UI
         # StringVar()  # 这即是输入框中的内容
