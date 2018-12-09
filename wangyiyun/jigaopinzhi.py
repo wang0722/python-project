@@ -300,28 +300,18 @@ class THread_1(threading.Thread):
         if os.path.exists(path2):
             with open('log.txt', 'r', encoding='utf-8') as f:
                 self.line = f.readline()
-            self.patha = self.line + '\单曲下载\歌词'
-            self.pathb = self.line + '\单曲下载\歌曲'
+            self.patha = self.line + '\单曲下载'
             if os.path.isdir(self.patha):
                 pass
             else:
                 os.makedirs(self.patha)
-            if os.path.isdir(self.pathb):
-                pass
-            else:
-                os.makedirs(self.pathb)
         else:
-            self.patha = r'单曲下载\歌词\\'
-            self.pathb = r'单曲下载\歌曲\\'
+            self.patha = r'单曲下载\\'
             if os.path.isdir(self.patha):
                 pass
             else:
                 os.makedirs(self.patha)
 
-            if os.path.isdir(self.pathb):
-                pass
-            else:
-                os.makedirs(self.pathb)
         if self.url1 == '':
             MyApp.text.insert(END, '对不起，请输入ID或链接')
             MyApp.text.see(END)
@@ -409,7 +399,7 @@ class THread_1(threading.Thread):
                 with open('log.txt', 'r', encoding='utf-8') as f:
                     self.line = f.readline()
                 if os.path.exists(
-                        self.line + '\单曲下载\歌词\\{}.txt'.format(song_name)):
+                        self.line + '\单曲下载\\{}.txt'.format(song_name)):
                     MyApp.text.insert(END, '歌词已存在：{}'.format(song_name))
                     MyApp.text.see(END)
                     MyApp.text.update()
@@ -418,10 +408,10 @@ class THread_1(threading.Thread):
                     MyApp.text.insert(END, '正在下载歌词：{}'.format(song_name))
                     MyApp.text.see(END)
                     MyApp.text.update()
-                    with open(self.line + '\单曲下载\歌词\\{}.txt'.format(song_name), 'a', encoding='utf-8') as fp:
+                    with open(self.line + '\单曲下载\\{}.txt'.format(song_name), 'a', encoding='utf-8') as fp:
                         fp.write(lyric)
             else:
-                if os.path.exists('单曲下载\歌词\{}.txt'.format(song_name)):
+                if os.path.exists('单曲下载\{}.txt'.format(song_name)):
                     MyApp.text.insert(END, '歌词已存在：{}'.format(song_name))
                     MyApp.text.see(END)
                     MyApp.text.update()
@@ -430,7 +420,7 @@ class THread_1(threading.Thread):
                     MyApp.text.insert(END, '正在下载歌词：{}'.format(song_name))
                     MyApp.text.see(END)
                     MyApp.text.update()
-                    with open('单曲下载\歌词\\{}.txt'.format(song_name), 'a', encoding='utf-8') as fp:
+                    with open('单曲下载\\{}.txt'.format(song_name), 'a', encoding='utf-8') as fp:
                         fp.write(lyric)
 
     def download_song(self, song_name, song_id):
@@ -457,7 +447,7 @@ class THread_1(threading.Thread):
                 with open('log.txt', 'r', encoding='utf-8') as f:
                     self.line = f.readline()
                 if os.path.exists(
-                        self.line + '\单曲下载\歌曲\{}.mp3'.format(song_name)):
+                        self.line + '\单曲下载\{}.mp3'.format(song_name)):
                     MyApp.text.insert(END, '歌曲已存在：{}'.format(song_name))
                     MyApp.text.see(END)
                     MyApp.text.update()
@@ -465,9 +455,9 @@ class THread_1(threading.Thread):
                 else:
                     MyApp.text.insert(END, '正在下载歌曲：{}'.format(song_name))
                     urllib.request.urlretrieve(
-                        song_url, self.line + '\单曲下载\歌曲\\{}.mp3'.format(song_name))
+                        song_url, self.line + '\单曲下载\\{}.mp3'.format(song_name))
             else:
-                if os.path.exists('单曲下载\歌曲\{}.mp3'.format(song_name)):
+                if os.path.exists('单曲下载\{}.mp3'.format(song_name)):
                     MyApp.text.insert(END, '歌曲已存在：{}'.format(song_name))
                     MyApp.text.see(END)
                     MyApp.text.update()
@@ -475,7 +465,7 @@ class THread_1(threading.Thread):
                 else:
                     MyApp.text.insert(END, '正在下载歌曲：{}'.format(song_name))
                     urllib.request.urlretrieve(
-                        song_url, '单曲下载\歌曲\\{}.mp3'.format(song_name))
+                        song_url, '单曲下载\\{}.mp3'.format(song_name))
 
     def stop(self):
         self.isRunning = True
