@@ -1,5 +1,5 @@
-#!/usr/bin/python
-# -*- coding:utf-8 -*-
+﻿#!/usr/bin/python
+# -*- coding:utf-8 -*- 1
 # @Time   : 2018/7/14 0014 16:43
 # @Author : wangyulin
 # @File   : 网易下载器升级版.py
