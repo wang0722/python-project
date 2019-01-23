@@ -1012,7 +1012,7 @@ class xuanzeyeshu(threading.Thread):
             self.zhangjie = url2.split('/')[-1]
             self.zhangjie_xuhao = self.zhangjie.replace('.html', '')
             for i in self.title:
-                a123 = i.replace('</p><p>&nbsp;</p><p>', '\n      ')
+                a123 = i.replace('\n<p>','    ').replace('</p><p>&nbsp;</p><p>', '\n      ')
                 par = a123.replace('<p>', '')
                 self.paragraph1 = par.replace('</p>', '\n     ')  # 替换
                 self.newName = self.paragraph1.replace('<!--PAGE 1-->', ' ') \
@@ -1027,7 +1027,6 @@ class xuanzeyeshu(threading.Thread):
                     .replace('&nbsp;', '')\
                     .replace('『章节错误,点此举报』', '   ')
             # print(a123)
-            # print(self.biaoti3)
             self.write1(self.biaoti3, self.newName, self.zhangjie_xuhao)
         except BaseException:
             print('123456789')
@@ -1329,7 +1328,6 @@ class xuanzeyeshu(threading.Thread):
                 with open(self.line + '\全本小说网\{}'.format(self.url_12[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + name + '.txt',
                           'a',
                           encoding='utf-8') as fp:
-                    fp.write('\n')
                     fp.write(name + '\n')
                     fp.write(title1)
                     time.sleep(0.08)
@@ -1350,7 +1348,7 @@ class xuanzeyeshu(threading.Thread):
                 MYapp.text.update()
                 with open('全本小说网\{}'.format(self.url_12[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + name + '.txt', 'a',
                           encoding='utf-8') as fp:
-                    fp.write('\n' + name + '\n' + title1)
+                    fp.write(name + '\n' + title1)
                     time.sleep(0.08)
 
     def hebing2(self):
@@ -1605,7 +1603,7 @@ class xuanzeyeshu(threading.Thread):
                 MYapp.text.update()
                 with open(self.line + '\免费全本小说\{}'.format(self.url_12[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + '.txt', 'a',
                           encoding='utf-8') as fp:
-                    fp.write('\n' + name + '\n' + title1)
+                    fp.write(name + '\n' + title1)
                     time.sleep(0.08)
         else:
             if os.path.exists(
@@ -1625,7 +1623,7 @@ class xuanzeyeshu(threading.Thread):
                 MYapp.text.see(END)
                 MYapp.text.update()
                 with open('免费全本小说\{}'.format(self.url_12[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + name + '.txt', 'a', encoding='utf-8') as fp:
-                    fp.write('\n' + name + '\n' + title1)
+                    fp.write(name + '\n' + title1)
                     time.sleep(0.08)
 
     def hebing3(self):
