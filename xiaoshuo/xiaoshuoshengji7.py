@@ -1325,7 +1325,7 @@ class xuanzeyeshu(threading.Thread):
                 MYapp.text.insert(END, '正在下载：{}'.format(name))
                 MYapp.text.see(END)
                 MYapp.text.update()
-                with open(self.line + '\全本小说网\{}'.format(self.url_12[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + '.txt',
+                with open(self.line + '\全本小说网\{}'.format(self.url_12[1]) + '\{}'.format(zhangjie_xuhao) + ' '+ name  + '.txt',
                           'a',
                           encoding='utf-8') as fp:
                     fp.write('\n')
