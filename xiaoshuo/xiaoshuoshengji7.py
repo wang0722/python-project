@@ -975,7 +975,7 @@ class xuanzeyeshu(threading.Thread):
             self.zhangjie = url2.split('/')[-1]
             self.zhangjie_xuhao = self.zhangjie.replace('.html', '')
             for i in self.title:
-                self.paragraph1 = i.replace('<br/><br/>', '\n') \
+                self.paragraph1 = i.replace('\r\n\t\t\t\t','').replace('<br/><br/>', '\n') \
                     .replace('<script>chaptererror();</script>', '') \
                     .replace('打击盗版，支持正版，请到逐浪网阅读最新内容。当前用户ID:,当前用户名:', '') \
                     .replace('最新全本：、、、、、、、、、、', '') \
@@ -1495,7 +1495,7 @@ class xuanzeyeshu(threading.Thread):
                 MYapp.text.update()
                 with open(self.line + '\顶点小说网\{}'.format(self.url_12[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + '.txt', 'a',
                           encoding='utf-8') as fp:
-                    fp.write('\n' + name + '\n' + title1)
+                    fp.write(name + '\n' + title1)
                     # time.sleep(0.8)
         else:
             if os.path.exists(
@@ -1515,7 +1515,7 @@ class xuanzeyeshu(threading.Thread):
                 MYapp.text.see(END)
                 MYapp.text.update()
                 with open('顶点小说网\{}'.format(self.url_12[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + name + '.txt', 'a', encoding='utf-8') as fp:
-                    fp.write('\n' + name + '\n' + title1)
+                    fp.write(name + '\n' + title1)
                     # time.sleep(0.8)
 
     def geturl_3(self, url):
