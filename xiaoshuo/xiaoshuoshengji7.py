@@ -17,9 +17,8 @@ import linecache
 # from threading import Thread
 import time
 # import multiprocessing
-# from multiprocessing import Pool
+from multiprocessing import Pool
 from multiprocessing.dummy import Pool
-# from multiprocessing.dummy import
 # from flashtext import KeywordProcessor
 from bs4 import BeautifulSoup
 from urllib import request, parse
@@ -237,12 +236,13 @@ class haianxian(threading.Thread):
 
         else:
             self.id = self.xiaoshuo_id.replace('.htm', '')
-            self.newwurl=self.url1.split('/files/')[-2]
+            self.newwurl = self.url1.split('/files/')[-2]
             # https://www.haxwx11.com/files/article/info/0/67.htm
             # https://www.haxwx11.com/files/article/html/0/67/index.html
-            self.new_url = self.newwurl+'/files/article/html/{}/index.html'.format(
-                self.id)
+            self.new_url = self.newwurl + \
+                '/files/article/html/{}/index.html'.format(self.id)
             self.host = self.newwurl.split('//')[1]
+
     def xiaoshuo(self, url):
         url2 = url['name']
         try:
@@ -269,7 +269,7 @@ class haianxian(threading.Thread):
             for i in self.title:
                 par = i.replace('<br /><br /> \n', '')
                 self.paragraph1 = par.replace(
-                    '<br><br>', '\n',1).replace('<br><br>  ','\n').replace(
+                    '<br><br>', '\n', 1).replace('<br><br>  ', '\n').replace(
                     '    全文字小说-www.', '')
                 # paragraph2 = paragraph1.replace("　　", '\n')
             self.write(self.biaoti3, self.paragraph1, self.zhangjie)
@@ -280,7 +280,7 @@ class haianxian(threading.Thread):
         start = time.time()
         global x
         self.new_url3 = self.new_url.split('html')[0]
-        if self.new_url3 != self.newwurl+'/files/article/':
+        if self.new_url3 != self.newwurl + '/files/article/':
             MYapp.text.insert(END, '请输入正确地址')
             MYapp.text.see(END)
             MYapp.text.update()
@@ -964,7 +964,7 @@ class xuanzeyeshu(threading.Thread):
                 url2,
                 headers=header,
                 verify=False,
-                timeout=18).text
+                timeout=15).text
             req = '<h1>(.*?)</h1>'
             biaoti = re.findall(req, html1)
             self.biaoti2 = biaoti[0]
@@ -988,8 +988,6 @@ class xuanzeyeshu(threading.Thread):
 
     def xiaoshuo1(self, url):
         url2 = url['url']
-
-            # url3='http://www.quanwenyuedu.io/n/'+url2.split('/')[-2]
         header = {
             'Accept': '*/*',
             'Accept-Language': 'en-US,en;q=0.8',
@@ -1029,10 +1027,9 @@ class xuanzeyeshu(threading.Thread):
                     .replace('&nbsp;', '')\
                     .replace('『章节错误,点此举报』', '   ')
             # print(a123)
-            # print(self.biaoti3)
             self.write1(self.biaoti3, self.newName, self.zhangjie_xuhao)
         except BaseException:
-            print('123456789')
+            pass
 
     def xiaoshuo2(self, url):
         url2 = 'https://qxs.la'+url['url']
@@ -1106,25 +1103,21 @@ class xuanzeyeshu(threading.Thread):
 
             start1 = time.time()
             try:            #
-              self.url_12 = self.geturl_2(self.dingdian_url)
-              try:
+                self.url_12 = self.geturl_2(self.dingdian_url)
+
                 self.url_3 = self.url_12[0]
-                pool = Pool(processes=35)
+                pool = Pool(processes=50)
                 pool.map(self.xiaoshuo, [self.url_3[each]
                                          for each in self.url_3])  # 调用xiaoshuo 方法
-
                 pool.close()
                 pool.join()
+
                 self.hebing2()
                 MYapp.text.insert(END, '合并成功')
                 MYapp.text.see(END)
                 MYapp.text.update()
                 end1 = time.time()
                 MYapp.text.insert(END, '耗费时间：%d s' % (end1 - start1))
-                MYapp.text.see(END)
-                MYapp.text.update()
-              except TypeError:
-                MYapp.text.insert(END, '网络出错，请重试')
                 MYapp.text.see(END)
                 MYapp.text.update()
             except IndexError:
@@ -1142,9 +1135,9 @@ class xuanzeyeshu(threading.Thread):
                 self.url_31 = self.url_12[0]
 
                 # st= time.time()
-                pool1 = Pool(processes=35)
+                pool1 = Pool(processes=50)
 
-                result = pool1.map(
+                result = pool1.map_async(
                     self.xiaoshuo1, [
                         self.url_31[each] for each in self.url_31])  # 调用xiaoshuo 方法
                 pool1.close()
@@ -1325,7 +1318,8 @@ class xuanzeyeshu(threading.Thread):
                 MYapp.text.insert(END, '正在下载：{}'.format(name))
                 MYapp.text.see(END)
                 MYapp.text.update()
-                with open(self.line + '\全本小说网\{}'.format(self.url_12[1]) + '\{}'.format(zhangjie_xuhao) + ' '+ name  + '.txt',
+                with open(self.line + '\全本小说网\{}'.format(self.url_12[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + name
+                          +'.txt',
                           'a',
                           encoding='utf-8') as fp:
                     fp.write('\n')
@@ -1495,7 +1489,7 @@ class xuanzeyeshu(threading.Thread):
                 with open(self.line + '\顶点小说网\{}'.format(self.url_12[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + '.txt', 'a',
                           encoding='utf-8') as fp:
                     fp.write('\n' + name + '\n' + title1)
-                    # time.sleep(0.8)
+                    time.sleep(0.08)
         else:
             if os.path.exists(
                 '顶点小说网\{}'.format(
@@ -1515,7 +1509,7 @@ class xuanzeyeshu(threading.Thread):
                 MYapp.text.update()
                 with open('顶点小说网\{}'.format(self.url_12[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + name + '.txt', 'a', encoding='utf-8') as fp:
                     fp.write('\n' + name + '\n' + title1)
-                    # time.sleep(0.8)
+                    time.sleep(0.08)
 
     def geturl_3(self, url):
         header = {'Accept': '*/*',
