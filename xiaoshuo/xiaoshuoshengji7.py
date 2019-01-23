@@ -4,21 +4,20 @@
 # @Author : wangyulin
 # @File   : 爬取小说.py
 import requests
-
 import win32con
 # import socket
 from time import sleep, ctime
 # import queue
 import urllib3
-
 from lxml import etree
 import win32api
 import linecache
 # from threading import Thread
 import time
 # import multiprocessing
-from multiprocessing import Pool
+# from multiprocessing import Pool
 from multiprocessing.dummy import Pool
+# from multiprocessing.dummy import
 # from flashtext import KeywordProcessor
 from bs4 import BeautifulSoup
 from urllib import request, parse
@@ -509,15 +508,16 @@ class biquge(threading.Thread):
             # x = 1
             self.url_2 = self.get_url(self.url1)
             try:
-             self.get_content(self.url_2[0])
-             self.hebing()
-             MYapp.text.insert(END, '合并成功')
-             MYapp.text.see(END)
-             MYapp.text.update()
+                self.get_content(self.url_2[0])
+                self.hebing()
+                MYapp.text.insert(END, '合并成功')
+                MYapp.text.see(END)
+                MYapp.text.update()
             except TypeError:
                 MYapp.text.insert(END, '请输入正确链接')
                 MYapp.text.see(END)
                 MYapp.text.update()
+
     def get_url(self, url1):
 
         header = {
@@ -964,7 +964,7 @@ class xuanzeyeshu(threading.Thread):
                 url2,
                 headers=header,
                 verify=False,
-                timeout=15).text
+                timeout=18).text
             req = '<h1>(.*?)</h1>'
             biaoti = re.findall(req, html1)
             self.biaoti2 = biaoti[0]
@@ -1027,12 +1027,13 @@ class xuanzeyeshu(threading.Thread):
                     .replace('&nbsp;', '')\
                     .replace('『章节错误,点此举报』', '   ')
             # print(a123)
+            # print(self.biaoti3)
             self.write1(self.biaoti3, self.newName, self.zhangjie_xuhao)
         except BaseException:
-            pass
+            print('123456789')
 
     def xiaoshuo2(self, url):
-        url2 = 'https://qxs.la'+url['url']
+        url2 = 'https://qxs.la' + url['url']
 
         header = {
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -1050,8 +1051,8 @@ class xuanzeyeshu(threading.Thread):
             # html1= html2.read().decode('gbk')
             time.sleep(0.5)
             html1 = requests.get(url2, headers=header, timeout=15)
-            html3=html1.content
-            html2=str(html3, 'gbk')
+            html3 = html1.content
+            html2 = str(html3, 'gbk')
             # html1.encoding='gbk'
             # html2=html1.text
             req = '<div class="text t_c"><h1>(.*?)</h1></div>'
@@ -1065,10 +1066,12 @@ class xuanzeyeshu(threading.Thread):
             for i in self.title:
                 a123 = i.replace('<br/><br/>\u3000\u3000', '\n      ')
                 par = a123.replace('<br/><br/>', ' ')
-                self.paragraph1 = par.replace('\r\n</div>\r\n\r\n            ', '')  # 替换
+                self.paragraph1 = par.replace(
+                    '\r\n</div>\r\n\r\n            ', '')  # 替换
             self.write3(self.biaoti3, self.paragraph1, self.zhangjie)
         except BaseException:
             pass
+
     def run(self):
 
         # path3 = r'search_log\resultlog.txt'
@@ -1104,22 +1107,26 @@ class xuanzeyeshu(threading.Thread):
             start1 = time.time()
             try:            #
                 self.url_12 = self.geturl_2(self.dingdian_url)
+                try:
+                    self.url_3 = self.url_12[0]
+                    pool = Pool(processes=35)
+                    pool.map(self.xiaoshuo, [self.url_3[each]
+                                             for each in self.url_3])  # 调用xiaoshuo 方法
 
-                self.url_3 = self.url_12[0]
-                pool = Pool(processes=50)
-                pool.map(self.xiaoshuo, [self.url_3[each]
-                                         for each in self.url_3])  # 调用xiaoshuo 方法
-                pool.close()
-                pool.join()
-
-                self.hebing2()
-                MYapp.text.insert(END, '合并成功')
-                MYapp.text.see(END)
-                MYapp.text.update()
-                end1 = time.time()
-                MYapp.text.insert(END, '耗费时间：%d s' % (end1 - start1))
-                MYapp.text.see(END)
-                MYapp.text.update()
+                    pool.close()
+                    pool.join()
+                    self.hebing2()
+                    MYapp.text.insert(END, '合并成功')
+                    MYapp.text.see(END)
+                    MYapp.text.update()
+                    end1 = time.time()
+                    MYapp.text.insert(END, '耗费时间：%d s' % (end1 - start1))
+                    MYapp.text.see(END)
+                    MYapp.text.update()
+                except TypeError:
+                    MYapp.text.insert(END, '网络出错，请重试')
+                    MYapp.text.see(END)
+                    MYapp.text.update()
             except IndexError:
                 return
         elif self.count0 == 'quanbenyuedu':
@@ -1135,9 +1142,9 @@ class xuanzeyeshu(threading.Thread):
                 self.url_31 = self.url_12[0]
 
                 # st= time.time()
-                pool1 = Pool(processes=50)
+                pool1 = Pool(processes=35)
 
-                result = pool1.map_async(
+                result = pool1.map(
                     self.xiaoshuo1, [
                         self.url_31[each] for each in self.url_31])  # 调用xiaoshuo 方法
                 pool1.close()
@@ -1175,7 +1182,7 @@ class xuanzeyeshu(threading.Thread):
                 self.url_3 = self.url_12[0]
                 pool = Pool(processes=4)
                 pool.map(self.xiaoshuo2, [self.url_3[each]
-                                         for each in self.url_3])  # 调用xiaoshuo 方法
+                                          for each in self.url_3])  # 调用xiaoshuo 方法
                 pool.close()
 
                 pool.join()
@@ -1190,6 +1197,7 @@ class xuanzeyeshu(threading.Thread):
                 MYapp.text.update()
             except IndexError:
                 return
+
     def hebing1(self):
         path2 = r'log.txt'
         if os.path.exists(path2):
@@ -1318,8 +1326,7 @@ class xuanzeyeshu(threading.Thread):
                 MYapp.text.insert(END, '正在下载：{}'.format(name))
                 MYapp.text.see(END)
                 MYapp.text.update()
-                with open(self.line + '\全本小说网\{}'.format(self.url_12[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + name
-                          +'.txt',
+                with open(self.line + '\全本小说网\{}'.format(self.url_12[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + name + '.txt',
                           'a',
                           encoding='utf-8') as fp:
                     fp.write('\n')
@@ -1489,7 +1496,7 @@ class xuanzeyeshu(threading.Thread):
                 with open(self.line + '\顶点小说网\{}'.format(self.url_12[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + '.txt', 'a',
                           encoding='utf-8') as fp:
                     fp.write('\n' + name + '\n' + title1)
-                    time.sleep(0.08)
+                    # time.sleep(0.8)
         else:
             if os.path.exists(
                 '顶点小说网\{}'.format(
@@ -1509,7 +1516,7 @@ class xuanzeyeshu(threading.Thread):
                 MYapp.text.update()
                 with open('顶点小说网\{}'.format(self.url_12[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + name + '.txt', 'a', encoding='utf-8') as fp:
                     fp.write('\n' + name + '\n' + title1)
-                    time.sleep(0.08)
+                    # time.sleep(0.8)
 
     def geturl_3(self, url):
         header = {'Accept': '*/*',
@@ -1572,6 +1579,7 @@ class xuanzeyeshu(threading.Thread):
             return chapter_all_dict, self.newwname2
         except BaseException:
             pass
+
     def write3(self, name, title1, zhangjie_xuhao):
 
         time.sleep(0.8)
@@ -1619,6 +1627,7 @@ class xuanzeyeshu(threading.Thread):
                 with open('免费全本小说\{}'.format(self.url_12[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + name + '.txt', 'a', encoding='utf-8') as fp:
                     fp.write('\n' + name + '\n' + title1)
                     time.sleep(0.08)
+
     def hebing3(self):
         time.sleep(0.8)
         path2 = r'log.txt'
@@ -1675,6 +1684,7 @@ class xuanzeyeshu(threading.Thread):
                         MYapp.text.insert(END, "%s存在问题" % filename)
                         MYapp.text.see(END)
                         MYapp.text.update()
+
     def stop(self):
         self.isRunning = True
 
@@ -2082,7 +2092,6 @@ class __fun(threading.Thread):
             xxx += 1
         self.page_num3 = xxx
 
-
         self.page_num = int(self.page_num3)
         if self.page_num == 1:
             req = '<li class="cc2"><a href="/(.*?)/">'
@@ -2094,7 +2103,7 @@ class __fun(threading.Thread):
             self.new_url = []
             chapter_all_dict = {}
             for i in xiaoshuo_id:
-                self.newurl = 'https://qxs.la/' + i+'/'
+                self.newurl = 'https://qxs.la/' + i + '/'
                 self.new_url.append(self.newurl)
             global x
             global y
@@ -2104,7 +2113,7 @@ class __fun(threading.Thread):
                 chapter_each = {}
                 chapter_each['book_url'] = each  # 获取书本url
                 chapter_each['book_author'] = book_name[x] + \
-                    '--->' + author_name[y ]
+                    '--->' + author_name[y]
                 chapter_num = int(y)  # 书本序号
                 chapter_all_dict[chapter_num] = chapter_each  # 记录到所有的章节的字典中保存
                 x += 1
@@ -2151,7 +2160,7 @@ class __fun(threading.Thread):
                 MYapp.text.update()
             else:
                 self.page_num2 = self.page_num
-                MYapp.text.insert(END, '一共' + str(self.page_num2)+ '页搜索结果')
+                MYapp.text.insert(END, '一共' + str(self.page_num2) + '页搜索结果')
                 MYapp.text.see(END)
                 MYapp.text.update()
             xiaoshuo_hebing = []
@@ -2188,11 +2197,10 @@ class __fun(threading.Thread):
                 author_hebing.extend(author_name2)
                 author_hebing1.append(author_name2)
 
-
             self.new_url2 = []
             chapter_all_dict2 = {}
             for i in xiaoshuo_hebing:
-                self.new_url123 = 'https://qxs.la/' + i +'/'
+                self.new_url123 = 'https://qxs.la/' + i + '/'
                 self.new_url2.append(self.new_url123)
             global pox
             global poy
@@ -2206,7 +2214,7 @@ class __fun(threading.Thread):
                 # if pox ==
 
                 chapter_each2['book_author'] = book_hebing[pox] + \
-                        '--->' + author_hebing[poz ]
+                    '--->' + author_hebing[poz]
                 poz += 1
                 chapter_num2 = int(poy)  # 书本序号
                 # 记录到所有的章节的字典中保存
