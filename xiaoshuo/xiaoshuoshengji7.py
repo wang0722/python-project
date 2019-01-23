@@ -17,8 +17,9 @@ import linecache
 # from threading import Thread
 import time
 # import multiprocessing
-from multiprocessing import Pool
+# from multiprocessing import Pool
 from multiprocessing.dummy import Pool
+# from multiprocessing.dummy import
 # from flashtext import KeywordProcessor
 from bs4 import BeautifulSoup
 from urllib import request, parse
@@ -255,7 +256,7 @@ class haianxian(threading.Thread):
                               'Chrome/48.0.2564.116 Safari/537.36',
                 'Connection': 'keep-alive',
                 'Referer': url2}
-            html1 = requests.get(url2, headers=header, timeout=10).text
+            html1 = requests.get(url2, headers=header, timeout=18).text
             req = '<h1>(.*?)</h1>'
             biaoti = re.findall(req, html1)
             self.biaoti2 = biaoti[0]
@@ -314,7 +315,7 @@ class haianxian(threading.Thread):
         try:
             # proxies = {"http": "36.99.17.52", },proxies=proxies
             # requests.get("http://example.org", proxies=proxies)
-            self.html = requests.get(url1, headers=header, timeout=10).text
+            self.html = requests.get(url1, headers=header, timeout=15).text
             req1 = '<h1>(.*?)</h1>'
             book_name = re.findall(req1, self.html)
             req2 = 'target="_blank">(.*?)</a>'
@@ -531,7 +532,7 @@ class biquge(threading.Thread):
             'Connection': 'keep-alive',
             'Referer': url1}
         try:
-            html = requests.get(url1, headers=header, timeout=10).text
+            html = requests.get(url1, headers=header, timeout=15).text
             req1 = 'book_name" content="(.*?)"'
             book_name = re.findall(req1, html)
             req2 = 'author" content="(.*?)"'
@@ -573,7 +574,7 @@ class biquge(threading.Thread):
                   'Connection': 'keep-alive',
                   'Referer': url}
         try:
-            html1 = requests.get(url, headers=header, timeout=500).text
+            html1 = requests.get(url, headers=header, timeout=15).text
             self.zhangjie_id = url.split('/')[4]
             self.zhangjie = self.zhangjie_id.replace('.html', '')
             req = '<h1>(.*?)</h1>'
@@ -753,7 +754,7 @@ class quanbenyuedu(threading.Thread):
             'Referer': 'http://www.quanwenyuedu.io'}
         url = 'http://www.quanwenyuedu.io/index.php?c=xs&a=search&keywords=' + \
             parse.quote(bookname)
-        response = requests.get(url, headers=header, timeout=500)
+        response = requests.get(url, headers=header, timeout=15)
         content = response.text
         req5 = '</span><span>(.*?)</span><span>'
         page = re.findall(req5, content)[0]
@@ -852,7 +853,7 @@ class quanbenyuedu(threading.Thread):
                 pox2 = 0
                 url2 = 'http://www.quanwenyuedu.io/index.php?c=xs&a=search&keywords=' + \
                     parse.quote(bookname) + '&page={}'.format(i)
-                response2 = requests.get(url2, headers=header, timeout=100)
+                response2 = requests.get(url2, headers=header, timeout=15)
                 content2 = response2.text
                 req = '<h3><a href="(.*?)">.*?</a></h3>'
                 xiaoshuo_id2 = re.findall(req, content2)
@@ -963,7 +964,7 @@ class xuanzeyeshu(threading.Thread):
                 url2,
                 headers=header,
                 verify=False,
-                timeout=5).text
+                timeout=18).text
             req = '<h1>(.*?)</h1>'
             biaoti = re.findall(req, html1)
             self.biaoti2 = biaoti[0]
@@ -987,6 +988,8 @@ class xuanzeyeshu(threading.Thread):
 
     def xiaoshuo1(self, url):
         url2 = url['url']
+
+            # url3='http://www.quanwenyuedu.io/n/'+url2.split('/')[-2]
         header = {
             'Accept': '*/*',
             'Accept-Language': 'en-US,en;q=0.8',
@@ -996,11 +999,11 @@ class xuanzeyeshu(threading.Thread):
                           'AppleWebKit/537.36 (KHTML, like Gecko) '
                           'Chrome/48.0.2564.116 Safari/537.36',
             'Connection': 'keep-alive',
-            'Referer': url2}
+            'Referer': self.quanben_url2}
         try:
             # html2 = request.urlopen(url2, timeout=10)
             # html1= html2.read().decode('utf-8')
-            html1 = requests.get(url2, headers=header, timeout=5).text
+            html1 = requests.get(url2, headers=header, timeout=15).text
             req = '<h1>(.*?)</h1>'
             biaoti = re.findall(req, html1)
             self.biaoti2 = biaoti[0]
@@ -1026,9 +1029,10 @@ class xuanzeyeshu(threading.Thread):
                     .replace('&nbsp;', '')\
                     .replace('『章节错误,点此举报』', '   ')
             # print(a123)
+            # print(self.biaoti3)
             self.write1(self.biaoti3, self.newName, self.zhangjie_xuhao)
         except BaseException:
-            pass
+            print('123456789')
 
     def xiaoshuo2(self, url):
         url2 = 'https://qxs.la'+url['url']
@@ -1048,7 +1052,7 @@ class xuanzeyeshu(threading.Thread):
             # html2 = request.urlopen(url3,timeout=5)
             # html1= html2.read().decode('gbk')
             time.sleep(0.5)
-            html1 = requests.get(url2, headers=header, timeout=5)
+            html1 = requests.get(url2, headers=header, timeout=15)
             html3=html1.content
             html2=str(html3, 'gbk')
             # html1.encoding='gbk'
@@ -1102,21 +1106,25 @@ class xuanzeyeshu(threading.Thread):
 
             start1 = time.time()
             try:            #
-                self.url_12 = self.geturl_2(self.dingdian_url)
-
+              self.url_12 = self.geturl_2(self.dingdian_url)
+              try:
                 self.url_3 = self.url_12[0]
-                pool = Pool(processes=50)
+                pool = Pool(processes=35)
                 pool.map(self.xiaoshuo, [self.url_3[each]
                                          for each in self.url_3])  # 调用xiaoshuo 方法
+
                 pool.close()
                 pool.join()
-
                 self.hebing2()
                 MYapp.text.insert(END, '合并成功')
                 MYapp.text.see(END)
                 MYapp.text.update()
                 end1 = time.time()
                 MYapp.text.insert(END, '耗费时间：%d s' % (end1 - start1))
+                MYapp.text.see(END)
+                MYapp.text.update()
+              except TypeError:
+                MYapp.text.insert(END, '网络出错，请重试')
                 MYapp.text.see(END)
                 MYapp.text.update()
             except IndexError:
@@ -1134,9 +1142,9 @@ class xuanzeyeshu(threading.Thread):
                 self.url_31 = self.url_12[0]
 
                 # st= time.time()
-                pool1 = Pool(processes=50)
+                pool1 = Pool(processes=35)
 
-                result = pool1.map_async(
+                result = pool1.map(
                     self.xiaoshuo1, [
                         self.url_31[each] for each in self.url_31])  # 调用xiaoshuo 方法
                 pool1.close()
@@ -1256,7 +1264,7 @@ class xuanzeyeshu(threading.Thread):
                   'Referer': url}
         self.quanbenqian = url.split('xiaoshuo.html')[0]
         try:
-            html = requests.get(url, headers=header, timeout=5).text
+            html = requests.get(url, headers=header, timeout=15).text
             req1 = '<p class="title"><span>(.*?)</span></p>'
             book_name = re.findall(req1, html)
             req2 = '<p>作者: <span>(.*?)</span></p>'
@@ -1415,7 +1423,7 @@ class xuanzeyeshu(threading.Thread):
                 url,
                 headers=header,
                 verify=False,
-                timeout=5).text
+                timeout=15).text
             req1 = 'property="og:novel:book_name" content="(.*?)"/>'
             book_name = re.findall(req1, html)
             req2 = 'property="og:novel:author" content="(.*?)"/>'
@@ -1487,7 +1495,7 @@ class xuanzeyeshu(threading.Thread):
                 with open(self.line + '\顶点小说网\{}'.format(self.url_12[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + '.txt', 'a',
                           encoding='utf-8') as fp:
                     fp.write('\n' + name + '\n' + title1)
-                    time.sleep(0.08)
+                    # time.sleep(0.8)
         else:
             if os.path.exists(
                 '顶点小说网\{}'.format(
@@ -1507,7 +1515,7 @@ class xuanzeyeshu(threading.Thread):
                 MYapp.text.update()
                 with open('顶点小说网\{}'.format(self.url_12[1]) + '\{}'.format(zhangjie_xuhao) + ' ' + name + '.txt', 'a', encoding='utf-8') as fp:
                     fp.write('\n' + name + '\n' + title1)
-                    time.sleep(0.08)
+                    # time.sleep(0.8)
 
     def geturl_3(self, url):
         header = {'Accept': '*/*',
@@ -1523,7 +1531,7 @@ class xuanzeyeshu(threading.Thread):
                 url,
                 headers=header,
                 verify=False,
-                timeout=5).text
+                timeout=15).text
             req1 = '<h1><a href="/.*?/">(.*?)</a><a'
             book_name = re.findall(req1, html)
             req2 = 'target="_blank">(.*?)</a></div>'
@@ -1835,7 +1843,7 @@ class dingdianxiaoshuo(threading.Thread):
             'Connection': 'keep-alive',
             'Referer': url
         }
-        response = requests.get(url, headers=header, verify=False, timeout=500)
+        response = requests.get(url, headers=header, verify=False, timeout=15)
         content = response.text
         try:
             req5 = '<em id="pagestats">(.*?)</em>'
@@ -1936,7 +1944,7 @@ class dingdianxiaoshuo(threading.Thread):
                 url2 = 'https://www.dingdiann.com/searchbook.php?keyword=' + \
                        parse.quote(bookname) + '&page={}'.format(i)
                 response2 = requests.get(
-                    url2, headers=header, verify=False, timeout=500)
+                    url2, headers=header, verify=False, timeout=15)
                 content2 = response2.text
                 req = 'class="s2"><a href="(.*?)"'
                 xiaoshuo_id2 = re.findall(req, content2)
@@ -2058,7 +2066,7 @@ class __fun(threading.Thread):
             'Connection': 'keep-alive',
             'Referer': url
         }
-        response = requests.get(url, headers=header, verify=False, timeout=500)
+        response = requests.get(url, headers=header, verify=False, timeout=15)
         content = response.text
         try:
             req6 = '<div id="pagenav"><a class="current">(.*?)</a>'
@@ -2171,7 +2179,7 @@ class __fun(threading.Thread):
                 url2 = 'https://qxs.la/s_' + \
                        parse.quote(bookname) + '/{}/'.format(i)
                 response2 = requests.get(
-                    url2, headers=header, verify=False, timeout=500)
+                    url2, headers=header, verify=False, timeout=15)
                 content2 = response2.text
                 req = '<li class="cc2"><a href="/(.*?)/">'
                 xiaoshuo_id2 = re.findall(req, content2)
