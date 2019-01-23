@@ -230,14 +230,18 @@ class haianxian(threading.Thread):
         self.url1 = MYapp.entry.get()
         self.xiaoshuo_id = self.url1.split('info/')[-1]
         if self.xiaoshuo_id == self.url1:
+            self.newwurl = self.xiaoshuo_id.split('/files/')[-2]
+            self.host = self.newwurl.split('//')[1]
             self.new_url = self.xiaoshuo_id
+
         else:
             self.id = self.xiaoshuo_id.replace('.htm', '')
+            self.newwurl=self.url1.split('/files/')[-2]
             # https://www.haxwx11.com/files/article/info/0/67.htm
             # https://www.haxwx11.com/files/article/html/0/67/index.html
-            self.new_url = 'https://www.haxwx11.com/files/article/html/{}/index.html'.format(
+            self.new_url = self.newwurl+'/files/article/html/{}/index.html'.format(
                 self.id)
-
+            self.host = self.newwurl.split('//')[1]
     def xiaoshuo(self, url):
         url2 = url['name']
         try:
@@ -245,13 +249,13 @@ class haianxian(threading.Thread):
                 'Accept': '*/*',
                 'Accept-Language': 'en-US,en;q=0.8',
                 'Cache-Control': 'max-age=0',
-                'Host': 'www.haxwx11.com',
+                'Host': self.host,
                 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
                               'AppleWebKit/537.36 (KHTML, like Gecko) '
                               'Chrome/48.0.2564.116 Safari/537.36',
                 'Connection': 'keep-alive',
                 'Referer': url2}
-            html1 = requests.get(url2, headers=header, timeout=500).text
+            html1 = requests.get(url2, headers=header, timeout=10).text
             req = '<h1>(.*?)</h1>'
             biaoti = re.findall(req, html1)
             self.biaoti2 = biaoti[0]
@@ -262,9 +266,9 @@ class haianxian(threading.Thread):
             self.zhangjie_id = url2.split('/')[8]
             self.zhangjie = self.zhangjie_id.replace('.html', '')
             for i in self.title:
-                par = i.replace('<br /><br /> ', '')
+                par = i.replace('<br /><br /> \n', '')
                 self.paragraph1 = par.replace(
-                    '<br>', '\n').replace(
+                    '<br><br>', '\n',1).replace('<br><br>  ','\n').replace(
                     '    全文字小说-www.', '')
                 # paragraph2 = paragraph1.replace("　　", '\n')
             self.write(self.biaoti3, self.paragraph1, self.zhangjie)
@@ -275,7 +279,7 @@ class haianxian(threading.Thread):
         start = time.time()
         global x
         self.new_url3 = self.new_url.split('html')[0]
-        if self.new_url3 != 'https://www.haxwx11.com/files/article/':
+        if self.new_url3 != self.newwurl+'/files/article/':
             MYapp.text.insert(END, '请输入正确地址')
             MYapp.text.see(END)
             MYapp.text.update()
@@ -310,7 +314,7 @@ class haianxian(threading.Thread):
         try:
             # proxies = {"http": "36.99.17.52", },proxies=proxies
             # requests.get("http://example.org", proxies=proxies)
-            self.html = requests.get(url1, headers=header, timeout=500).text
+            self.html = requests.get(url1, headers=header, timeout=10).text
             req1 = '<h1>(.*?)</h1>'
             book_name = re.findall(req1, self.html)
             req2 = 'target="_blank">(.*?)</a>'
@@ -340,7 +344,7 @@ class haianxian(threading.Thread):
             self.newpurl1 = []
             chapter_all_dict = {}
             for i in self.purl:
-                self.newpurl = 'https://www.haxwx11.com' + i
+                self.newpurl = self.newwurl + i
                 self.newpurl1.append(self.newpurl)
             global x
             x = 0
