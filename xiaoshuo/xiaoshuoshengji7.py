@@ -228,11 +228,16 @@ class haianxian(threading.Thread):
         threading.Thread.__init__(self)
         self.url1 = MYapp.entry.get()
         self.xiaoshuo_id = self.url1.split('info/')[-1]
-        if self.xiaoshuo_id == self.url1:
-            self.newwurl = self.xiaoshuo_id.split('/files/')[-2]
-            self.host = self.newwurl.split('//')[1]
-            self.new_url = self.xiaoshuo_id
 
+        if self.xiaoshuo_id == self.url1:
+            try:
+                self.newwurl = self.xiaoshuo_id.split('/files/')[-2]
+                self.host = self.newwurl.split('//')[1]
+                self.new_url = self.xiaoshuo_id
+            except IndexError:
+                MYapp.text.insert(END, "请输入正确网址")
+                MYapp.text.see(END)
+                MYapp.text.update()
         else:
             self.id = self.xiaoshuo_id.replace('.htm', '')
             self.newwurl = self.url1.split('/files/')[-2]
@@ -278,7 +283,10 @@ class haianxian(threading.Thread):
     def run(self):
         start = time.time()
         global x
-        self.new_url3 = self.new_url.split('html')[0]
+        try:
+            self.new_url3 = self.new_url.split('html')[0]
+        except AttributeError:
+            return
         if self.new_url3 != self.newwurl + '/files/article/':
             MYapp.text.insert(END, '请输入正确地址')
             MYapp.text.see(END)
@@ -754,8 +762,14 @@ class quanbenyuedu(threading.Thread):
             'Referer': 'http://www.quanwenyuedu.io'}
         url = 'http://www.quanwenyuedu.io/index.php?c=xs&a=search&keywords=' + \
             parse.quote(bookname)
-        response = requests.get(url, headers=header, timeout=35)
-        content = response.text
+        try:
+            response = requests.get(url, headers=header, timeout=35)
+            content = response.text
+        except requests.exceptions.ConnectionError:
+            MYapp.text.insert(END, "请检查网络连接")
+            MYapp.text.see(END)
+            MYapp.text.update()
+            return
         req5 = '</span><span>(.*?)</span><span>'
         page = re.findall(req5, content)[0]
         self.aa = page.split('/ ')[1]
@@ -946,10 +960,10 @@ class xuanzeyeshu(threading.Thread):
         top.destroy()
 
     def xiaoshuo(self, url):
-        url1 = url['url']
-        url2 = 'https://www.dingdiann.com/' + url1
-        time.sleep(0.2)
-        try:
+            url1 = url['url']
+            url2 = 'https://www.dingdiann.com/' + url1
+            time.sleep(0.2)
+        # try:
             header = {'Accept': '*/*',
                       'Accept-Language': 'en-US,en;q=0.8',
                       'Cache-Control': 'max-age=0',
@@ -960,11 +974,14 @@ class xuanzeyeshu(threading.Thread):
                       'Referer': url2}
             # html2 = request.urlopen(url2, timeout=10)
             # html1= html2.read().decode('utf-8')
-            html1 = requests.get(
+
+            html123 = requests.get(
                 url2,
                 headers=header,
                 verify=False,
-                timeout=35).text
+                timeout=35)
+            html1=html123.text
+
             req = '<h1>(.*?)</h1>'
             biaoti = re.findall(req, html1)
             self.biaoti2 = biaoti[0]
@@ -975,16 +992,26 @@ class xuanzeyeshu(threading.Thread):
             self.zhangjie = url2.split('/')[-1]
             self.zhangjie_xuhao = self.zhangjie.replace('.html', '')
             for i in self.title:
-                self.paragraph1 = i.replace('\r\n\t\t\t\t','').replace('<br/><br/>', '\n') \
-                    .replace('<script>chaptererror();</script>', '') \
-                    .replace('打击盗版，支持正版，请到逐浪网阅读最新内容。当前用户ID:,当前用户名:', '') \
-                    .replace('最新全本：、、、、、、、、、、', '') \
-                    .replace('//Www、qb⑤、c0M//', '') \
-                    .replace('ＷＷw。QΒ５。ｃｏM', '') \
-                    .replace('&lt;&gt;.ntp*{:-:-;t:;}.ntp;n;}&lt;/&gt;', ' ')
+                self.paragraph1 = i.replace(
+                    '\r\n\t\t\t\t',
+                    '').replace(
+                    '<br/><br/>',
+                    '\n') .replace(
+                    '<script>chaptererror();</script>',
+                    '') .replace(
+                    '打击盗版，支持正版，请到逐浪网阅读最新内容。当前用户ID:,当前用户名:',
+                    '') .replace(
+                    '最新全本：、、、、、、、、、、',
+                    '') .replace(
+                        '//Www、qb⑤、c0M//',
+                        '') .replace(
+                            'ＷＷw。QΒ５。ｃｏM',
+                            '') .replace(
+                                '&lt;&gt;.ntp*{:-:-;t:;}.ntp;n;}&lt;/&gt;',
+                    ' ')
             self.write2(self.biaoti3, self.paragraph1, self.zhangjie_xuhao)
-        except BaseException:
-            pass
+        # except BaseException:
+        #     pass
 
     def xiaoshuo1(self, url):
         url2 = url['url']
@@ -1012,7 +1039,9 @@ class xuanzeyeshu(threading.Thread):
             self.zhangjie = url2.split('/')[-1]
             self.zhangjie_xuhao = self.zhangjie.replace('.html', '')
             for i in self.title:
-                a123 = i.replace('\n<p>','    ').replace('</p><p>&nbsp;</p><p>', '\n      ')
+                a123 = i.replace(
+                    '\n<p>', '    ').replace(
+                    '</p><p>&nbsp;</p><p>', '\n      ')
                 par = a123.replace('<p>', '')
                 self.paragraph1 = par.replace('</p>', '\n     ')  # 替换
                 self.newName = self.paragraph1.replace('<!--PAGE 1-->', ' ') \
@@ -1102,7 +1131,6 @@ class xuanzeyeshu(threading.Thread):
                 MYapp.text.update()
                 return
             self.dingdian_url = self.dingdianurl.replace('\n', '')
-
             start1 = time.time()
             try:            #
                 self.url_12 = self.geturl_2(self.dingdian_url)
@@ -1111,7 +1139,6 @@ class xuanzeyeshu(threading.Thread):
                     pool = Pool(processes=35)
                     pool.map(self.xiaoshuo, [self.url_3[each]
                                              for each in self.url_3])  # 调用xiaoshuo 方法
-
                     pool.close()
                     pool.join()
                     self.hebing2()
@@ -1127,6 +1154,7 @@ class xuanzeyeshu(threading.Thread):
                     MYapp.text.see(END)
                     MYapp.text.update()
             except IndexError:
+
                 return
         elif self.count0 == 'quanbenyuedu':
             self.count51 = self.count3.split(' ')[1]
@@ -1716,9 +1744,6 @@ class qishuwang(threading.Thread):
             MYapp.text.update()
         else:
             self.search_book(self.url1)
-            MYapp.text.insert(END, "下载完毕")
-            MYapp.text.see(END)
-            MYapp.text.update()
 
     def search_book(self, bookname):
         header = {
@@ -1750,7 +1775,10 @@ class qishuwang(threading.Thread):
                     MYapp.text.update()
                     urllib.request.urlretrieve(
                         url3, self.line + '\奇书网小说\{}.rar'.format(bookname))
-                except BaseException as e:
+                    MYapp.text.insert(END, "下载完毕")
+                    MYapp.text.see(END)
+                    MYapp.text.update()
+                except BaseException:
                     MYapp.text.insert(END, "未找到，正在尝试搜寻其他源")
                     MYapp.text.see(END)
                     MYapp.text.update()
@@ -1764,6 +1792,9 @@ class qishuwang(threading.Thread):
                         try:
                             urllib.request.urlretrieve(
                                 url2, self.line + '奇书网小说\{}.txt'.format(bookname))
+                            MYapp.text.insert(END, "下载完毕")
+                            MYapp.text.see(END)
+                            MYapp.text.update()
                         except BaseException:
                             pass
                     except BaseException:
@@ -1775,8 +1806,13 @@ class qishuwang(threading.Thread):
                 MYapp.text.insert(END, '正在下载小说：{}.rar'.format(bookname))
                 MYapp.text.see(END)
                 MYapp.text.update()
+
                 urllib.request.urlretrieve(
                     url3, '奇书网小说\{}.rar'.format(bookname))
+                MYapp.text.insert(END, "下载完毕")
+                MYapp.text.see(END)
+                MYapp.text.update()
+
             except BaseException as e:
                 MYapp.text.insert(END, "未找到，正在尝试搜寻其他源")
                 MYapp.text.see(END)
@@ -1791,6 +1827,9 @@ class qishuwang(threading.Thread):
                     try:
                         urllib.request.urlretrieve(
                             url2, '奇书网小说\{}.txt'.format(bookname))
+                        MYapp.text.insert(END, "下载完毕")
+                        MYapp.text.see(END)
+                        MYapp.text.update()
                     except BaseException:
                         pass
                 except BaseException:
@@ -1845,8 +1884,15 @@ class dingdianxiaoshuo(threading.Thread):
             'Connection': 'keep-alive',
             'Referer': url
         }
-        response = requests.get(url, headers=header, verify=False, timeout=35)
-        content = response.text
+        try:
+            response = requests.get(
+                url, headers=header, verify=False, timeout=35)
+            content = response.text
+        except requests.exceptions.ConnectionError:
+            MYapp.text.insert(END, "请检查网络连接")
+            MYapp.text.see(END)
+            MYapp.text.update()
+            return
         try:
             req5 = '<em id="pagestats">(.*?)</em>'
             page = re.findall(req5, content)[0]
@@ -2068,8 +2114,15 @@ class __fun(threading.Thread):
             'Connection': 'keep-alive',
             'Referer': url
         }
-        response = requests.get(url, headers=header, verify=False, timeout=35)
-        content = response.text
+        try:
+            response = requests.get(
+                url, headers=header, verify=False, timeout=35)
+            content = response.text
+        except requests.exceptions.ConnectionError:
+            MYapp.text.insert(END, "请检查网络连接")
+            MYapp.text.see(END)
+            MYapp.text.update()
+            return
         try:
             req6 = '<div id="pagenav"><a class="current">(.*?)</a>'
             page = re.findall(req6, content)[0]
@@ -2082,7 +2135,6 @@ class __fun(threading.Thread):
         aa = [page]
         req5 = '<a href="/s_' + '{}'.format(bookname) + '/(.*?)/">'
         page = re.findall(req5, content)
-
         global xxx
         xxx = 1
         for i in page:
