@@ -2097,6 +2097,11 @@ class __fun(threading.Thread):
                 f.write('5200quanben ' + self.NAME)
 
     def run(self):
+        if self.NAME == '':
+            MYapp.text.insert(END, '请输入小说名称')
+            MYapp.text.see(END)
+            MYapp.text.update()
+            return
         self.search(self.NAME)
 
     def search(self, bookname):
