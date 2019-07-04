@@ -488,7 +488,7 @@ class THread_2(threading.Thread):
             self.r = requests.get(self.start_url)
             self.hh = self.r.url
             if self.hh == 'https://music.163.com/404':
-                MyApp.text.insert(END, '对不起，列表歌单出错')
+                MyApp.text.insert(END, '对不起，歌手歌单出错')
                 MyApp.text.see(END)
                 MyApp.text.update()
             else:
@@ -504,10 +504,15 @@ class THread_2(threading.Thread):
                     self.aa = i.split('/')[1]
                     self.singe_IDI.append(self.aa)
                 pool = Pool(35)
-                pool.map(self.downloadsong, self.singe_IDI)
-                MyApp.text.insert(END, '所有任务已经下载完毕')
-                MyApp.text.see(END)
-                MyApp.text.update()
+                try:
+                 pool.map(self.downloadsong, self.singe_IDI)
+                 MyApp.text.insert(END, '所有任务已经下载完毕')
+                 MyApp.text.see(END)
+                 MyApp.text.update()
+                except :
+                 MyApp.text.insert(END, '所有任务已经下载完毕')
+                 MyApp.text.see(END)
+                 MyApp.text.update()
 
     def get_html(self, url):
         self.header = {
@@ -721,10 +726,15 @@ class THread_3(threading.Thread):
                     self.aa = i.split('/')[1]
                     self.singe_IDI.append(self.aa)
                 pool = Pool(35)
-                pool.map(self.downloadsong, self.singe_IDI)
-                MyApp.text.insert(END, '所有任务已经下载完毕')
-                MyApp.text.see(END)
-                MyApp.text.update()
+                try:
+                 pool.map(self.downloadsong, self.singe_IDI)
+                 MyApp.text.insert(END, '所有任务已经下载完毕')
+                 MyApp.text.see(END)
+                 MyApp.text.update()
+                except :
+                 MyApp.text.insert(END, '所有任务已经下载完毕')
+                 MyApp.text.see(END)
+                 MyApp.text.update()
 
     def get_html(self, url):
         self.header = {
