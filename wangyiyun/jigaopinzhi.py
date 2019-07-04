@@ -510,7 +510,7 @@ class THread_2(threading.Thread):
                  MyApp.text.see(END)
                  MyApp.text.update()
                 except :
-                 MyApp.text.insert(END, '所有任务已经下载完毕')
+                 MyApp.text.insert(END, '任务已经完成，但部分出错')
                  MyApp.text.see(END)
                  MyApp.text.update()
 
@@ -732,7 +732,7 @@ class THread_3(threading.Thread):
                  MyApp.text.see(END)
                  MyApp.text.update()
                 except :
-                 MyApp.text.insert(END, '所有任务已经下载完毕')
+                 MyApp.text.insert(END, '任务已完成,但部分出错')
                  MyApp.text.see(END)
                  MyApp.text.update()
 
