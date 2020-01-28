@@ -1,0 +1,724 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5c9a951b-6f7a-4647-b0ac-86d05a7c3476" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../biquge/xiazai.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../biquge/新笔趣阁小说爬取.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../readme.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wangyiyun/biaozhunpinzhi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wangyiyun/format.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wangyiyun/icons/format.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wangyiyun/jigaopinzhi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wangyiyun/jigaopinzhi1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wangyiyun/readme.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xiaoshuo/readme.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xiaoshuo/xiaoshuoshengji3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xiaoshuo/xiaoshuoshengji4.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xiaoshuo/xiaoshuoshengji5.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xiaoshuo/xiaoshuoshengji6.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xiaoshuo/xiaoshuoshengji7.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xiaoshuo/xiazai.ico" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/LibRadar-master/LibRadar/job_dispatching.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-4650">
+              <caret line="5" column="48" lean-forward="true" selection-start-line="160" selection-start-column="4" selection-end-line="160" selection-end-column="13" />
+              <folding>
+                <element signature="e#965#997#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LibRadar-master/LibRadar/dex_extracting.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1614">
+              <caret line="296" column="31" selection-start-line="296" selection-start-column="31" selection-end-line="296" selection-end-column="31" />
+              <folding>
+                <element signature="e#3049#3063#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LibRadar-master/LibRadar/_settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="215">
+              <caret line="81" column="71" selection-start-line="81" selection-start-column="71" selection-end-line="81" selection-end-column="71" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LibRadar-master/LibRadar/libradar.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="33">
+              <caret line="238" column="27" selection-start-line="238" selection-start-column="27" selection-end-line="238" selection-end-column="27" />
+              <folding>
+                <element signature="e#687#697#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LibRadar-master/LibRadar/dex_tree.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1057">
+              <caret line="362" lean-forward="true" selection-start-line="362" selection-end-line="362" />
+              <folding>
+                <element signature="e#717#740#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>lrd</find>
+      <find>compare</find>
+      <find>compar</find>
+      <find>analyse</find>
+      <find>zadd</find>
+      <find>permission_list</find>
+      <find>json</find>
+      <find>TreeNode</find>
+      <find>DexFile</find>
+      <find>sha256</find>
+      <find>tree</find>
+      <find>root</find>
+      <find>children</find>
+      <find>pre_order_res</find>
+      <find>print</find>
+      <find>visit</find>
+      <find>_get_repackage_main</find>
+      <find>_get_lib</find>
+      <find>node</find>
+      <find>item</find>
+      <find>pre_order_res_ret</find>
+      <find>_pre_order_res</find>
+      <find>get_repackage_main</find>
+      <find>get_lib</find>
+      <find>pre_order</find>
+      <find>node.match</find>
+      <find>db</find>
+      <find>labeled_libs</find>
+      <find>get</find>
+      <find>FILE_RULE</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/LibRadar-master/setup.py" />
+        <option value="$PROJECT_DIR$/LibRadar-master/LibRadar/data_run_radar.py" />
+        <option value="$PROJECT_DIR$/LibRadar-master/tests/test_db.py" />
+        <option value="C:/Python27/Lib/site-packages/redis/client.py" />
+        <option value="$PROJECT_DIR$/LibRadar-master/LibRadar/__init__.py" />
+        <option value="$PROJECT_DIR$/LibRadar-master/LibRadar/dex_extracting.py" />
+        <option value="$PROJECT_DIR$/LibRadar-master/LibRadar/job_dispatching.py" />
+        <option value="$PROJECT_DIR$/LibRadar-master/LibRadar/libradar.py" />
+        <option value="$PROJECT_DIR$/LibRadar-master/LibRadar/dex_tree.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/.idea/LibRadar-master.iml" />
+        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
+        <option value="$PROJECT_DIR$/.idea/misc.xml" />
+        <option value="$PROJECT_DIR$/.idea/modules.xml" />
+        <option value="$PROJECT_DIR$/../ZhipinSpider/.idea/ZhipinSpider.iml" />
+        <option value="$PROJECT_DIR$/../libradar-2.1.0/.idea/libradar-2.1.0.iml" />
+        <option value="$PROJECT_DIR$/../LiteRadar-master2/.idea/LiteRadar-master2.iml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="170" />
+    <option name="y" value="360" />
+    <option name="width" value="1555" />
+    <option name="height" value="860" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="LibRadar-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LibRadar-master" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LibRadar-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LibRadar-master" type="462c0819:PsiDirectoryNode" />
+              <item name="LibRadar-master" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LibRadar-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LibRadar-master" type="462c0819:PsiDirectoryNode" />
+              <item name="LibRadar-master" type="462c0819:PsiDirectoryNode" />
+              <item name="LibRadar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LibRadar-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LibRadar-master" type="462c0819:PsiDirectoryNode" />
+              <item name="LibRadar-master" type="462c0819:PsiDirectoryNode" />
+              <item name="LibRadar" type="462c0819:PsiDirectoryNode" />
+              <item name="Data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LibRadar-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LibRadar-master" type="462c0819:PsiDirectoryNode" />
+              <item name="LibRadar-master" type="462c0819:PsiDirectoryNode" />
+              <item name="LibRadar" type="462c0819:PsiDirectoryNode" />
+              <item name="Data" type="462c0819:PsiDirectoryNode" />
+              <item name="RawData" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LibRadar-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LibRadar-master" type="462c0819:PsiDirectoryNode" />
+              <item name="LibRadar-master" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LibRadar-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LibRadar-master" type="462c0819:PsiDirectoryNode" />
+              <item name="LibRadar-master" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="result" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LibRadar-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LibRadar-master" type="462c0819:PsiDirectoryNode" />
+              <item name="LibRadar-master" type="462c0819:PsiDirectoryNode" />
+              <item name="tool" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../LiteRadar-master2" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\github\LibRadar-master\LibRadar-master\LibRadar" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.job_dispatching">
+    <configuration name="client" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="LibRadar-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="C:/Python27/Lib/site-packages/redis" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="C:/Python27/Lib/site-packages/redis/client.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="dex_extracting" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="LibRadar-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LibRadar-master/LibRadar" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/LibRadar-master/LibRadar/dex_extracting.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="dex_tree" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="LibRadar-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LibRadar-master/LibRadar" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/LibRadar-master/LibRadar/dex_tree.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="job_dispatching" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="LibRadar-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LibRadar-master/LibRadar" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/LibRadar-master/LibRadar/job_dispatching.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="libradar" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="LibRadar-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LibRadar-master/LibRadar" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/LibRadar-master/LibRadar/libradar.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.job_dispatching" />
+        <item itemvalue="Python.libradar" />
+        <item itemvalue="Python.dex_tree" />
+        <item itemvalue="Python.dex_extracting" />
+        <item itemvalue="Python.client" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5c9a951b-6f7a-4647-b0ac-86d05a7c3476" name="Default Changelist" comment="" />
+      <created>1579621734024</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1579621734024</updated>
+      <workItem from="1579621735375" duration="30778000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="Twisted_Trial_in_tests - 2020.01.22 at 12h 22m 55s.xml">
+      <configuration name="Twisted Trial in tests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Twisted_Trial_in_tests - 2020.01.22 at 12h 23m 00s.xml">
+      <configuration name="Twisted Trial in tests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Twisted_Trial_in_tests - 2020.01.22 at 12h 23m 13s.xml">
+      <configuration name="Twisted Trial in tests" configurationId="tests" />
+    </history-entry>
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="30778000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <layout>
+      <window_info id="Favorites" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="Version Control" weight="0.32991204" />
+      <window_info anchor="bottom" id="Python Console" weight="0.32991204" />
+      <window_info anchor="bottom" id="Terminal" weight="0.32991204" />
+      <window_info anchor="bottom" id="Event Log" sideWeight="0.5013405" side_tool="true" weight="0.3240469" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49865952" weight="0.3240469" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49932975" weight="0.398827" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32991204" />
+      <window_info anchor="right" id="SciView" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Favorites" order="0" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.25" />
+      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="1" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" order="3" />
+      <window_info anchor="bottom" id="Version Control" order="4" />
+      <window_info anchor="bottom" id="Python Console" order="5" />
+      <window_info anchor="bottom" id="Message" order="6" />
+      <window_info anchor="bottom" id="Find" order="7" />
+      <window_info anchor="bottom" id="Run" order="8" visible="true" weight="0.32991204" />
+      <window_info anchor="bottom" id="Debug" order="9" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="12" />
+      <window_info anchor="right" id="Database" order="0" />
+      <window_info anchor="right" id="SciView" order="1" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="2" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/LibRadar_master$libradar.coverage" NAME="libradar Coverage Results" MODIFIED="1579688594090" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/LibRadar-master/LibRadar" />
+    <SUITE FILE_PATH="coverage/LibRadar_master$test_queue.coverage" NAME="test_queue Coverage Results" MODIFIED="1579667207930" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/LibRadar-master/tests" />
+    <SUITE FILE_PATH="coverage/LibRadar_master$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1579623408154" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/LibRadar-master/tests" />
+    <SUITE FILE_PATH="coverage/LibRadar_master$dex_tree.coverage" NAME="dex_tree Coverage Results" MODIFIED="1579688588153" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/LibRadar-master/LibRadar" />
+    <SUITE FILE_PATH="coverage/LibRadar_master$data_run_radar.coverage" NAME="data_run_radar Coverage Results" MODIFIED="1579665082025" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/LibRadar-master/LibRadar" />
+    <SUITE FILE_PATH="coverage/LibRadar_master$client.coverage" NAME="client Coverage Results" MODIFIED="1579667524304" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:/Python27/Lib/site-packages/redis" />
+    <SUITE FILE_PATH="coverage/LibRadar_master$test_db.coverage" NAME="test_db Coverage Results" MODIFIED="1579667151896" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/LibRadar-master/tests" />
+    <SUITE FILE_PATH="coverage/LibRadar_master$setup.coverage" NAME="setup Coverage Results" MODIFIED="1579623870951" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/LibRadar-master" />
+    <SUITE FILE_PATH="coverage/LibRadar_master$Twisted_Trial_in_tests.coverage" NAME="Twisted Trial in tests Coverage Results" MODIFIED="1579666992944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/LibRadar-master/tests" />
+    <SUITE FILE_PATH="coverage/LibRadar_master$test.coverage" NAME="test Coverage Results" MODIFIED="1579623748642" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/LibRadar-master/tests" />
+    <SUITE FILE_PATH="coverage/LibRadar_master$job_dispatching.coverage" NAME="job_dispatching Coverage Results" MODIFIED="1579694062463" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/LibRadar-master/LibRadar" />
+    <SUITE FILE_PATH="coverage/LibRadar_master$test_tk.coverage" NAME="test_tk Coverage Results" MODIFIED="1579623412186" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/LibRadar-master/tests" />
+    <SUITE FILE_PATH="coverage/LibRadar_master$dex_extracting.coverage" NAME="dex_extracting Coverage Results" MODIFIED="1579671854570" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/LibRadar-master/LibRadar" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/LibRadar/api_permission.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/LibRadar/data_cnt.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/LibRadar/data_size.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-132">
+          <caret line="6" column="16" lean-forward="true" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/LibRadar/data_threshold.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/LibRadar/db_dumping.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/LibRadar/dex_parser.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/LibRadar/lib_tagging.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/LibRadar/lib_tagging_gui.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/LibRadar/lite_dataset.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/LibRadar/rputil.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/LibRadar/rputil_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/tool/.redis.conf.swp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-733" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="12" column="2" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
+          <folding>
+            <element signature="e#24#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/LibRadar/api_dictionary.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5712">
+          <caret line="169" column="33" selection-start-line="169" selection-start-column="33" selection-end-line="169" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/LibRadar/data_run_radar.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/LibRadar/log_libradar.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-306" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/tests/result/test_db_case_1.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-58966" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/tests/result/test_db_case_2.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/tests/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="32" column="14" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/tests/test_logging.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="6" column="11" lean-forward="true" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/tests/test_multiprocessing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <element signature="e#15#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/tests/test_queue.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1088">
+          <caret line="34" column="21" lean-forward="true" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/tests/test_tk.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/tests/test_db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="33">
+          <caret line="34" column="33" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/LibRadar/Data/logging.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1210" />
+      </provider>
+    </entry>
+    <entry file="file://C:/Python27/Lib/site-packages/redis/client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1611">
+          <caret line="2322" column="34" selection-start-line="2322" selection-start-column="20" selection-end-line="2322" selection-end-column="35" />
+          <folding>
+            <element signature="e#756#1161#0" />
+            <element signature="e#1205#1439#0" />
+            <element signature="e#1493#1543#0" />
+            <element signature="e#1574#1648#0" />
+            <element signature="e#1689#2344#0" />
+            <element signature="e#2389#2531#0" />
+            <element signature="e#2564#3847#0" />
+            <element signature="e#3873#4515#0" />
+            <element signature="e#4554#5022#0" />
+            <element signature="e#5066#5120#0" />
+            <element signature="e#5165#5318#0" />
+            <element signature="e#5376#5449#0" />
+            <element signature="e#5497#5556#0" />
+            <element signature="e#5611#5974#0" />
+            <element signature="e#6027#6396#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/LibRadar/brand_lib.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="44" column="19" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="20" />
+          <folding>
+            <element signature="e#815#830#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/LibRadar/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="23" column="22" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/tests/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="13" selection-start-column="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/LibRadar/libradar.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="33">
+          <caret line="238" column="27" selection-start-line="238" selection-start-column="27" selection-end-line="238" selection-end-column="27" />
+          <folding>
+            <element signature="e#687#697#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/LibRadar/_settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="81" column="71" selection-start-line="81" selection-start-column="71" selection-end-line="81" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/LibRadar/dex_tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1057">
+          <caret line="362" lean-forward="true" selection-start-line="362" selection-end-line="362" />
+          <folding>
+            <element signature="e#717#740#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/LibRadar/dex_extracting.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1614">
+          <caret line="296" column="31" selection-start-line="296" selection-start-column="31" selection-end-line="296" selection-end-column="31" />
+          <folding>
+            <element signature="e#3049#3063#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LibRadar-master/LibRadar/job_dispatching.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4650">
+          <caret line="5" column="48" lean-forward="true" selection-start-line="160" selection-start-column="4" selection-end-line="160" selection-end-column="13" />
+          <folding>
+            <element signature="e#965#997#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

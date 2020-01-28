@@ -1,0 +1,710 @@
+[2019-08-22 13:44:22] ShadowsocksR started on port 1080
+[2019-08-22 13:44:28] [Info] Connect clientservices.googleapis.com:443
+[2019-08-22 13:44:28] [Info] Connect accounts.google.com:443
+[2019-08-22 13:44:28] [Info] Connect www.bannedbook.org:443
+[2019-08-22 13:44:31] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 13:44:32] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 13:44:32] [Info] Connect accounts.google.com:443
+[2019-08-22 13:44:33] [Info] Connect www.bannedbook.org:443
+[2019-08-22 13:44:33] [Info] Connect clientservices.googleapis.com:443
+[2019-08-22 13:44:34] [Info] Connect rsvgawkrujb:80
+[2019-08-22 13:44:35] [Info] Connect jmumolyo:80
+[2019-08-22 13:44:36] [Info] Connect psjebsbp:80
+[2019-08-22 13:44:37] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 13:44:37] [Info] Connect ssl.gstatic.com:443
+[2019-08-22 13:44:38] [Info] Connect accounts.google.com:443
+[2019-08-22 13:44:38] [Info] Connect ssl.gstatic.com:443
+[2019-08-22 13:44:39] [Info] Connect www.bannedbook.org:443
+[2019-08-22 13:44:39] [Info] Connect clientservices.googleapis.com:443
+[2019-08-22 13:44:39] [Info] Connect rsvgawkrujb:80
+[2019-08-22 13:44:40] [Info] Connect jmumolyo:80
+[2019-08-22 13:44:41] [Info] Connect psjebsbp:80
+[2019-08-22 13:44:42] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 13:44:42] [Info] Connect ssl.gstatic.com:443
+[2019-08-22 13:44:43] [Info] Disconnect accounts.google.com:443
+[2019-08-22 13:44:43] [Info] Connect ssl.gstatic.com:443
+[2019-08-22 13:44:44] [Info] Connect accounts.google.com:443
+[2019-08-22 13:44:44] [Info] Disconnect www.bannedbook.org:443
+[2019-08-22 13:44:44] [Info] Disconnect clientservices.googleapis.com:443
+[2019-08-22 13:44:44] [Info] Connect www.bannedbook.org:443
+[2019-08-22 13:44:44] [Info] Connect stats.g.doubleclick.net:443
+[2019-08-22 13:44:44] [Info] Connect rsvgawkrujb:80
+[2019-08-22 13:44:45] [Info] Connect www.google.com:443
+[2019-08-22 13:44:45] [Info] Connect jmumolyo:80
+[2019-08-22 13:44:46] [Info] Connect 99cn.info:443
+[2019-08-22 13:44:46] [Info] Connect psjebsbp:80
+[2019-08-22 13:44:47] [Info] Connect www.google-analytics.com:443
+[2019-08-22 13:44:47] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-22 13:44:47] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 13:44:47] [Info] Connect ssl.gstatic.com:443
+[2019-08-22 13:44:48] [Info] Connect ssl.gstatic.com:443
+[2019-08-22 13:44:49] [Info] Connect accounts.google.com:443
+[2019-08-22 13:44:49] [Info] Connect www.bannedbook.org:443
+[2019-08-22 13:44:49] [Info] Connect stats.g.doubleclick.net:443
+[2019-08-22 13:44:49] [Info] Disconnect rsvgawkrujb:80
+[2019-08-22 13:44:50] [Info] Connect www.google.com:443
+[2019-08-22 13:44:50] [Info] Disconnect jmumolyo:80
+[2019-08-22 13:44:51] [Info] Connect 99cn.info:443
+[2019-08-22 13:44:51] [Info] Connect clients2.google.com:443
+[2019-08-22 13:44:51] [Info] Disconnect psjebsbp:80
+[2019-08-22 13:44:52] [Info] Connect www.google-analytics.com:443
+[2019-08-22 13:44:52] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 13:44:52] [Info] Disconnect ssl.gstatic.com:443
+[2019-08-22 13:44:53] [Info] Disconnect ssl.gstatic.com:443
+[2019-08-22 13:44:54] [Info] Connect accounts.google.com:443
+[2019-08-22 13:44:54] [Info] Connect www.bannedbook.org:443
+[2019-08-22 13:44:54] [Info] Connect stats.g.doubleclick.net:443
+[2019-08-22 13:44:55] [Info] Connect www.google.com:443
+[2019-08-22 13:44:56] [Info] Connect 99cn.info:443
+[2019-08-22 13:44:56] [Info] Connect clients2.google.com:443
+[2019-08-22 13:44:57] [Info] Connect www.google-analytics.com:443
+[2019-08-22 13:44:57] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 13:44:59] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 13:44:59] [Info] Disconnect accounts.google.com:443
+[2019-08-22 13:45:00] [Info] Disconnect www.bannedbook.org:443
+[2019-08-22 13:45:00] [Info] Disconnect stats.g.doubleclick.net:443
+[2019-08-22 13:45:00] [Info] Disconnect www.google.com:443
+[2019-08-22 13:45:01] [Info] Disconnect 99cn.info:443
+[2019-08-22 13:45:01] [Info] Connect clients2.google.com:443
+[2019-08-22 13:45:02] [Info] Connect accounts.google.com:443
+[2019-08-22 13:45:02] [Info] Disconnect www.google-analytics.com:443
+[2019-08-22 13:45:03] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-22 13:45:03] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 13:45:05] [Info] Connect www.google.com:443
+[2019-08-22 13:45:05] [Info] Connect stats.g.doubleclick.net:443
+[2019-08-22 13:45:05] [Info] Connect www.bannedbook.org:443
+[2019-08-22 13:45:05] [Info] Connect www.google-analytics.com:443
+[2019-08-22 13:45:05] [Info] Connect 99cn.info:443
+[2019-08-22 13:45:06] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 13:45:07] [Info] Disconnect clients2.google.com:443
+[2019-08-22 13:45:07] [Info] Connect accounts.google.com:443
+[2019-08-22 13:45:08] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 13:45:08] [Info] Connect clients2.google.com:443
+[2019-08-22 13:45:10] [Info] Connect stats.g.doubleclick.net:443
+[2019-08-22 13:45:10] [Info] Connect 99cn.info:443
+[2019-08-22 13:45:10] [Info] Connect www.google.com:443
+[2019-08-22 13:45:10] [Info] Connect www.google-analytics.com:443
+[2019-08-22 13:45:10] [Info] Connect www.bannedbook.org:443
+[2019-08-22 13:45:12] [Info] Connect accounts.google.com:443
+[2019-08-22 13:45:13] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 13:45:14] [Info] Connect clients2.google.com:443
+[2019-08-22 13:45:15] [Info] Connect stats.g.doubleclick.net:443
+[2019-08-22 13:45:15] [Info] Connect www.bannedbook.org:443
+[2019-08-22 13:45:15] [Info] Connect www.google-analytics.com:443
+[2019-08-22 13:45:15] [Info] Connect www.google.com:443
+[2019-08-22 13:45:15] [Info] Connect 99cn.info:443
+[2019-08-22 13:45:17] [Info] Disconnect accounts.google.com:443
+[2019-08-22 13:45:18] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-22 13:45:18] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 13:45:19] [Info] Connect clients2.google.com:443
+[2019-08-22 13:45:20] [Info] Disconnect stats.g.doubleclick.net:443
+[2019-08-22 13:45:20] [Info] Disconnect www.google-analytics.com:443
+[2019-08-22 13:45:20] [Info] Disconnect 99cn.info:443
+[2019-08-22 13:45:20] [Info] Disconnect www.bannedbook.org:443
+[2019-08-22 13:45:20] [Info] Disconnect www.google.com:443
+[2019-08-22 13:45:23] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 13:45:24] [Info] Disconnect clients2.google.com:443
+[2019-08-22 13:45:26] [Info] Connect accounts.google.com:443
+[2019-08-22 13:45:28] [Info] Connect clients2.google.com:443
+[2019-08-22 13:45:29] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 13:45:29] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 13:45:30] [Info] Connect accounts.google.com:443
+[2019-08-22 13:45:32] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 13:45:33] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-22 13:45:33] [Error] connect to update server error
+[2019-08-22 13:45:33] [Info] Connect clients2.google.com:443
+[2019-08-22 13:45:35] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 13:45:35] [Info] Connect accounts.google.com:443
+[2019-08-22 13:45:38] [Info] Connect clients2.google.com:443
+[2019-08-22 13:45:40] [Info] Disconnect accounts.google.com:443
+[2019-08-22 13:45:43] [Info] Disconnect clients2.google.com:443
+[2019-08-22 13:45:50] [Info] Connect www.google.com:443
+[2019-08-22 13:45:50] [Info] Connect stats.g.doubleclick.net:443
+[2019-08-22 13:45:50] [Info] Connect www.bannedbook.org:443
+[2019-08-22 13:45:50] [Info] Connect www.google-analytics.com:443
+[2019-08-22 13:45:50] [Info] Connect 99cn.info:443
+[2019-08-22 13:45:51] [Info] Connect clients2.google.com:443
+[2019-08-22 13:45:56] [Info] Connect stats.g.doubleclick.net:443
+[2019-08-22 13:45:56] [Info] Connect 99cn.info:443
+[2019-08-22 13:45:56] [Info] Connect www.google-analytics.com:443
+[2019-08-22 13:45:56] [Info] Connect www.bannedbook.org:443
+[2019-08-22 13:45:56] [Info] Connect www.google.com:443
+[2019-08-22 13:45:56] [Info] Connect clients2.google.com:443
+[2019-08-22 13:46:00] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 13:46:01] [Info] Connect clients2.google.com:443
+[2019-08-22 13:46:01] [Info] Connect stats.g.doubleclick.net:443
+[2019-08-22 13:46:01] [Info] Connect www.bannedbook.org:443
+[2019-08-22 13:46:01] [Info] Connect 99cn.info:443
+[2019-08-22 13:46:01] [Info] Connect www.google-analytics.com:443
+[2019-08-22 13:46:01] [Info] Connect www.google.com:443
+[2019-08-22 13:46:06] [Info] Disconnect clients2.google.com:443
+[2019-08-22 13:46:06] [Info] Disconnect stats.g.doubleclick.net:443
+[2019-08-22 13:46:06] [Info] Disconnect 99cn.info:443
+[2019-08-22 13:46:06] [Info] Disconnect www.bannedbook.org:443
+[2019-08-22 13:46:06] [Info] Disconnect www.google-analytics.com:443
+[2019-08-22 13:46:06] [Info] Disconnect www.google.com:443
+[2019-08-22 13:46:06] [Info] Connect accounts.google.com:443
+[2019-08-22 13:46:07] [Info] Connect www.google-analytics.com:443
+[2019-08-22 13:46:07] [Info] Connect 99cn.info:443
+[2019-08-22 13:46:07] [Info] Connect www.google.com:443
+[2019-08-22 13:46:07] [Info] Connect stats.g.doubleclick.net:443
+[2019-08-22 13:46:07] [Info] Connect www.bannedbook.org:443
+[2019-08-22 13:46:12] [Info] Connect accounts.google.com:443
+[2019-08-22 13:46:12] [Info] Connect www.google.com:443
+[2019-08-22 13:46:12] [Info] Connect www.google-analytics.com:443
+[2019-08-22 13:46:12] [Info] Connect 99cn.info:443
+[2019-08-22 13:46:12] [Info] Connect stats.g.doubleclick.net:443
+[2019-08-22 13:46:12] [Info] Connect www.bannedbook.org:443
+[2019-08-22 13:46:17] [Info] Connect accounts.google.com:443
+[2019-08-22 13:46:17] [Info] Connect www.google.com:443
+[2019-08-22 13:46:17] [Info] Connect 99cn.info:443
+[2019-08-22 13:46:17] [Info] Connect www.google-analytics.com:443
+[2019-08-22 13:46:17] [Info] Connect stats.g.doubleclick.net:443
+[2019-08-22 13:46:17] [Info] Connect www.bannedbook.org:443
+[2019-08-22 13:46:20] [Info] Connect clients2.google.com:443
+[2019-08-22 13:46:22] [Info] Disconnect accounts.google.com:443
+[2019-08-22 13:46:22] [Info] Disconnect 99cn.info:443
+[2019-08-22 13:46:22] [Info] Disconnect www.google-analytics.com:443
+[2019-08-22 13:46:22] [Info] Disconnect www.google.com:443
+[2019-08-22 13:46:22] [Info] Disconnect stats.g.doubleclick.net:443
+[2019-08-22 13:46:22] [Info] Disconnect www.bannedbook.org:443
+[2019-08-22 13:46:24] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 13:46:25] [Info] Connect clients2.google.com:443
+[2019-08-22 13:46:30] [Info] Connect clients2.google.com:443
+[2019-08-22 13:46:35] [Info] Disconnect clients2.google.com:443
+[2019-08-22 13:47:04] [Info] Connect clients2.google.com:443
+[2019-08-22 13:47:08] [Info] Connect safebrowsing.googleapis.com:443
+[2019-08-22 13:47:09] [Info] Connect clients2.google.com:443
+[2019-08-22 13:47:13] [Info] Connect safebrowsing.googleapis.com:443
+[2019-08-22 13:47:14] [Info] Connect clients2.google.com:443
+[2019-08-22 13:47:19] [Info] Connect safebrowsing.googleapis.com:443
+[2019-08-22 13:47:19] [Info] Disconnect clients2.google.com:443
+[2019-08-22 13:47:23] [Info] Connect stats.g.doubleclick.net:443
+[2019-08-22 13:47:23] [Info] Connect www.bannedbook.org:443
+[2019-08-22 13:47:23] [Info] Connect www.google.com:443
+[2019-08-22 13:47:23] [Info] Connect www.google-analytics.com:443
+[2019-08-22 13:47:24] [Info] Connect 99cn.info:443
+[2019-08-22 13:47:24] [Info] Disconnect safebrowsing.googleapis.com:443
+[2019-08-22 13:47:28] [Info] Connect www.bannedbook.org:443
+[2019-08-22 13:47:28] [Info] Connect www.google.com:443
+[2019-08-22 13:47:28] [Info] Connect stats.g.doubleclick.net:443
+[2019-08-22 13:47:28] [Info] Connect www.google-analytics.com:443
+[2019-08-22 13:47:29] [Info] Connect 99cn.info:443
+[2019-08-22 13:47:30] [Info] Connect accounts.google.com:443
+[2019-08-22 13:47:33] [Info] Connect www.bannedbook.org:443
+[2019-08-22 13:47:33] [Info] Connect www.google.com:443
+[2019-08-22 13:47:33] [Info] Connect stats.g.doubleclick.net:443
+[2019-08-22 13:47:33] [Info] Connect www.google-analytics.com:443
+[2019-08-22 13:47:34] [Info] Connect 99cn.info:443
+[2019-08-22 13:47:35] [Info] Connect accounts.google.com:443
+[2019-08-22 13:47:36] [Info] Connect clients4.google.com:443
+[2019-08-22 13:47:37] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 13:47:37] [Info] Disconnect www.google.com:443
+[2019-08-22 13:47:38] [Info] Disconnect www.bannedbook.org:443
+[2019-08-22 13:47:38] [Info] Disconnect stats.g.doubleclick.net:443
+[2019-08-22 13:47:38] [Info] Disconnect www.google-analytics.com:443
+[2019-08-22 13:47:39] [Info] Disconnect 99cn.info:443
+[2019-08-22 13:47:40] [Info] Connect accounts.google.com:443
+[2019-08-22 13:47:41] [Info] Connect clients4.google.com:443
+[2019-08-22 13:47:46] [Info] Disconnect accounts.google.com:443
+[2019-08-22 13:47:46] [Info] Connect clients4.google.com:443
+[2019-08-22 13:47:51] [Info] Disconnect clients4.google.com:443
+[2019-08-22 13:48:12] [Info] Connect clients4.google.com:443
+[2019-08-22 13:48:17] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 13:48:17] [Info] Connect clients4.google.com:443
+[2019-08-22 13:48:21] [Info] Connect clients2.google.com:443
+[2019-08-22 13:48:22] [Info] Connect clients4.google.com:443
+[2019-08-22 13:48:27] [Info] Connect clients2.google.com:443
+[2019-08-22 13:48:27] [Info] Disconnect clients4.google.com:443
+[2019-08-22 13:48:32] [Info] Connect clients2.google.com:443
+[2019-08-22 13:48:37] [Info] Disconnect clients2.google.com:443
+[2019-08-22 13:49:22] [Info] Connect clients4.google.com:443
+[2019-08-22 13:49:27] [Info] Connect clients4.google.com:443
+[2019-08-22 13:49:31] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 13:49:32] [Info] Connect clients4.google.com:443
+[2019-08-22 13:49:37] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 13:49:38] [Info] Disconnect clients4.google.com:443
+[2019-08-22 13:49:41] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 13:49:42] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 13:49:44] [Info] Connect clientservices.googleapis.com:443
+[2019-08-22 13:49:47] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-22 13:49:47] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 13:49:49] [Info] Connect clientservices.googleapis.com:443
+[2019-08-22 13:49:52] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 13:49:53] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 13:49:53] [Info] Connect clientservices.googleapis.com:443
+[2019-08-22 13:49:57] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 13:49:58] [Info] Disconnect clientservices.googleapis.com:443
+[2019-08-22 13:49:58] [Info] Connect clientservices.googleapis.com:80
+[2019-08-22 13:50:02] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-22 13:50:02] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 13:50:03] [Info] Connect clientservices.googleapis.com:80
+[2019-08-22 13:50:08] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 13:50:09] [Info] Connect clientservices.googleapis.com:80
+[2019-08-22 13:50:13] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 13:50:14] [Info] Disconnect clientservices.googleapis.com:80
+[2019-08-22 13:50:18] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-22 13:50:18] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 13:50:23] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 13:50:27] [Info] Connect update.googleapis.com:443
+[2019-08-22 13:50:28] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 13:50:32] [Info] Connect update.googleapis.com:443
+[2019-08-22 13:50:34] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-22 13:50:34] [Error] connect to update server error
+[2019-08-22 13:50:38] [Info] Connect update.googleapis.com:443
+[2019-08-22 13:50:43] [Info] Disconnect update.googleapis.com:443
+[2019-08-22 13:50:43] [Info] Connect update.googleapis.com:80
+[2019-08-22 13:50:45] [Info] Connect clients2.google.com:443
+[2019-08-22 13:50:48] [Info] Connect update.googleapis.com:80
+[2019-08-22 13:50:50] [Info] Connect clients2.google.com:443
+[2019-08-22 13:50:53] [Info] Connect update.googleapis.com:80
+[2019-08-22 13:50:55] [Info] Connect clients2.google.com:443
+[2019-08-22 13:50:58] [Info] Disconnect update.googleapis.com:80
+[2019-08-22 13:51:00] [Info] Disconnect clients2.google.com:443
+[2019-08-22 13:51:05] [Info] Connect accounts.google.com:443
+[2019-08-22 13:51:05] [Info] Connect clients4.google.com:443
+[2019-08-22 13:51:11] [Info] Connect accounts.google.com:443
+[2019-08-22 13:51:11] [Info] Connect clients4.google.com:443
+[2019-08-22 13:51:15] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 13:51:16] [Info] Connect accounts.google.com:443
+[2019-08-22 13:51:16] [Info] Connect clients4.google.com:443
+[2019-08-22 13:51:21] [Info] Disconnect accounts.google.com:443
+[2019-08-22 13:51:21] [Info] Disconnect clients4.google.com:443
+[2019-08-22 13:52:38] [Info] Connect stats.g.doubleclick.net:443
+[2019-08-22 13:52:38] [Info] Connect www.bannedbook.org:443
+[2019-08-22 13:52:38] [Info] Connect www.google.com:443
+[2019-08-22 13:52:38] [Info] Connect www.google-analytics.com:443
+[2019-08-22 13:52:39] [Info] Connect 99cn.info:443
+[2019-08-22 13:52:43] [Info] Connect stats.g.doubleclick.net:443
+[2019-08-22 13:52:43] [Info] Connect www.bannedbook.org:443
+[2019-08-22 13:52:43] [Info] Connect www.google-analytics.com:443
+[2019-08-22 13:52:43] [Info] Connect www.google.com:443
+[2019-08-22 13:52:44] [Info] Connect 99cn.info:443
+[2019-08-22 13:52:49] [Info] Connect www.bannedbook.org:443
+[2019-08-22 13:52:49] [Info] Connect stats.g.doubleclick.net:443
+[2019-08-22 13:52:49] [Info] Connect www.google.com:443
+[2019-08-22 13:52:49] [Info] Connect www.google-analytics.com:443
+[2019-08-22 13:52:50] [Info] Connect 99cn.info:443
+[2019-08-22 13:52:54] [Info] Disconnect stats.g.doubleclick.net:443
+[2019-08-22 13:52:54] [Info] Disconnect www.bannedbook.org:443
+[2019-08-22 13:52:54] [Info] Disconnect www.google-analytics.com:443
+[2019-08-22 13:52:54] [Info] Disconnect www.google.com:443
+[2019-08-22 13:52:54] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 13:52:55] [Info] Disconnect 99cn.info:443
+[2019-08-22 13:54:02] [Info] Connect clients4.google.com:443
+[2019-08-22 13:54:08] [Info] Connect clients4.google.com:443
+[2019-08-22 13:54:13] [Info] Connect clients4.google.com:443
+[2019-08-22 13:54:18] [Info] Disconnect clients4.google.com:443
+[2019-08-22 13:55:01] [Info] Connect clients2.google.com:443
+[2019-08-22 13:55:07] [Info] Connect clients2.google.com:443
+[2019-08-22 13:55:12] [Info] Connect clients2.google.com:443
+[2019-08-22 13:55:17] [Info] Disconnect clients2.google.com:443
+[2019-08-22 14:01:10] [Info] Connect accounts.google.com:443
+[2019-08-22 14:01:15] [Info] Connect accounts.google.com:443
+[2019-08-22 14:01:19] [Info] Connect clients4.google.com:443
+[2019-08-22 14:01:20] [Info] Connect accounts.google.com:443
+[2019-08-22 14:01:24] [Info] Connect clients4.google.com:443
+[2019-08-22 14:01:25] [Info] Disconnect accounts.google.com:443
+[2019-08-22 14:01:27] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 14:01:27] [Info] Connect clients4.google.com:443
+[2019-08-22 14:01:33] [Info] Disconnect clients4.google.com:443
+[2019-08-22 14:02:54] [Info] Connect www.google-analytics.com:443
+[2019-08-22 14:02:54] [Info] Connect 99cn.info:443
+[2019-08-22 14:02:54] [Info] Connect www.google.com:443
+[2019-08-22 14:02:54] [Info] Connect stats.g.doubleclick.net:443
+[2019-08-22 14:02:55] [Info] Connect www.bannedbook.org:443
+[2019-08-22 14:02:59] [Info] Connect www.google-analytics.com:443
+[2019-08-22 14:02:59] [Info] Connect stats.g.doubleclick.net:443
+[2019-08-22 14:02:59] [Info] Connect 99cn.info:443
+[2019-08-22 14:02:59] [Info] Connect www.google.com:443
+[2019-08-22 14:03:00] [Info] Connect www.bannedbook.org:443
+[2019-08-22 14:03:04] [Info] Connect www.google-analytics.com:443
+[2019-08-22 14:03:04] [Info] Connect www.google.com:443
+[2019-08-22 14:03:04] [Info] Connect stats.g.doubleclick.net:443
+[2019-08-22 14:03:04] [Info] Connect 99cn.info:443
+[2019-08-22 14:03:05] [Info] Connect www.bannedbook.org:443
+[2019-08-22 14:03:08] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 14:03:08] [Info] Disconnect www.google.com:443
+[2019-08-22 14:03:09] [Info] Disconnect www.google-analytics.com:443
+[2019-08-22 14:03:09] [Info] Disconnect 99cn.info:443
+[2019-08-22 14:03:09] [Info] Disconnect stats.g.doubleclick.net:443
+[2019-08-22 14:03:10] [Info] Disconnect www.bannedbook.org:443
+[2019-08-22 14:03:24] [Info] Connect safebrowsing.googleapis.com:443
+[2019-08-22 14:03:29] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 14:03:29] [Info] Connect safebrowsing.googleapis.com:443
+[2019-08-22 14:03:34] [Info] Connect safebrowsing.googleapis.com:443
+[2019-08-22 14:03:38] [Info] Connect clients2.google.com:443
+[2019-08-22 14:03:39] [Info] Disconnect safebrowsing.googleapis.com:443
+[2019-08-22 14:03:43] [Info] Connect clients2.google.com:443
+[2019-08-22 14:03:48] [Info] Connect clients2.google.com:443
+[2019-08-22 14:03:53] [Info] Disconnect clients2.google.com:443
+[2019-08-22 14:11:33] [Info] Connect clients4.google.com:443
+[2019-08-22 14:11:38] [Info] Connect clients4.google.com:443
+[2019-08-22 14:11:43] [Info] Connect clients4.google.com:443
+[2019-08-22 14:11:48] [Info] Disconnect clients4.google.com:443
+[2019-08-22 14:14:44] [Info] Connect clientservices.googleapis.com:443
+[2019-08-22 14:14:49] [Info] Connect clientservices.googleapis.com:443
+[2019-08-22 14:14:54] [Info] Connect clientservices.googleapis.com:443
+[2019-08-22 14:14:59] [Info] Disconnect clientservices.googleapis.com:443
+[2019-08-22 14:14:59] [Info] Connect clientservices.googleapis.com:80
+[2019-08-22 14:15:05] [Info] Connect clientservices.googleapis.com:80
+[2019-08-22 14:15:10] [Info] Connect clientservices.googleapis.com:80
+[2019-08-22 14:15:15] [Info] Disconnect clientservices.googleapis.com:80
+[2019-08-22 14:19:26] [Info] Connect clients2.google.com:443
+[2019-08-22 14:19:31] [Info] Connect clients2.google.com:443
+[2019-08-22 14:19:36] [Info] Connect clients2.google.com:443
+[2019-08-22 14:19:41] [Info] Disconnect clients2.google.com:443
+[2019-08-22 14:21:48] [Info] Connect clients4.google.com:443
+[2019-08-22 14:21:53] [Info] Connect clients4.google.com:443
+[2019-08-22 14:21:59] [Info] Connect clients4.google.com:443
+[2019-08-22 14:22:04] [Info] Disconnect clients4.google.com:443
+[2019-08-22 14:32:04] [Info] Connect clients4.google.com:443
+[2019-08-22 14:32:09] [Info] Connect clients4.google.com:443
+[2019-08-22 14:32:14] [Info] Connect clients4.google.com:443
+[2019-08-22 14:32:19] [Info] Disconnect clients4.google.com:443
+[2019-08-22 14:33:10] [Info] Connect stats.g.doubleclick.net:443
+[2019-08-22 14:33:10] [Info] Connect www.bannedbook.org:443
+[2019-08-22 14:33:10] [Info] Connect www.google.com:443
+[2019-08-22 14:33:10] [Info] Connect 99cn.info:443
+[2019-08-22 14:33:11] [Info] Connect www.google-analytics.com:443
+[2019-08-22 14:33:16] [Info] Connect stats.g.doubleclick.net:443
+[2019-08-22 14:33:16] [Info] Connect www.bannedbook.org:443
+[2019-08-22 14:33:16] [Info] Connect www.google.com:443
+[2019-08-22 14:33:16] [Info] Connect 99cn.info:443
+[2019-08-22 14:33:17] [Info] Connect www.google-analytics.com:443
+[2019-08-22 14:33:21] [Info] Connect stats.g.doubleclick.net:443
+[2019-08-22 14:33:21] [Info] Connect www.bannedbook.org:443
+[2019-08-22 14:33:21] [Info] Connect www.google.com:443
+[2019-08-22 14:33:21] [Info] Connect 99cn.info:443
+[2019-08-22 14:33:22] [Info] Connect www.google-analytics.com:443
+[2019-08-22 14:33:25] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 14:33:25] [Info] Disconnect www.google.com:443
+[2019-08-22 14:33:26] [Info] Disconnect www.bannedbook.org:443
+[2019-08-22 14:33:26] [Info] Disconnect stats.g.doubleclick.net:443
+[2019-08-22 14:33:26] [Info] Disconnect 99cn.info:443
+[2019-08-22 14:33:27] [Info] Disconnect www.google-analytics.com:443
+[2019-08-22 14:42:19] [Info] Connect clients4.google.com:443
+[2019-08-22 14:42:25] [Info] Connect clients4.google.com:443
+[2019-08-22 14:42:30] [Info] Connect clients4.google.com:443
+[2019-08-22 14:42:35] [Info] Disconnect clients4.google.com:443
+[2019-08-22 14:44:44] [Info] Connect clientservices.googleapis.com:443
+[2019-08-22 14:44:49] [Info] Connect clientservices.googleapis.com:443
+[2019-08-22 14:44:52] [Info] Connect ssl.gstatic.com:443
+[2019-08-22 14:44:53] [Info] Connect ssl.gstatic.com:443
+[2019-08-22 14:44:54] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 14:44:54] [Info] Connect clientservices.googleapis.com:443
+[2019-08-22 14:44:58] [Info] Connect ssl.gstatic.com:443
+[2019-08-22 14:44:59] [Info] Connect ssl.gstatic.com:443
+[2019-08-22 14:44:59] [Info] Disconnect clientservices.googleapis.com:443
+[2019-08-22 14:44:59] [Info] Connect clientservices.googleapis.com:80
+[2019-08-22 14:45:03] [Info] Connect ssl.gstatic.com:443
+[2019-08-22 14:45:04] [Info] Connect ssl.gstatic.com:443
+[2019-08-22 14:45:05] [Info] Connect clientservices.googleapis.com:80
+[2019-08-22 14:45:08] [Info] Disconnect ssl.gstatic.com:443
+[2019-08-22 14:45:09] [Info] Disconnect ssl.gstatic.com:443
+[2019-08-22 14:45:10] [Info] Connect clientservices.googleapis.com:80
+[2019-08-22 14:45:15] [Info] Disconnect clientservices.googleapis.com:80
+[2019-08-22 14:52:35] [Info] Connect clients4.google.com:443
+[2019-08-22 14:52:40] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 14:52:40] [Info] Connect clients4.google.com:443
+[2019-08-22 14:52:45] [Info] Connect clients4.google.com:443
+[2019-08-22 14:52:51] [Info] Disconnect clients4.google.com:443
+[2019-08-22 14:54:39] [Info] Connect safebrowsing.googleapis.com:443
+[2019-08-22 14:54:44] [Info] Connect safebrowsing.googleapis.com:443
+[2019-08-22 14:54:50] [Info] Connect safebrowsing.googleapis.com:443
+[2019-08-22 14:54:55] [Info] Disconnect safebrowsing.googleapis.com:443
+[2019-08-22 15:02:51] [Info] Connect clients4.google.com:443
+[2019-08-22 15:02:56] [Info] Connect clients4.google.com:443
+[2019-08-22 15:03:01] [Info] Connect clients4.google.com:443
+[2019-08-22 15:03:06] [Info] Disconnect clients4.google.com:443
+[2019-08-22 15:13:06] [Info] Connect clients4.google.com:443
+[2019-08-22 15:13:11] [Info] Connect clients4.google.com:443
+[2019-08-22 15:13:15] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 15:13:15] [Info] Connect clients4.google.com:443
+[2019-08-22 15:13:19] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 15:13:19] [Info] Disconnect clients4.google.com:443
+[2019-08-22 15:14:44] [Info] Connect clientservices.googleapis.com:443
+[2019-08-22 15:14:49] [Info] Connect clientservices.googleapis.com:443
+[2019-08-22 15:14:54] [Info] Connect clientservices.googleapis.com:443
+[2019-08-22 15:14:58] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 15:14:58] [Info] Disconnect clientservices.googleapis.com:443
+[2019-08-22 15:14:58] [Info] Connect clientservices.googleapis.com:80
+[2019-08-22 15:15:02] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 15:15:02] [Info] Connect clientservices.googleapis.com:80
+[2019-08-22 15:15:07] [Info] Connect clientservices.googleapis.com:80
+[2019-08-22 15:15:12] [Info] Disconnect clientservices.googleapis.com:80
+[2019-08-22 15:49:31] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 15:49:37] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 15:49:40] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 15:49:41] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 15:49:46] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-22 15:49:46] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 15:49:51] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 15:49:56] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 15:50:01] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-22 15:50:01] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 15:50:07] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 15:50:10] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 15:50:11] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 15:50:16] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-22 15:50:16] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 15:50:21] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 15:50:25] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 15:50:25] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 15:50:30] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-22 15:50:30] [Error] connect to update server error
+[2019-08-22 17:49:31] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 17:49:37] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 17:49:42] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 17:49:47] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-22 17:49:47] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 17:49:52] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 17:49:56] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 17:49:56] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 17:50:01] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-22 17:50:01] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 17:50:05] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 17:50:05] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 17:50:10] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 17:50:10] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 17:50:15] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 17:50:15] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-22 17:50:15] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 17:50:19] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 17:50:19] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 17:50:22] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 17:50:23] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 17:50:26] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 17:50:26] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-22 17:50:26] [Error] connect to update server error
+[2019-08-22 19:49:31] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 19:49:37] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 19:49:42] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 19:49:47] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-22 19:49:47] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 19:49:52] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 19:49:56] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 19:49:56] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 19:50:00] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 19:50:00] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-22 19:50:00] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 19:50:06] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 19:50:11] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 19:50:16] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-22 19:50:16] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 19:50:20] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 19:50:20] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 19:50:24] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 19:50:24] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 19:50:30] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-22 19:50:30] [Error] connect to update server error
+[2019-08-22 21:49:31] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 21:49:37] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 21:49:42] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 21:49:47] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-22 21:49:47] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 21:49:52] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 21:49:57] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 21:50:03] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-22 21:50:03] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 21:50:08] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 21:50:13] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 21:50:18] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-22 21:50:18] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 21:50:23] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 21:50:27] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-22 21:50:27] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 21:50:32] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-22 21:50:32] [Error] connect to update server error
+[2019-08-22 23:49:31] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 23:49:37] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 23:49:42] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 23:49:47] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-22 23:49:47] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 23:49:52] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 23:49:57] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 23:50:03] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-22 23:50:03] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 23:50:08] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 23:50:13] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 23:50:18] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-22 23:50:18] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 23:50:23] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 23:50:29] [Info] Connect raw.githubusercontent.com:443
+[2019-08-22 23:50:34] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-22 23:50:34] [Error] connect to update server error
+[2019-08-23 01:49:32] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 01:49:37] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 01:49:42] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 01:49:47] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-23 01:49:47] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 01:49:52] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 01:49:58] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 01:50:03] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-23 01:50:03] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 01:50:08] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 01:50:13] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 01:50:18] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-23 01:50:18] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 01:50:24] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 01:50:27] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 01:50:28] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 01:50:33] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-23 01:50:33] [Error] connect to update server error
+[2019-08-23 03:49:31] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 03:49:35] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 03:49:35] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 03:49:40] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 03:49:44] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 03:49:44] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-23 03:49:44] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 03:49:48] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 03:49:48] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 03:49:52] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 03:49:52] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 03:49:55] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 03:49:56] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-23 03:49:56] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 03:50:01] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 03:50:04] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 03:50:05] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 03:50:08] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 03:50:08] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-23 03:50:08] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 03:50:12] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 03:50:12] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 03:50:17] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 03:50:21] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 03:50:21] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-23 03:50:21] [Error] connect to update server error
+[2019-08-23 05:49:45] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 05:49:49] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 05:49:49] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 05:49:53] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 05:49:53] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 05:49:56] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 05:49:56] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-23 05:49:56] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 05:50:02] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 05:50:05] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 05:50:05] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 05:50:09] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 05:50:09] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-23 05:50:09] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 05:50:13] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 05:50:13] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 05:50:17] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 05:50:17] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 05:50:20] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 05:50:21] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-23 05:50:21] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 05:50:24] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 05:50:24] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 05:50:28] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 05:50:28] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 05:50:32] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 05:50:32] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-23 05:50:32] [Error] connect to update server error
+[2019-08-23 07:49:45] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 07:49:49] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 07:49:49] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 07:49:52] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 07:49:53] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 07:49:56] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 07:49:56] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-23 07:49:56] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 07:50:00] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 07:50:00] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 07:50:04] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 07:50:04] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 07:50:07] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 07:50:08] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-23 07:50:08] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 07:50:13] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 07:50:18] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 07:50:22] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 07:50:22] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-23 07:50:22] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 07:50:25] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 07:50:26] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 07:50:29] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 07:50:29] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 07:50:33] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 07:50:33] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-23 07:50:33] [Error] connect to update server error
+[2019-08-23 09:49:45] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 09:49:50] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 09:49:56] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 09:49:59] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 09:49:59] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-23 09:49:59] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 09:50:03] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 09:50:03] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 09:50:07] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 09:50:07] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 09:50:12] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-23 09:50:12] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 09:50:17] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 09:50:21] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 09:50:21] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 09:50:25] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 09:50:25] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-23 09:50:25] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 09:50:29] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 09:50:29] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 09:50:35] [Info] Connect raw.githubusercontent.com:443
+[2019-08-23 09:50:38] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-23 09:50:38] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-23 09:50:38] [Error] connect to update server error
+[2019-08-30 22:02:20] ShadowsocksR started on port 1080
+[2019-08-30 22:02:30] [Info] Connect clientservices.googleapis.com:443
+[2019-08-30 22:02:30] [Info] Connect www.bannedbook.org:443
+[2019-08-30 22:02:30] [Info] Connect accounts.google.com:443
+[2019-08-30 22:02:30] [Info] Connect raw.githubusercontent.com:443
+[2019-08-30 22:02:33] [Info] Connect ckikeikyuim:80
+[2019-08-30 22:02:34] [Info] Connect uvugfyvxbuotbnu:80
+[2019-08-30 22:02:35] [Info] Connect dissgsz:80
+[2019-08-30 22:02:35] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-30 22:02:35] [Info] Connect raw.githubusercontent.com:443
+[2019-08-30 22:02:35] [Info] Connect accounts.google.com:443
+[2019-08-30 22:02:35] [Info] Connect www.bannedbook.org:443
+[2019-08-30 22:02:35] [Info] Connect clientservices.googleapis.com:443
+[2019-08-30 22:02:36] [Info] Connect ssl.gstatic.com:443
+[2019-08-30 22:02:37] [Info] Connect ssl.gstatic.com:443
+[2019-08-30 22:02:38] [Info] Connect ckikeikyuim:80
+[2019-08-30 22:02:39] [Info] Connect uvugfyvxbuotbnu:80
+[2019-08-30 22:02:40] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-30 22:02:40] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-30 22:02:40] [Info] Connect dissgsz:80
+[2019-08-30 22:02:40] [Info] Connect raw.githubusercontent.com:443
+[2019-08-30 22:02:40] [Info] Connect clientservices.googleapis.com:443
+[2019-08-30 22:02:41] [Info] Connect accounts.google.com:443
+[2019-08-30 22:02:41] [Info] Connect www.bannedbook.org:443
+[2019-08-30 22:02:41] [Info] Connect ssl.gstatic.com:443
+[2019-08-30 22:02:42] [Info] Connect ssl.gstatic.com:443
+[2019-08-30 22:02:43] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-30 22:02:43] [Info] Connect ckikeikyuim:80
+[2019-08-30 22:02:44] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-30 22:02:44] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-30 22:02:44] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-30 22:02:44] [Info] Disconnect raw.githubusercontent.com:443
+[2019-08-30 22:02:44] [Info] Connect raw.githubusercontent.com:443
+[2019-08-30 22:02:44] [Info] Disconnect clientservices.googleapis.com:443
+[2019-08-30 22:02:44] [Info] Connect dissgsz:80
+[2019-08-30 22:02:44] [Info] Connect uvugfyvxbuotbnu:80
+[2019-08-30 22:02:46] [Info] Disconnect accounts.google.com:443
+[2019-08-30 22:02:46] [Info] Disconnect www.bannedbook.org:443
+[2019-08-30 22:02:46] [Info] Connect stats.g.doubleclick.net:443
+[2019-08-30 22:02:46] [Info] Connect www.google-analytics.com:443
+[2019-08-30 22:02:46] [Info] Connect www.bannedbook.org:443
+[2019-08-30 22:02:46] [Info] Connect 99cn.info:443
+[2019-08-30 22:02:46] [Info] Connect www.google.com:443
+[2019-08-30 22:02:46] [Info] Connect ssl.gstatic.com:443
+[2019-08-30 22:02:47] [Info] Connect ssl.gstatic.com:443
+[2019-08-30 22:02:48] [Info] Connect accounts.google.com:443
+[2019-08-30 22:02:48] [Info] Disconnect ckikeikyuim:80
+[2019-08-30 22:02:48] [Warn] Proxy server [(162.245.239.66)] connection refused
+[2019-08-30 22:02:49] [Info] Disconnect dissgsz:80
+[2019-08-30 22:02:49] [Info] Connect www.bannedbook.org:443
+[2019-08-30 22:02:49] [Info] Connect raw.githubusercontent.com:443
+[2019-08-30 22:02:50] [Info] Disconnect uvugfyvxbuotbnu:80

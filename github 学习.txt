@@ -1,0 +1,108 @@
+先添加 用户名以及邮箱 如果不可以  进入 learngit文件里 进行修改 设置  添加 [user] name= email=
+添加完成后  进行readme.txt 创建
+git commit -m"my ..."
+-m是提交的说明  用来 从记录中寻找改动记录
+git add  提交文件
+
+
+将readme.txt文件内容 修改之后  用 git status命令 查看  如果 修改了 会有提示 
+用 git diff命令可以查看修改的内容 与自己修改的东西进行核对  绿色字体
+修改文件的话  第二次修改后，需要再一次 add + commit
+这样之后 才会有第二次修改记录
+
+然后就可以提交入库（git add命令）
+git log可以查看版本修改历史记录
+git reset --hard HEAD是回退命令 HEAD 为第一个版本每加一个^多回退一个版本的文件
+
+git log --pretty=oneline用来查看版本库状态
+而git reset --hard +版本库的前几位代码  就可以回到哪一个版本
+git reflog 记录每一次命令
+在 learngit文件夹下 新建LICENSE
+命令查看 git status  说明 LICENSE  没有添加 readme.txt 已经添加 
+两次 add   然后 commit   
+这样以后 所有修改可以 一同保存  暂存区的所有分支  都会进行 提交
+
+操作一：撤销修改命令  git checkout -- file
+当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，git reset HEAD file，回到第一种，在进行操作一
+
+删除文件 可以直接删除 运行 git status时  它会告诉你 删除的文件
+确定删除 就用 git rm
+或者 rm +文件
+之后再次 add  如下 git commit -am"工作区" 
+
+
+远程仓库 的添加 
+ssh-keygen -t rsa -C "youremail@xxx.com"  
+然后 回车 完之后  用户目录下 会有一个.ssh
+秘钥,id_rsa是私钥,id_rsa.pub是公钥
+之后 登录github  添加 ssh key
+在网页中创一个库
+关联本地库
+git remote add origin git@github.com:github名字/learngit .git
+上传本地第一次git push -u origin master
+以后 去掉 -u
+之后就可以看到信息了
+
+
+
+在网页创建的库 也可以克隆下 来 
+命令 git clone git@github.com：github名字/文件名
+后缀.git
+每个人都可以克隆 如果 多人一起合作开发东西
+
+
+分支
+ 查看分支：git branch
+创建分支：git branch <name>
+切换分支：git checkout <name>
+创建+切换分支：git checkout -b <name>
+合并某分支到当前分支：git merge <name>
+删除分支：git branch -d <name>
+
+
+
+
+git checkout -b +分支名字
+ 在 这个分之下 修改完成后 add commit 
+然后回到 主分支
+会发现 文件不在 了 因为在分支里
+git merge  +分支名字 合并分支 
+git status 可查看
+合并分支产生冲突 ：
+查看状态 git status
+手动修改
+合并完成后 就可以 删除分支了
+
+bug分支
+git status隐藏当前工作场所
+创建分支 修复bug
+git stash list 查看工作现场
+git stash apply恢复 回复后 stash内容不会删除，需要 git stash drop删除
+或git stash pop 恢复的同时 进行删除
+
+多人协作
+git remote 查看远程库信息
++-v  详细信息
+
+推送分支
+git push origin master
+其他分支 一样
+
+git clone 克隆后
+
+
+fork
+
+后
+更改分支
+
+可能需要git pull  （在主分支里）
+之后再上传
+
+git checkout -b dev origin/dev进入克隆的 dev分支
+
+git tag打标签
+命令git push origin <tagname>可以推送一个本地标签；
+命令git push origin --tags可以推送全部未推送过的本地标签；
+命令git tag -d <tagname>可以删除一个本地标签；
+命令git push origin :refs/tags/<tagname>可以删除一个远程标签。

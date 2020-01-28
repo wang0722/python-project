@@ -1,0 +1,657 @@
+/**
+ * Last edited: 2019-01-29-14:16:00 Israel Standard Time (IST)
+ * @param scope - window object
+ */
+(function(scope) {
+	'use strict';
+  
+	/* Adding browser info to native navigator object */
+	navigator.browserInfo = (function(){
+	  var ua= navigator.userAgent, tem,
+		M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+	  if(/trident/i.test(M[1])){
+		tem=  /\brv[ :]+(\d+)/g.exec(ua) || [];
+		return {'browser': 'IE','version': tem[1] };
+	  }
+	  if(M[1]=== 'Chrome'){
+		tem= ua.match(/\b(OPR|Edge)\/(\d+)/);
+		if(tem!= null) return {'browser': tem[1].replace('Edge', 'IE').replace('OPR', 'Opera'), 'version': tem[2]};
+	  }
+	  M = M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+	  if((tem= ua.match(/version\/(\d+)/i))!= null) M.splice(1, 1, tem[1]);
+	  return {'browser': M[0],'version': M[1] };
+	})();
+  
+	scope.hasOwnProperty = scope.hasOwnProperty || Object.prototype.hasOwnProperty;
+  
+	if (typeof scope.hasOwnProperty === 'function' && scope.hasOwnProperty('downloadManager')) {
+	  throw "downloadManager object already defined. Quitting";
+	}
+  
+	scope.downloadManager = function (_args) {
+  
+	  /**
+	   * selfUrl reads the download-manager src url for indicators purpose
+	   */
+	  var selfUrl = '';
+	  var script = document.getElementById('_dm_s');
+	  if (script) {
+		selfUrl = script.src;
+	  }
+  
+	  var indicatorPopup;
+  
+	  var args = {
+		LINK_IDS: [],
+		FIRST_PAGE: null,
+		APP_ID: null,
+		ANALYTICS_PROPERTY: '',
+		IDENTITY: true,
+		DL_PV: null
+	  };
+  
+	  /**
+	   * parsing & transforming the args for backward compatibility
+	   */
+	  function parseArgs() {
+		if (typeof _args === 'string') {
+		  _args = { LINK_IDS: [_args] };
+		} else if (_args instanceof Array) {
+		  _args = { LINK_IDS: _args };
+		}
+		/**
+		 * copy values of _args over properties of args
+		 */
+		for (var key in _args) {
+		  if (_args.hasOwnProperty(key) && args.hasOwnProperty(key)) {
+			args[key] = _args[key];
+		  }
+		}
+	  }
+  
+	  /**
+	   * configure & setup the download buttons
+	   * @param options
+	   * @returns {{wrapLinks: wrapLinks, setClickCallback: setClickCallback}}
+	   */
+	  var linksHandler = function (options) {
+		var valid_options = ['link_ids', 'click_callback', 'auto_download_link_id'];
+		var _options = options;
+  
+		var getAttr = function (ele, attr) {
+		  var result = (ele.getAttribute && ele.getAttribute(attr)) || null;
+		  if (!result) {
+			var attrs = ele.attributes;
+			var length = attrs.length;
+			for (var i = 0; i < length; i++)
+			  if (attrs[i].nodeName === attr)
+				result = attrs[i].nodeValue;
+		  }
+		  return result;
+		};
+  
+		/**
+		 * Creating an EventHandler helper to register & unregister event on multiple elements
+		 * @type {{boundEvents: {}, registerEvent: EventHandler.registerEvent, clearHandlers: EventHandler.clearHandlers, bind: EventHandler.bind, unbind: EventHandler.unbind, stop: EventHandler.stop}}
+		 */
+		var EventHandler = {
+  
+		  // handlers dictionary
+		  boundEvents: {},
+  
+		  // bind event to handler & reference it in the dictionary for later removal
+		  registerEvent: function (el, ev, fn) {
+			if (!this.boundEvents.hasOwnProperty(el.id)) {
+			  this.boundEvents[el.id] = {};
+			}
+			if (!this.boundEvents[el.id].hasOwnProperty(ev)) {
+			  this.boundEvents[el.id][ev] = [];
+			}
+			this.boundEvents[el.id][ev].push(fn);
+		  },
+  
+		  // unbind and clear hanler from dictionary
+		  clearHandlers: function (el, ev) {
+			if (this.boundEvents.hasOwnProperty(el.id) && this.boundEvents[el.id].hasOwnProperty(ev)) {
+			  for (var key in this.boundEvents[el.id][ev]) {
+				if (this.boundEvents[el.id][ev].hasOwnProperty(key)) {
+				  this.unbind(el, ev, this.boundEvents[el.id][ev][key]);
+				}
+			  }
+			  this.boundEvents[el.id][ev] = [];
+			}
+		  },
+  
+		  // cross-browser binding function
+		  bind: function (el, ev, fn) {
+			if (window.addEventListener) { // modern browsers including IE9+
+			  el.addEventListener(ev, fn, false);
+			} else if (window.attachEvent) { // IE8 and below
+			  el.attachEvent('on' + ev, fn);
+			} else {
+			  el['on' + ev] = fn;
+			}
+			this.registerEvent(el, ev, fn);
+		  },
+  
+		  // cross-browser unbinding function
+		  unbind: function (el, ev, fn) {
+			if (window.removeEventListener) {
+			  el.removeEventListener(ev, fn, false);
+			} else if (window.detachEvent) {
+			  el.detachEvent('on' + ev, fn);
+			} else {
+			  elem['on' + ev] = null;
+			}
+		  },
+  
+		  // not used
+		  stop: function (ev) {
+			var e = ev || window.event;
+			e.cancelBubble = true;
+			if (e.stopPropagation) e.stopPropagation();
+		  }
+		};
+  
+		var rollback;
+		var wrap = function () {
+  
+		  // rollback will exists if wrap was activated more then once
+		  // this happens when there are more then one download button on the page
+		  // the first button will be missed in the first iteraton then rollback will be assigned with
+		  // a rollback function that cancels the wrap action from the button
+		  // this will be activate from objetc number 2 till the last object
+		  // which means that at the end of processing multiple buttons, only the button will be wrapped
+		  // the other buttons will be rolled-back.
+		  // Need to check with PM about this functionality & if its still needed for backward compatibility
+		  if (rollback) {
+			rollback();
+		  }
+		  var download_node;
+		  var params = getUrlParams();
+		  var stringParams = '';
+  
+		  if (Object.keys(params)[0].length !== 0) {
+			var size = Object.keys(params).length;
+			stringParams += "?";
+  
+			for (var param in params) {
+			  stringParams += param + "=" + params[param];
+			  if ((--size) != 0) {
+				stringParams += "&";
+			  }
+			}
+  
+		  }
+		  // for each download button link
+		  for (var i = 0; i < _options.link_ids.length;) {
+			// get the link element
+			download_node = document.getElementById(_options.link_ids[i++]);
+			if (download_node) {
+			  // get download url from link href attribute
+			  var download_url = getAttr(download_node, 'href') + stringParams;
+  
+			  download_node.setAttribute('href', '#');
+  
+			  if (_args.TARGET) {
+				download_node.setAttribute('target', _args.TARGET);
+			  }
+  
+			  if (_options.click_callback) {
+				// using self invoking & closure function over URL
+				// URL is the download link
+				// to create function that abort the current event & fires click_callback with the url as param instead
+				// used as the downnload buttons click handler
+				var callback = (function (url) {
+				  return function (e) {
+					if (typeof _args.TARGET === 'undefined') {
+					  e.preventDefault();
+					}
+					try {
+					  _options.click_callback(url);
+					  return false;
+					} catch (e) {
+					  console.log(e)
+					}
+				  }
+				})(download_url);
+  
+				// just foolishness for search engine crawlers
+				download_node.setAttribute('rel', 'nofollow noreferrer');
+  
+				// make sure by - removing all click handlers from the download buttons
+				EventHandler.clearHandlers(download_node, 'click');
+				// bind all download buttons to code based click handler
+				EventHandler.bind(download_node, 'click', callback);
+  
+				/**
+				 * using self invoking & closure function over html element & url
+				 * URL is the download link, Element is the current download button
+				 * to create function that rollback the wrapping to the previous handler
+				 * UNKNOWN USAGE
+				 * when activating wrap twice on some download button it will "rollback" the previous wrap
+				 * "rollback" because it doesn't returns the previous coded click handler,
+				 * rather just the link to the href attribute
+				 */
+				rollback = (function (el, originalDownloadUrl) {
+				  return function () {
+					EventHandler.clearHandlers(el, 'click');
+					el.setAttribute('href', originalDownloadUrl);
+				  }
+				})(download_node, download_url);
+			  }
+  
+			}
+		  }
+		};
+  
+		// clear _options from invalid options
+		var validateOptions = function () {
+		  var options = {};
+		  for (var i = 0; i < valid_options.length; i++) {
+			if (_options.hasOwnProperty(valid_options[i])) {
+			  options[valid_options[i]] = _options[valid_options[i]];
+			}
+		  }
+		  _options = options;
+		};
+  
+		validateOptions();
+  
+		/**
+		 * function wrap returns an object with two methods to wrap the download buttons & set the click handlers
+		 */
+		return {
+		  wrapLinks: function () {
+			if (!_options.link_ids) {
+			  return;
+			}
+			wrap();
+		  },
+  
+		  setClickCallback: function (v) {
+			_options.click_callback = v;
+			validateOptions()
+		  }
+		};
+	  };
+  
+	  var cookieHandler = {
+		getItem: function (sKey) {
+		  if (!sKey || !this.hasItem(sKey)) {
+			return null;
+		  }
+		  return unescape(document.cookie.replace(new RegExp("(?:^|.*;\\s*)" + escape(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*((?:[^;](?!;))*[^;]?).*"), "$1"));
+		},
+		/**
+		 * docCookies.setItem(sKey, sValue, vEnd, sPath, sDomain, bSecure)
+		 *
+		 * @argument sKey (String): the name of the cookie;
+		 * @argument sValue (String): the value of the cookie;
+		 * @optional argument vEnd (Number, String, Date Object or null): the max-age in seconds (e.g., 31536e3 for a year) or the
+		 *  expires date in GMTString format or in Date Object format; if not specified it will expire at the end of session;
+		 * @optional argument sPath (String or null): e.g., "/", "/mydir"; if not specified, defaults to the current path of the current document location;
+		 * @optional argument sDomain (String or null): e.g., "example.com", ".example.com" (includes all subdomains) or "subdomain.example.com"; if not
+		 * specified, defaults to the host portion of the current document location;
+		 * @optional argument bSecure (Boolean or null): cookie will be transmitted only over secure protocol as https;
+		 * @return void;
+		 **/
+		setItem: function (sKey, sValue, vEnd, sPath, sDomain, bSecure) {
+		  if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/.test(sKey)) {
+			return undefined;
+		  }
+		  var sExpires = "";
+		  if (vEnd) {
+			switch (typeof vEnd) {
+			  case "number":
+				sExpires = "; max-age=" + vEnd;
+				break;
+			  case "string":
+				sExpires = "; expires=" + vEnd;
+				break;
+			  case "object":
+				if (vEnd.hasOwnProperty("toGMTString")) {
+				  sExpires = "; expires=" + vEnd.toGMTString();
+				}
+				break;
+			}
+		  }
+		  document.cookie = sKey + "=" + sValue + sExpires + (sDomain ? "; domain=" + sDomain : "") + (sPath ? "; path=" + sPath : "") + (bSecure ? "; secure" : "");
+		},
+		removeItem: function (sKey) {
+		  if (!sKey || !this.hasItem(sKey)) {
+			return;
+		  }
+		  var oExpDate = new Date();
+		  oExpDate.setDate(oExpDate.getDate() - 1);
+		  document.cookie = escape(sKey) + "=; expires=" + oExpDate.toGMTString() + "; path=/";
+		},
+		hasItem: function (sKey) {
+		  return (new RegExp("(?:^|;\\s*)" + escape(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=")).test(document.cookie);
+		}
+	  };
+  
+	  var analytics = function () {
+  
+		(function (i, s, o, g, r, a, m) {
+		  i['GoogleAnalyticsObject'] = r;
+		  i[r] = i[r] || function () {
+			(i[r].q = i[r].q || []).push(arguments)
+		  }
+			, i[r].l = 1 * new Date();
+		  a = s.createElement(o),
+			m = s.getElementsByTagName(o)[0];
+		  a.async = 1;
+		  a.src = g;
+		  m.parentNode.insertBefore(a, m)
+		})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+		ga('create', _args.ANALYTICS_PROPERTY, 'auto');
+  
+		return {
+  
+		  trackPage: function (page, hitCallback) {
+			var params = {
+			  hitType: 'pageview',
+			  page: page
+			};
+  
+			if (typeof hitCallback == 'function') {
+			  params.hitCallback = hitCallback;
+			}
+			ga('send', params);
+		  },
+  
+		  trackEvent: function (category, action, label, hitCallback) {
+			var params = {
+			  hitType: 'event'
+			};
+  
+			if (typeof hitCallback == 'function') {
+			  params.hitCallback = hitCallback;
+			}
+			ga('send', params);
+		  }
+  
+		};
+	  }();
+  
+	  function getSafariVersion() {
+		var matches = /Version\/([\d\.]+) Safari\/[\d\.]+/.exec(navigator.appVersion);
+		if (matches) {
+		  return parseInt(matches[1]);
+		} else {
+		  return false;
+		}
+	  }
+  
+	  function isIe8() {
+		return navigator.browserInfo.browser === 'IE' && navigator.browserInfo.version <= 8;
+	  }
+  
+	  function isIe() {
+		return navigator.browserInfo.browser === 'IE' && navigator.browserInfo.version > 8 && navigator.browserInfo.version <= 11;
+	  }
+  
+	  function isEdge() {
+		return navigator.browserInfo.browser === 'IE' && navigator.browserInfo.version > 11;
+	  }
+  
+	  function isSafari() {
+		return /Version\/([\d\.]+) Safari\/[\d\.]+/.test(navigator.appVersion);
+	  }
+  
+	  function isFirefox() {
+		return navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+	  }
+  
+	  /* Download URL User Agent */
+	  function detectIE() {
+		var ua = window.navigator.userAgent;
+  
+		// IE 10
+		// ua = 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)';
+  
+		// IE 11
+		// ua = 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko';
+  
+		// Edge 12 (Spartan)
+		// ua = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36 Edge/12.0';
+  
+		// Edge 13
+		// ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586';
+  
+		var msie = ua.indexOf('MSIE ');
+		if (msie > 0) {
+		  // IE 10 or older => return version number
+		  return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+		}
+  
+		var trident = ua.indexOf('Trident/');
+		if (trident > 0) {
+		  // IE 11 => return version number
+		  var rv = ua.indexOf('rv:');
+		  return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
+		}
+  
+		var edge = ua.indexOf('Edge/');
+		if (edge > 0) {
+		  // Edge (IE 12+) => return version number
+		  return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
+		}
+  
+		// other browser
+		return false;
+	  }
+  
+	  function safariAppDownloader(url) {
+		var safariVersion = getSafariVersion();
+		var indexFile;
+		switch (safariVersion) {
+		  case 9:
+			indexFile = 'index_9.html';
+			break;
+		  case 8:
+		  default:
+			indexFile = 'index_8.html';
+			break;
+		}
+  
+		if (_args.IDENTITY) {
+		  fileDownloader(url);
+		} else {
+		  showIndicator(selfUrl.replace('pcdm.js', 'indicators/app/safari/' + indexFile), function () {
+			var filenameElm = indicatorPopup.contentDocument.getElementById('filename');
+			if (filenameElm) {
+			  var matches = url.match(/([\w\d_-]*\.?[^\\\/]*)([\?#].+)?$/i);
+			  if (matches) {
+				filenameElm.innerText = matches[0];
+			  }
+			}
+			indicatorPopup.contentDocument.onclick = function () {
+			  document.body.removeChild(indicatorPopup);
+			  indicatorPopup = null;
+			};
+			fileDownloader(url);
+		  });
+		}
+	  }
+  
+	  function writeDownloadCookie() {
+  
+		if (!args.APP_ID) {
+		  return;
+		}
+  
+		cookieHandler.setItem('extDl_' + args.APP_ID, JSON.stringify({
+		  appId: args.APP_ID,
+		  downloadTimestamp: new Date().getTime()
+		}), 24 * 60 * 60, '/', window.location.hostname);
+  
+	  }
+  
+	  function showIndicator(url, onload) {
+		if (!indicatorPopup) {
+		  indicatorPopup = document.createElement('iframe');
+		  indicatorPopup.style.allowTransparency = 'true';
+		  indicatorPopup.setAttribute('frameBorder', '0');
+		  indicatorPopup.setAttribute('scrolling', 'no');
+		  indicatorPopup.style.position = 'fixed';
+		  indicatorPopup.style.cursor = 'pointer';
+		  indicatorPopup.style.width = '100%';
+		  indicatorPopup.style.height = '100%';
+		  indicatorPopup.style.position = 'absolute';
+		  indicatorPopup.style.top = 0;
+		  indicatorPopup.style.left = 0;
+		  indicatorPopup.style.zIndex = 10000;
+		  document.body.appendChild(indicatorPopup);
+		}
+		indicatorPopup.onload = onload;
+		indicatorPopup.src = url;
+	  }
+  
+	  function fileDownloader(url) {
+		// if TARGET exists we use the link to open new tab with the download file
+		if (typeof _args.TARGET === 'undefined') {
+		  var a = document.createElement("iframe");
+		  a.style.allowTransparency = "true";
+		  a.a = "none";
+		  a.setAttribute("frameBorder", "0");
+		  a.setAttribute("scrolling", "no");
+		  a.style.position = "absolute";
+		  a.style.cursor = "pointer";
+		  a.src = url;
+		  a.height = 0;
+		  a.width = 0;
+		  document.body.appendChild(a);
+  
+		}
+	  }
+  
+	  function extensionPreDownload(callback) {
+		writeDownloadCookie();
+		callback();
+	  }
+  
+	  var link_handler;
+	  var init = function () {
+  
+		try {
+		  // Auto downloads the file after IE8's security warning approved and the page refreshed by the browser
+		  var _ieAutoDownloadUrl = cookieHandler.getItem('_ieAutoDownloadUrl');
+		  if (typeof _ieAutoDownloadUrl == 'string' && _ieAutoDownloadUrl != '0') {
+			cookieHandler.setItem('_ieAutoDownloadUrl', '0', 10 * 60);
+			location.href = _ieAutoDownloadUrl;
+		  }
+		} catch (e) {
+		  console.error(e);
+		}
+  
+		parseArgs();
+  
+		if (args.FIRST_PAGE) {
+		  analytics.trackPage(args.FIRST_PAGE);
+		}
+  
+		var finalDownloadUrlCallback;
+  
+		if (detectIE()) {
+		  var folder = isIe8() ? 'ie8' : isIe() ? 'ie' : 'edge';
+		  finalDownloadUrlCallback = function (downloadUrl) {
+			if (navigator.appVersion.indexOf("MSIE 8.") != -1) {
+			  cookieHandler.setItem('_ieAutoDownloadUrl', downloadUrl, 10 * 60);
+			}
+  
+			if (_args.IDENTITY) {
+			  if (navigator.appName == 'Microsoft Internet Explorer') {
+				window.location.href = downloadUrl;
+			  } else {
+				fileDownloader(downloadUrl);
+			  }
+			} else {
+			  showIndicator(selfUrl.replace('pcdm.js', 'indicators/app/' + folder + '/index.html'), function () {
+				if (navigator.appName == 'Microsoft Internet Explorer') {
+				  window.location.href = downloadUrl;
+				} else {
+				  fileDownloader(downloadUrl);
+				}
+			  });
+			}
+		  };
+		} else if (isFirefox()) {
+		  finalDownloadUrlCallback = function (url) {
+			if (_args.IDENTITY) {
+			  fileDownloader(url);
+			} else {
+			  showIndicator(selfUrl.replace('pcdm.js', 'indicators/app/firefox/index.html'), function () {
+				fileDownloader(url);
+			  });
+			}
+		  }
+		} else {
+		  finalDownloadUrlCallback = function (downloadUrl) {
+			window.location.href = downloadUrl;
+		  }
+		}
+  
+		finalDownloadUrlCallback = (function (callback) {
+		  return function (downloadUrl) {
+			callback(downloadUrl);
+		  };
+		})(finalDownloadUrlCallback);
+  
+		var clickCallback = function (downloadUrl) {
+		  extensionPreDownload(function () {
+			finalDownloadUrlCallback(downloadUrl);
+		  });
+		};
+  
+		clickCallback = (function (callback) {
+		  return function (downloadUrl) {
+			analytics.trackPage(args.DL_PV, function () {
+			});
+			callback(downloadUrl);
+		  };
+		})(clickCallback);
+  
+		if (args.LINK_IDS) {
+		  link_handler = linksHandler({ link_ids: args.LINK_IDS });
+		}
+		var wrapCallback = function (_clickCallback) {
+		  if (link_handler) {
+			link_handler.setClickCallback(_clickCallback);
+			link_handler.wrapLinks();
+		  }
+		};
+  
+		wrapCallback(clickCallback);
+  
+		return {
+		  download: clickCallback
+		}
+	  };
+  
+	  return init();
+	};
+  
+	function getUrlParams() {
+	  // This function is anonymous, is executed immediately and
+	  var query_string = {};
+	  var query = window.location.search.substring(1);
+	  var vars = query.split("&");
+	  for (var i = 0; i < vars.length; i++) {
+		var pair = vars[i].split("=");
+		// If first entry with this name
+		if (typeof query_string[pair[0]] === "undefined") {
+		  query_string[pair[0]] = pair[1];
+		  // If second entry with this name
+		} else if (typeof query_string[pair[0]] === "string") {
+		  query_string[pair[0]] = [query_string[pair[0]], pair[1]];
+		  // If third or later entry with this name
+		} else {
+		  query_string[pair[0]].push(pair[1]);
+		}
+	  }
+	  return query_string;
+	}
+  })(window);
+  

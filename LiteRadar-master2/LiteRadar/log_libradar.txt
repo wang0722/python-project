@@ -1,0 +1,11 @@
+Wed, 22 Jan 2020 18:30:45 literadar.py[line:124] DEBUG APK 123.apk's MD5 is 4efbd281217468513e68149a8da1df068e4cbfcda1a2982563719b06e52219cd
+Wed, 22 Jan 2020 18:30:46 literadar.py[line:181] DEBUG Extracting G:\github\LiteRadar-master2\LiteRadar\Data\Decompiled\4efbd281217468513e68149a8da1df068e4cbfcda1a2982563719b06e52219cd\classes.dex
+Wed, 22 Jan 2020 18:35:42 literadar.py[line:124] DEBUG APK 789.apk's MD5 is d2e6d5659c0b2cca599dc0ef1647a316d68c188dee7eff484b7df817aa9be574
+Wed, 22 Jan 2020 18:35:43 literadar.py[line:181] DEBUG Extracting G:\github\LiteRadar-master2\LiteRadar\Data\Decompiled\d2e6d5659c0b2cca599dc0ef1647a316d68c188dee7eff484b7df817aa9be574\classes.dex
+Wed, 22 Jan 2020 18:36:08 literadar.py[line:181] DEBUG Extracting G:\github\LiteRadar-master2\LiteRadar\Data\Decompiled\d2e6d5659c0b2cca599dc0ef1647a316d68c188dee7eff484b7df817aa9be574\classes2.dex
+Wed, 22 Jan 2020 18:36:29 literadar.py[line:181] DEBUG Extracting G:\github\LiteRadar-master2\LiteRadar\Data\Decompiled\d2e6d5659c0b2cca599dc0ef1647a316d68c188dee7eff484b7df817aa9be574\classes3.dex
+Wed, 22 Jan 2020 18:36:51 literadar.py[line:181] DEBUG Extracting G:\github\LiteRadar-master2\LiteRadar\Data\Decompiled\d2e6d5659c0b2cca599dc0ef1647a316d68c188dee7eff484b7df817aa9be574\classes4.dex
+Wed, 22 Jan 2020 18:37:05 literadar.py[line:181] DEBUG Extracting G:\github\LiteRadar-master2\LiteRadar\Data\Decompiled\d2e6d5659c0b2cca599dc0ef1647a316d68c188dee7eff484b7df817aa9be574\classes5.dex
+Wed, 22 Jan 2020 18:37:25 literadar.py[line:181] DEBUG Extracting G:\github\LiteRadar-master2\LiteRadar\Data\Decompiled\d2e6d5659c0b2cca599dc0ef1647a316d68c188dee7eff484b7df817aa9be574\classes6.dex
+Wed, 22 Jan 2020 18:37:49 literadar.py[line:181] DEBUG Extracting G:\github\LiteRadar-master2\LiteRadar\Data\Decompiled\d2e6d5659c0b2cca599dc0ef1647a316d68c188dee7eff484b7df817aa9be574\classes7.dex
+Wed, 22 Jan 2020 18:38:09 literadar.py[line:181] DEBUG Extracting G:\github\LiteRadar-master2\LiteRadar\Data\Decompiled\d2e6d5659c0b2cca599dc0ef1647a316d68c188dee7eff484b7df817aa9be574\classes8.dex
